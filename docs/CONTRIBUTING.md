@@ -6,17 +6,24 @@ First, thank you for contributing to **basicbots**. Without your support and hel
 
 Table of contents.
 
-[Code of Conduct](#code-of-conduct)
+1. [Code of Conduct](#code-of-conduct)
+2. [Roadmap](#roadmap) 
+3. [What should I know before I get started?](#what-should-i-know-before-i-get-started?)
+4. [How Can I Contribute?](#how-can-i-contrubute?)
+5. [Style Guides](#style-guides)  
 
-What should I know before I get started?
+## Roadmap
 
-How Can I Contribute?
+## What should I know before I get started?  
+
+## How Can I Contribute?
+  - [Coding conventions](#coding-conventions)
   - Reporting bugs
   - Suggesting Enhancements
   - Your First Code Contribution
   - Pull Requests
 
-Styleguides
+## Style Guides
 
   - Git Commit Messages
   - [Effective Go](docs/EFFECTIVE_GO.md)
@@ -31,3 +38,8 @@ Styleguides
 This project and everyone participating in it is governed by the [**basicbots** Code of Conduct](docs/CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code. Please report unacceptable behavior to misterunix@gmail.com.
 
 ## TO DO
+
+## Coding conventions
+- Start reading our code and you'll get the hang of it. We optimize for readability.
+- This is open source software. Consider the people who will read your code, and make it look nice for them. It's sort of like driving a car: Perhaps you love doing donuts when you're alone, but with passengers the goal is to make the ride as smooth as possible.
+- use goling & govet on all source files before pushing. There should not be any erros or warnings.
