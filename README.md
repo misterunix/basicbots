@@ -23,8 +23,7 @@ In keeping with the look and feel of my insperation, [crobots](http://tpoindex.g
 </p>
 
 ## repo rules & guides
-- [Code of conduct](CODE_OF_CONDUCT)
-- [Style Guide 1](STYLE_GUIDE_1.md)
-- [Style Guide 2](STYLE_GUIDE_2.md)
-- [Effective GO](EFFECTIVE_GO.md)
+- [Contributing](docs/CONTRIBUTING.md)
 
+--- 
+[Updates](docs/UPDATES.md)
