@@ -42,5 +42,5 @@ This project and everyone participating in it is governed by the [**basicbots** 
 ## Coding conventions
 - Start reading our code and you'll get the hang of it. We optimize for readability.
 - This is open source software. Consider the people who will read your code, and make it look nice for them. It's sort of like driving a car: Perhaps you love doing donuts when you're alone, but with passengers the goal is to make the ride as smooth as possible.
-- use goling & govet on all source files before pushing. There should not be any erros or warnings.
+- use lint & vet on all source files before pushing. There _should not_ be any erros or warnings.
 - use an editor that will automaticly preform the vet and lint for you. I suggest [VSCode](https://code.visualstudio.com/) with the go extentions.
