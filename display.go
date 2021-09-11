@@ -11,7 +11,7 @@ import (
 func initDisplay() error {
 	var err error
 	defStyle = tcell.StyleDefault.Background(tcell.ColorReset).Foreground(tcell.ColorReset)
-	boxStyle = tcell.StyleDefault.Foreground(tcell.ColorWhite).Background(tcell.ColorPurple)
+	//boxStyle = tcell.StyleDefault.Foreground(tcell.ColorWhite).Background(tcell.ColorPurple)
 
 	// Initialize screen
 	scr, err = tcell.NewScreen()

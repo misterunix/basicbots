@@ -13,6 +13,7 @@ Table of contents.
 5. [Style Guides](#style-guides)  
 
 ## Roadmap
+  - Current [roadmap](docs/ROADMAP.md) is a combination of bugs, enhancements and longterm goals. 
 
 ## What should I know before I get started?  
 
