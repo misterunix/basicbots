@@ -16,7 +16,8 @@ In keeping with the look and feel of the late 70s and early 80s the battlefield 
 
 I expect it will take time for me to learn the ins and outs of managing an Open Source repo. I ask for your help, in all areas of the project.
 
-- Fix spelling errors and typos.
+- Fixxing spelling errors and typos.
+- Creating documentation.
 - Documenting the code.
 - Squashing bugs.
 - Adding features.
@@ -27,6 +28,7 @@ I expect it will take time for me to learn the ins and outs of managing an Open 
 
 - [basicbots overview and guide](docs/BASICBOTS.md)
 - [basicbots basic](docs/BASIC.md)
+
 ---
 
 

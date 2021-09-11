@@ -84,7 +84,7 @@ const (
 	RELOAD       = 15    // RELOAD : Number of of movrment cycles for a missile reload.
 	MISSILESPEED = 500.0 // MISSILESPEED : Missiles move at full speed. No ramp up. 500 is 500% vs 100% for robots.
 	ROBOTRELOAD  = 5     // ROBOTRELOAD : Number of cycles for the robot to reload. Used to slow down the firing of the second missile.
-	EXPLODECOUNT = 5     // EXPLODECOUNT : The number of momvement cycles for the explosion to show in the battlescreen.
+	EXPLODECOUNT = 5     // EXPLODECOUNT : The number of movement cycles for the explosion to show in the battlescreen.
 )
 
 // Constants for missile status
