@@ -49,10 +49,9 @@ func main() {
 			os.Exit(1)
 		}
 
-		err = RunRobots()
-		if err != nil {
-			fmt.Fprintln(os.Stderr, err)
-			os.Exit(1)
+		exiterror = RunRobots()
+		if etype != 0 {
+			break
 		}
 
 		//fmt.Fprintf(os.Stderr, "match end: %d\n", match)
@@ -61,6 +60,11 @@ func main() {
 
 	if battledisplay {
 		scr.Fini()
+	}
+
+	if exiterror != nil {
+		fmt.Fprintf(os.Stderr, "%v\n", exiterror)
+		os.Exit(1) // Exit without showing winner.
 	}
 
 	for i := 0; i < numberOfRobots; i++ {
