@@ -135,7 +135,6 @@ func InitRobots() error {
 func RunRobots() error {
 
 	var alive int
-	var etype int
 
 	if battledisplay {
 		scr.Show()
@@ -185,19 +184,19 @@ func RunRobots() error {
 				//evaluator[current].ProgramEnd = true
 				//fmt.Fprintf(os.Stderr, "Robot:%d DEAD evaluator[current].RunStep() err \n", current)
 				//alive--
+				etype = 98
 				em := fmt.Sprintf("Error running program:\n\t%s\n", err.Error())
 				return errors.New(em)
 			}
+
 			if evaluator[current].ProgramEnd {
 				Robots[current].Damage = 100
 				Robots[current].Status = DEAD
 				// fmt.Fprintf(os.Stderr, "Robot:%d DEAD evaluator[current].ProgramEnd\n", current)
 				//alive-- // if program ends remove it from the cound
-				break
+				continue // dont end battlebots if a single program ends.
 			}
 
-			//Robots[current].MU.Unlock()
-			//alive++
 		}
 
 		alive = 0

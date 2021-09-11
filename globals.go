@@ -42,6 +42,9 @@ var cycledelay int64 // cycledelay : Delay in nanoseconds. Used in the battlescr
 
 var matchcount int // matchcount : Number of matches to play with current robots. Can not be used with 'battledisplay'.
 
+var etype int       // etype : Holds the event type from tcell or function when needing to exit the program.
+var exiterror error // exiterror : Holds any error code that is causing the program to end.
+
 /*
 	CONSTANTS
 */
