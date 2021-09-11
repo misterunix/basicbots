@@ -3,7 +3,7 @@
 basicbots roadmap is a combination of
 - bug fixes
 - enhancements
-- long term goals
+- [long term goals](#long-term-goals)
 
 
 ## Long Term Goals

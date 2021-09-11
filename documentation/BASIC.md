@@ -12,6 +12,7 @@
 ### Qurkes
 - Variables are case sensitive. Primitives are not.
   - LOCALX is different than localx
+- Parens around statemenst are not allowed. Example, ```LET A = SQR(25)``` is an error. Where is ```LET A = SQL 25``` is correct.
 - Line numbers are not strictly required but are strongly suggested.
   - I do not suggest doing leaving out the line numbers. Error handling is still awful and needs work. Doing this would just make it harder.
 - Some of the custom statements seem not to play well with `IF` `THEN` & `ELSE`. I am not sure why but for now keep the `IF` states as simple as you can. If you get odd error messages. Rewrite the `IF` states around it.
