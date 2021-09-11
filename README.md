@@ -22,8 +22,8 @@ In keeping with the look and feel of my insperation, [crobots](http://tpoindex.g
   <img width="100%" height="100%" src="images/example1.gif">
 </p>
 
-## repo rules & guides
+## Guidlines
 - [Contributing](docs/CONTRIBUTING.md)
 
---- 
-[Updates](docs/UPDATES.md)
+ 
+- [Updates](docs/UPDATES.md)
