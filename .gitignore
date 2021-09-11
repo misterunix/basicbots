@@ -12,6 +12,11 @@ basicbots-linux64
 # Test binary, built with `go test -c`
 *.test
 
+
+# go files
+go.mod
+go.sum
+
 # Output of the go coverage tool, specifically when used with LiteIDE
 *.out
 

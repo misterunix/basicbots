@@ -10,8 +10,8 @@ My first introduction to programming combat games was [Tom Poindexter's](https:/
  **basicbots** uses a subset of *BASIC*. Why *BASIC*? Well, because why not? *BASIC* is not a completely dead language, but for those of us old enough this should take you back in time to the versions around the late 1970s and early 1980s. If not, that is okay as well. You can get a sample of what it was like to live in the 8-bit world when computers were simpler.
 
 ---
-- [basicbots overview and guide](BASICBOTS.md)
-- [basicbots basic](BASIC.md)
+- [basicbots overview and guide](documentation/BASICBOTS.md)
+- [basicbots basic](documentation/BASIC.md)
 ---
 
 <p align="center">
