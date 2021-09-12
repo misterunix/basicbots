@@ -7,9 +7,8 @@
 *.dylib
 
 windows64.exe
-windows64.zip
 linux64
-latest
+
 
 
 # Test binary, built with `go test -c`
