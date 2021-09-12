@@ -9,7 +9,9 @@
 windows64.exe
 linux64
 
-
+# I dont think binaries should be in the branches.
+linux64.tgz
+windows64.zip
 
 # Test binary, built with `go test -c`
 *.test
