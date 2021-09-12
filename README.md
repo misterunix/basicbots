@@ -14,9 +14,10 @@ In keeping with the look and feel of the late 70s and early 80s the battlefield 
 
 ## basicbots is my first Open Source project. 
 
-I expect it will take time for me to learn the ins and outs of managing an Open Source repo. I ask for your help, in all areas of the project.
+I expect it will take time for me to learn the ins and outs of managing an Open Source project. I ask for your help, in all areas of the project. 
 
-- Fix spelling errors and typos.
+- Fixxing spelling errors and typos.
+- Creating documentation.
 - Documenting the code.
 - Squashing bugs.
 - Adding features.
@@ -27,6 +28,7 @@ I expect it will take time for me to learn the ins and outs of managing an Open 
 
 - [basicbots overview and guide](docs/BASICBOTS.md)
 - [basicbots basic](docs/BASIC.md)
+
 ---
 
 
@@ -39,3 +41,5 @@ I expect it will take time for me to learn the ins and outs of managing an Open 
 
  
 - [Updates](docs/UPDATES.md)
+
+I am on twitter as @misterunix and my email address is misterunix@gmail.com. Reachout with any questions.

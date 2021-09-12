@@ -28,8 +28,8 @@ var maxCycles int // maxCycles : Maximum numer of cycles per match. Can change w
 var Missiles [MAXROBOTS][MAXMISSILES]Missile // Missile : Array of the missiles that can be used.
 
 var defStyle tcell.Style // defStyle : white on blank for text. Used in tcell.
-var boxStyle tcell.Style // boxStyle : Leagacy purple
-var scr tcell.Screen     // scr : tcell screen interface. Using global to keep from haveing go routines.
+//var boxStyle tcell.Style // boxStyle : Leagacy purple
+var scr tcell.Screen // scr : tcell screen interface. Using global to keep from haveing go routines.
 
 var event = make(chan int) // event : Channel for getting out of tcell with escape key.
 
@@ -48,6 +48,8 @@ var exiterror error // exiterror : Holds any error code that is causing the prog
 /*
 	CONSTANTS
 */
+
+const VERSION = "v0.0.1a"
 
 // Constants for cycles routines. Mainly movements.
 const (
@@ -82,7 +84,7 @@ const (
 	RELOAD       = 15    // RELOAD : Number of of movrment cycles for a missile reload.
 	MISSILESPEED = 500.0 // MISSILESPEED : Missiles move at full speed. No ramp up. 500 is 500% vs 100% for robots.
 	ROBOTRELOAD  = 5     // ROBOTRELOAD : Number of cycles for the robot to reload. Used to slow down the firing of the second missile.
-	EXPLODECOUNT = 5     // EXPLODECOUNT : The number of momvement cycles for the explosion to show in the battlescreen.
+	EXPLODECOUNT = 5     // EXPLODECOUNT : The number of movement cycles for the explosion to show in the battlescreen.
 )
 
 // Constants for missile status
