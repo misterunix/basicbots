@@ -1,6 +1,6 @@
 # **basicbots**
 
-![basicbots](images/baiscbots-logo-512x512.png)
+![basicbots](https://misterunix.github.io/basicbots/images/basicbots-logo-512x512.png)
 
 ## What is it?
 **basicbots** is a programming game where you write a program in *BASIC* and have it compete against other robots.
