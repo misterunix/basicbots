@@ -49,7 +49,7 @@ var exiterror error // exiterror : Holds any error code that is causing the prog
 	CONSTANTS
 */
 
-const VERSION = "v0.0.1a"
+const VERSION = "v0.0.1b"
 
 // Constants for cycles routines. Mainly movements.
 const (

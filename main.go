@@ -77,7 +77,8 @@ func main() {
 
 	for i := 0; i < numberOfRobots; i++ {
 		space := strings.Repeat(" ", 20-len(Robots[i].Name))
-		fmt.Printf("%s%s w:%05d t:%05d l:%05d\n", Robots[i].Name, space, Robots[i].Winner, Robots[i].Tie, Robots[i].Lose)
+		points := (Robots[i].Winner * 3) + Robots[i].Tie
+		fmt.Printf("%s%s w:%05d t:%05d l:%05d p:%05d\n", Robots[i].Name, space, Robots[i].Winner, Robots[i].Tie, Robots[i].Lose, points)
 		//fmt.Printf("%+v\n", Robots[i])
 	}
 
