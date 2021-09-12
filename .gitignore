@@ -5,13 +5,14 @@
 *.dll
 *.so
 *.dylib
-basicbots
-basicbots_windows64.exe
-basicbots-linux64
+
+windows64.exe
+linux64
+
+
 
 # Test binary, built with `go test -c`
 *.test
-
 
 # go files
 go.mod
@@ -24,5 +25,4 @@ go.sum
 # vendor/
 l.txt
 ll.txt
-
 notes.txt
