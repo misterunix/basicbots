@@ -171,9 +171,13 @@ The relational operators are =, >, <, <> or ><, >=, and <=. They are not support
   - This passes if `a` is a number which is not zero.
   - This passes if `a` is a string which is non-empty.
 
+That's a lot to take in. In the next section we will break it down by using real examples. 
+
 ---
 
 ## Intorduction to *BASIC* programming.
+
+
 
 ### Assignment
 `LET` assignes a number or result to a variable. `LET` will be used often in most programs.
@@ -195,6 +199,122 @@ The relational operators are =, >, <, <> or ><, >=, and <=. They are not support
 - `=` equals
   - `IF A = B THEN GOTO 100 ELSE GOTO 200`
     - if `A` is equal to `B` then jump to location `100` else jump to location `200`
+- `>=` more than or equals 
+  - `IF A >= B THEN LET A = A + 10` 
+    - if `A` is more than or equals `B` then add `10` to the variable `A`
+- `<=` lets than or equals
+  - `IF A <= B THEN LET A = A - 10` 
+    - if `A` is less than or equals `B` then subtract `10` from the variable `A`
+- `<>` does not equal
+  - `IF A <> B THEN GOSUB 200`
+    - If `A` does not equal B then `GOSUB` to location 200
+- no conditional
+  - `IF A THEN LET B = A`
+    - If `A` is not 0 then assign the value in `A` to the variable `B`
+    - If `A` is any number expect 0 then ...
+  
+## Loops
+
+Loops allow an effecient way of doing a section of code over a set number of times.
+
+	5 LET B = 0
+	10 FOR A = 1 TO 10
+	20 LET B = B + 1
+	25 PRINT B,
+	30 NEXT A
+	35 PRINT "\n"
+	40 END
+
+
+Will output 
+
+	1 2 3 4 5 6 7 8 9 10
+
+You can control the step that each iteration does,
+
+	10 FOR A = 1 TO 10 STEP 2
+	20 PRINT A,
+	30 NEXT A
+	35 PRINT "\n"
+	40 END
+
+Will output 
+    
+	1 3 5 7 9
+
+Not wha you expected? We started the loop at 1, so 1 + 2 = 3. You can change this by starting your loop at 0.
+
+	10 FOR A = 0 TO 10 STEP 2
+	20 PRINT A,
+	30 NEXT A
+	35 PRINT "\n"
+	40 END
+
+
+will output
+
+	0 2 4 6 8 10 
+
+Loops can also step by a fraction.
+
+	10 FOR A = 0 TO 1 STEP 0.2
+	20 PRINT A,
+	30 NEXT A
+	35 PRINT "\n"
+	40 END
+
+will output
+
+	0 0.200000 0.400000 0.600000 0.800000 1
+
+
+
+
+
+
+
+
+
+  ## Lets get started with *basicbots* programming.
+
+  Actual working code! Featuring a subroutine. 
+
+```
+1 REM scan and shoot
+10 LET DISTANCE = 0
+11 LET ANGLE = 0
+12 LET WIDTH = 5
+
+100 GOSUB 1000
+110 IF DISTANCE < 700 THEN CANNON ANGLE,DISTANCE
+120 GOTO 100 
+
+1000 REM scan for enemy robot.
+1010 LET DISTANCE = SCAN ANGLE, WIDTH
+1020 IF DISTANCE > 0 THEN GOTO 1100
+1030 LET ANGLE = ANGLE + WIDTH
+1040 IF ANGLE >= 360 THEN LET ANGLE = ANGLE - 360
+1050 GOTO 1010
+1100 RETURN
+
+```
+
+
+
+The flow is
+- initialize all variables
+- jump to subroutine 
+  - scan for enemy robot 
+  - if found return frome subroutine
+    - if not found add the width size to the angle
+  - jump back to scan command
+  - return from subroutine
+- if the distance to the enemy is less than 700 then shot cannon at the angle of the last scan with the distance returned
+- do it all again
+
+
+
+
 
 ---
 So much more to do.
