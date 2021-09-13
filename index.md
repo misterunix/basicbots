@@ -3,6 +3,9 @@
 ## What is it?
 **basicbots** is a programming game where you write a program in *BASIC* and have it compete against other robots.
 
+## Releases
+- [v0.0.1b](https://github.com/misterunix/basicbots/releases)
+
 <p align="center">
 <img width="100%" height="100%" src="images/example2.gif">
 </p>
