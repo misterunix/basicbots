@@ -26,8 +26,7 @@ I expect it will take time for me to learn the ins and outs of managing an Open 
 
 ---
 
-- [basicbots overview and guide](docs/BASICBOTS.md)
-- [basicbots basic](docs/BASIC.md)
+- [basicbots guide](docs/BASICBOTS.md)
 
 ---
 

@@ -38,3 +38,98 @@ That's it. Three commands and four status sensors. With that, you can navigate t
 
 
 
+# The *BASIC* of **basicbots**
+
+Keywords
+
+| Command |      |      |  |  |  | Notes |
+|:--------|:-----|:-----|:-|:-|:-| :------|
+| REM     | Single line | | | | | A remark |
+| LET     | Variable| = Value | | | | Assign a value to a variable |
+| GOTO    | Line number| | | |  | Transfer execution to the line number |
+| GOSUB   | Line number| |  | | | Transfer execution to the subroutine at line number |
+| RETURN  | | | | |  | Transfers execution to the line following the GOSUB command|
+| IF | condition | THEN | statement | ELSE | statement | Excute the statement after THEN if condition is true if not then execute statement after ELSE
+| FOR | assignment | TO | value | STEP | value | Set the loop paramters
+| NEXT | variable | | | | | Return back to FOR changing the value of the assignment by the value in STEP |
+| DIM | variable | [size] | | | | Create an array of the size specified. Note this array is 0 based unlike other BASICs.|
+| DEF | FN | name | expresstion | | | Create a user defined function |
+| FN | name | values | | | | execute defined funtion name |
+| SWAP | variable1 | variable2| | | | Exchange the values variable1 and variable2 |
+| DATA | values, | | | | | List of values to be read |
+| READ | | | | | | Reads the data stored by DATA. There is no reset ability at this time.|
+| AND | value1 | value2 | | | | Bit AND of the value1 and value2. See [truth table](#truth-table) |
+| OR | value1 | value2  | | | | Bit OR of the value1 and value2. See [truth table](#truth-table) |
+| XOR | value1 | value2 | | | | Bit XOR or the value1 and value2. See [truth table](#truth-table) |
+| LOCX | | | | | | Returns the X Location of the robot.|
+| LOCY | | | | | | Returns the Y Location of the robot.|
+| DAMAGE | | | | | | Returns the current damage of the robot.|
+| SPEED | | | | | | Returns the current speed of the robot.|
+| SCAN | angle| width| | | | Scan for an enemy robot in the direction of angle with a width of +- width.
+| CANNON | angle | range | | | | Fire the cannon at angle and range |
+| DRIVE | angle | speed% | | | |  Engage the drive in the direction of angle with a speed of speed%
+
+
+
+
+
+
+
+
+--- 
+
+### Truth table
+
+|     | VALUE | VALUE | RESULT |
+|:----|:------|:------|:-------|
+| AND | 0     | 0     | 0      |
+| AND | 1     | 0     | 0      |
+| AND | 0     | 1     | 0      |
+| AND | 1     | 1     | 1      |
+
+    48 AND 12 = 0
+    0000000000110000 = 48
+    0000000000001100 = 12
+    0000000000000000 = 0
+
+    48 AND 16 = 16
+    0000000000110000 = 48
+    0000000000010000 = 16
+    0000000000010000 = 16
+
+|     | VALUE | VALUE | RESULT |
+|:----|:------|:------|:-------|
+| OR  | 0     | 0     | 0      |
+| OR  | 1     | 0     | 1      |
+| OR  | 0     | 1     | 1      |
+| OR  | 1     | 1     | 1      |
+
+    48 OR 12 = 60
+    0000000000110000 = 48
+    0000000000001100 = 12
+    0000000000111100 = 60
+
+    48 OR 16 = 48
+    0000000000110000 = 48
+    0000000000010000 = 16
+    0000000000110000 = 48
+
+|     | VALUE | VALUE | RESULT |
+|:----|:------|:------|:-------|
+| XOR | 0     | 0     | 0      |
+| XOR | 1     | 0     | 1      |
+| XOR | 0     | 1     | 1      |
+| XOR | 1     | 1     | 0      |
+
+    48 XOR 12 = 60
+    0000000000110000 = 48
+    0000000000001100 = 12
+    0000000000111100 = 60
+
+    48 XOR 16 = 32
+    0000000000110000 = 48
+    0000000000010000 = 16
+    0000000000100000 = 32
+
+
+
