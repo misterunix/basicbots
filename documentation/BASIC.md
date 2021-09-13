@@ -267,11 +267,72 @@ will output
 
 	0 0.200000 0.400000 0.600000 0.800000 1
 
+## Branching
+
+`GOTO` will jump to the specified line number.
+
+	10 PRINT "Hello World\n"
+	20 GOTO 10
+
+This will print *Hello World* over and over again
+
+`GOSUB` will jump to a subroutine then will `RETURN` back to the next like after the `GOSUB`. This is usefull in making sections of code to be only written once. 
+
+	10 PRINT "Start\n"
+	20 FOR A = 1 TO 10
+	30 GOSUB 100
+	40 NEXT A
+	50 PRINT "End\n"
+	60 END
+	100 PRINT "I am a subroutine!\n"
+	110 RETURN
+
+will output
+
+	Start
+	I am a subroutine!
+	I am a subroutine!
+	I am a subroutine!
+	I am a subroutine!
+	I am a subroutine!
+	I am a subroutine!
+	I am a subroutine!
+	I am a subroutine!
+	I am a subroutine!
+	I am a subroutine!
+	End
 
 
+---
 
+# Programming a robot
 
+## Example 1 - sniper-v1.bas
 
+	1 REM FIND TARGET AND SHOOT
+	10 LET SCANDIR = 0
+	12 LET SCANWIDTH = 5
+	30 LET D = SCAN SCANDIR, SCANWIDTH
+	40 IF D >= 50 AND D <= 700 THEN GOSUB 210
+	50 LET SCANDIR = SCANDIR + 2
+	55 IF SCANDIR > 360 THEN LET SCANDIR = SCANDIR - 360
+	56 IF SCANDIR < 0 THEN LET SCANDIR = SCANDIR + 360
+	60 GOTO 30
+
+	200 REM FIRE CANNON
+	210 CANNON SCANDIR,D
+	220 RETURN
+
+- Line 10,12 initalize the scan direction and scan width.
+- Line 30 scans in the direction of SCANDIR with a width of SCANWIDTH
+- Line 40 if the distance returned by scan is more than 50 (dont want to hurt ourselves) and less than 700 then jump to subroutine location at - line 210
+- line 50 adds 2 to the scan direction.
+- line 55 if scan direction more than 360 then subtract 360. 
+- line 56 if scan direction is less than 0 then add 360.
+  - The previous line were to make sure the scan direction stayed between 0 and 360.
+- line 60 jumps back line 30 and starts the scan again
+- line 210 fires the cannon at scan direction and the distance returned by results from line 30. 
+- line 220 returns back to line after the GOSUB. In this case it would be line 50.
 
 
 
