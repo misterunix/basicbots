@@ -1,23 +1,32 @@
-# basicbots *BASIC*
+# **basicbots** *BASIC*
 
 **basicbots** version of *BASIC* is based and adapted from [gobasic](https://github.com/skx/gobasic) by [James Kemp](https://github.com/skx). Mr. Kemp has gracely given me permission to adapt [gobasic](https://github.com/skx/gobasic) for my game.
 
 
-## BASIC
----
-**basicbot** uses a subset of the *BASIC* language. Most of the early BASICs functionality is implemented. The assumption is that the players are passingly familiar with *BASIC*. This document is not meant to teach the *BASIC* programming language. I encourage you to seek out online guides.
+## What is *BASIC*
+*BASIC* stands for Beginners' All-purpose Symbolic Instruction Code
 
-**NOT TRUE**
+*BASIC* was developed at Dartmouth College in 1964 by John G. Kemeny and Thomas E. Kurtz. It was designed with the philosophy of ease of use. It allowed students in fields other than science and mathematics to use computers. It has a long lasting leagcy spanning mainframes to personal computers and now the IoT. 
+
+---
+
+## **basicbots** version
+
+**basicbot** uses a subset of the *BASIC* language. Most of the early functionality is present with addition of commands for controlling the robots. 
+
+I encourage you to seek out online guides.
 
 ### Qurkes
 - Variables are case sensitive. Primitives are not.
   - LOCALX is different than localx
-- Parens around statemenst are not allowed. Example, ```LET A = SQR(25)``` is an error. Where is ```LET A = SQL 25``` is correct.
+- Parens around statemenst are not allowed. Example, ```LET A = SQR(25)``` is an error. Where as ```LET A = SQL 25``` is correct.
 - Line numbers are not strictly required but are strongly suggested.
-  - I do not suggest doing leaving out the line numbers. Error handling is still awful and needs work. Doing this would just make it harder.
+  - I do not suggest leaving out the line numbers. Error handling is still awful and needs work. Doing this would just make it harder to debug your program.
 - Some of the custom statements seem not to play well with `IF` `THEN` & `ELSE`. I am not sure why but for now keep the `IF` states as simple as you can. If you get odd error messages. Rewrite the `IF` states around it.
-- Error reporting can be a bit difficult to interpret. Advice, save work often and make copies as you go. **git** is a good way to handle this.
-- I find it useful at the top of the program to initialize all the variables. This cuts down on some errors.
+- Error reporting can be a bit difficult to interpret. 
+  - Lot at the line after the reported error for possible problems.
+  - Advice, save work often and make copies as you go. **git** is a good way to handle this.
+- I find it useful, at the top of the program to initialize all the variables. This cuts down on some errors.
 
 ### Limitations
 A previously stated this is a subset of the *BASIC* standard. 
@@ -66,7 +75,7 @@ All line numbers are integers.
   - `DIM`
 
 - Loops
-  - `FOR` `NEXT` `STEP` & `TO`
+  - `FOR` / `NEXT` / `STEP` / `TO`
 
 - Conditionals
   - `IF` / `THEN` / `ELSE`
@@ -128,7 +137,8 @@ All line numbers are integers.
   - Returns from a subroutine. Program execution returns to the statement following the `GOSUB`,  which called the present subroutine.
 
 - `END`
-  - Terminates program execution.
+  - Terminates program execution. 
+  - Instant death to a robot.
 
 ~~PRINT output-list~~
 
@@ -143,7 +153,7 @@ All line numbers are integers.
 
 ### EXPRESSIONS
 
-Expressions in **basicbots** *BASIC* are purely arithmetic expressions. The four basic arithmetic operators are supported: multiplication (*), division (/), addition (+), and subtraction (-). Unary operators for positive (+) and negative (-) are supported, as are parentheses for affecting the order of operations.
+Expressions in **basicbots** *BASIC* are purely arithmetic expressions. The four basic arithmetic operators are supported: multiplication (*), division (/), addition (+), subtraction (-) and (%) modulus. Unary operators for positive (+) and negative (-) are supported, as are parentheses for affecting the order of operations.
 
 Standard operator precedence evaluates parentheses first, then unary signs, then multiplication and division, with addition and subtraction last.
 
@@ -161,10 +171,34 @@ The relational operators are =, >, <, <> or ><, >=, and <=. They are not support
   - This passes if `a` is a number which is not zero.
   - This passes if `a` is a string which is non-empty.
 
+---
 
+## Intorduction to *BASIC* programming.
+
+### Assignment
+`LET` assignes a number or result to a variable. `LET` will be used often in most programs.
+
+- `10 LET A = 0`
+  - Would assign the number 0 to the variable named A. 
+- `10 LET A = A + 1`
+  - Would increment the variable by adding 1 to A and storing the results back in A. 
+- `10 LET DISTANCE = SCAN A, 5`
+  - The results of a `SCAN` at angle `A` with a width of 5 would be stored in the variable `DISTANCE'
+
+### Conditionals
+- `>` more than. 
+  - `IF A > B THEN LET A = A + 10` 
+    - if `A` is more than `B` then add `10` to the variable `A`
+- `<` lets than
+  - `IF A < B THEN LET A = A - 10` 
+    - if `A` is less than `B` then subtract `10` from the variable `A`
+- `=` equals
+  - `IF A = B THEN GOTO 100 ELSE GOTO 200`
+    - if `A` is equal to `B` then jump to location `100` else jump to location `200`
 
 ---
 So much more to do.
+
 ---
 ---
 
