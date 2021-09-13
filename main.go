@@ -67,6 +67,9 @@ func main() {
 	}
 
 	if battledisplay {
+		if etype != 99 {
+			time.Sleep(10 * time.Second)
+		}
 		scr.Fini()
 	}
 

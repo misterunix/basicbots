@@ -1,16 +1,16 @@
 package main
 
-import "math"
+import (
+	"math"
+)
 
 // moverobot : Move robots every motion cycle.
 // Take damage, detect dead robots, detect for collision.
 func moverobot() {
 
 	for i := 0; i < numberOfRobots; i++ {
-
-		if Robots[i].Damage >= 100 || Robots[i].Status == DEAD {
-			Robots[i].Status = DEAD
-			Robots[i].Damage = 100
+		checkAlive(i)
+		if Robots[i].Status == DEAD {
 			continue
 		}
 
@@ -116,8 +116,8 @@ func moverobot() {
 			if rn == i {
 				continue
 			}
-			if Robots[rn].Damage >= 100 {
-				Robots[rn].Status = DEAD
+			checkAlive(rn)
+			if Robots[rn].Status == DEAD {
 				continue
 			}
 
@@ -148,9 +148,8 @@ func moverobot() {
 			}
 
 			// Check current robot damage and break out of current collision loop
-			if Robots[i].Damage >= 100 || Robots[i].Status == DEAD {
-				Robots[i].Status = DEAD
-				Robots[i].Damage = 100
+			checkAlive(i)
+			if Robots[i].Status == DEAD {
 				break
 			}
 		}
@@ -237,9 +236,8 @@ func movemissile() {
 				//	}
 
 				for i := 0; i < numberOfRobots; i++ {
-					if Robots[i].Damage >= 100 || Robots[i].Status == DEAD {
-						Robots[i].Status = DEAD
-						Robots[i].Damage = 100
+					checkAlive(i)
+					if Robots[i].Status == DEAD {
 						continue
 					}
 					if i == r {
@@ -257,10 +255,8 @@ func movemissile() {
 						Robots[i].Damage += DAMFAR
 					}
 
-					if Robots[i].Damage >= 100 || Robots[i].Status == DEAD {
-						Robots[i].Status = DEAD
-						Robots[i].Damage = 100
-					}
+					checkAlive(i)
+
 				}
 
 			}

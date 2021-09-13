@@ -115,12 +115,12 @@ func plotbattlefield() {
 
 	for r := 0; r < numberOfRobots; r++ {
 
-		posy = 5 * r
+		posy = 5 * r // Y position of each robots running stats. 5 lines per robot
 
-		if Robots[r].Damage >= 100 {
-			Robots[r].Status = DEAD
-			continue
-		}
+		checkAlive(r)
+		//if Robots[r].Status == DEAD {
+		//	continue
+		//}
 
 		if Robots[r].XPlotOld != 0 && Robots[r].YPlotOld != 0 {
 			tg := rune(' ')
@@ -132,9 +132,10 @@ func plotbattlefield() {
 		x := int(xf) + 1
 		y := int(yf) + 1
 
-		t := []rune(strconv.Itoa(r + 1))
-		scr.SetCell(x, y, defStyle, t[0])
-
+		if Robots[r].Status != DEAD {
+			t := []rune(strconv.Itoa(r + 1))
+			scr.SetCell(x, y, defStyle, t[0])
+		}
 		Robots[r].XPlotOld = x
 		Robots[r].YPlotOld = y
 
@@ -212,7 +213,10 @@ func plotbattlefield() {
 
 		}
 
-		dd := fmt.Sprintf("SCN %03d WTH %03d", int(Robots[r].Scan), int(Robots[r].Width))
+		dd := Robots[r].Name // fmt.Sprintf("%s", Robots[r].Name)
+		drawText(scr, posx, posy, posx+17, posy, defStyle, dd)
+		posy++
+		dd = fmt.Sprintf("SCN %03d WTH %03d", int(Robots[r].Scan), int(Robots[r].Width))
 		drawText(scr, posx, posy, posx+17, posy, defStyle, dd)
 		posy++
 		dd = fmt.Sprintf("HNG %03d SPD %03d", int(Robots[r].Heading), int(Robots[r].Speed))

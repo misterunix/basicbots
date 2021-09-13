@@ -166,12 +166,8 @@ func RunRobots() error {
 		}
 
 		for current = 0; current < numberOfRobots; current++ {
-
-			if Robots[current].Damage >= 100 {
-				Robots[current].Status = DEAD
-				// fmt.Fprintf(os.Stderr, "Robot:%d DEAD s:%d  d:%d\n", current, Robots[current].Status, Robots[current].Damage)
-				//alive--
-				//Robots[current].MU.Unlock()
+			checkAlive(current)
+			if Robots[current].Status == DEAD {
 				continue
 			}
 
@@ -192,8 +188,6 @@ func RunRobots() error {
 			if evaluator[current].ProgramEnd {
 				Robots[current].Damage = 100
 				Robots[current].Status = DEAD
-				// fmt.Fprintf(os.Stderr, "Robot:%d DEAD evaluator[current].ProgramEnd\n", current)
-				//alive-- // if program ends remove it from the cound
 				continue // dont end battlebots if a single program ends.
 			}
 
@@ -232,14 +226,7 @@ func RunRobots() error {
 		if battledisplay {
 			delay.Delay(cycledelay)
 		}
-		//fmt.Fprintf(os.Stderr, "cycles: %d\n", cycles)
 	}
-	//fmt.Fprintf(os.Stderr, "c: %d\n", cycles)
-	//fmt.Printf("Alive: %d\n", alive)
-	//for nn := 0; nn < numberOfRobots; nn++ {
-	//	fmt.Printf("%d ", Robots[nn].Status)
-	//}
-	//fmt.Println()
 
 	//	fmt.Fprintf(os.Stderr, "out of cpu loop %d - alive=%d\n", cycles, alive)
 	if alive == 0 {
@@ -273,4 +260,13 @@ func RunRobots() error {
 	}
 
 	return nil
+}
+
+func checkAlive(n int) {
+	if Robots[n].Status == DEAD {
+		return
+	}
+	if Robots[n].Damage >= 100 {
+		Robots[n].Status = DEAD
+	}
 }
