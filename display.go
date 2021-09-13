@@ -117,8 +117,8 @@ func plotbattlefield() {
 
 		posy = 5 * r
 
-		if Robots[r].Damage >= 100 {
-			Robots[r].Status = DEAD
+		checkAlive(r)
+		if Robots[r].Status == DEAD {
 			continue
 		}
 

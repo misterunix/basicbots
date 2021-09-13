@@ -3,44 +3,42 @@ package main
 import (
 	"basicbots/builtin"
 	"basicbots/object"
-	"fmt"
 	"math"
-	"os"
 )
 
 // FunctionLocX : Basic statement. LOCX returns the current Y location.
 func FunctionLocX(env builtin.Environment, args []object.Object) object.Object {
 	X := Robots[current].X
-	if debug {
-		fmt.Fprintf(os.Stderr, "Robot:%d FunctionLocX() LOCX:%5.2f\n", current, Robots[current].X)
-	}
+	//if debug {
+	//	fmt.Fprintf(os.Stderr, "Robot:%d FunctionLocX() LOCX:%5.2f\n", current, Robots[current].X)
+	//}
 	return &object.NumberObject{Value: X}
 }
 
 // FunctionLocY : Basic statement. LOCY returns the current Y location
 func FunctionLocY(env builtin.Environment, args []object.Object) object.Object {
 	y := Robots[current].Y
-	if debug {
-		fmt.Fprintf(os.Stderr, "Robot:%d FunctionLocY() LOCY:%5.2f\n", current, Robots[current].Y)
-	}
+	//if debug {
+	//	fmt.Fprintf(os.Stderr, "Robot:%d FunctionLocY() LOCY:%5.2f\n", current, Robots[current].Y)
+	//}
 	return &object.NumberObject{Value: y}
 }
 
 // FunctionSpeed : Basic statement. SPEED returns the current speed of the robot
 func FunctionSpeed(env builtin.Environment, args []object.Object) object.Object {
 	speed := Robots[current].Speed
-	if debug {
-		fmt.Fprintf(os.Stderr, "Robot:%d FunctionSpeed() Speed:%5.2f\n", current, Robots[current].Speed)
-	}
+	//if debug {
+	//	fmt.Fprintf(os.Stderr, "Robot:%d FunctionSpeed() Speed:%5.2f\n", current, Robots[current].Speed)
+	//}
 	return &object.NumberObject{Value: speed}
 }
 
 // FunctionDamage : Basic statement. DAMAGE returns the current damage of the robot
 func FunctionDamage(env builtin.Environment, args []object.Object) object.Object {
 	damage := float64(Robots[current].Damage)
-	if debug {
-		fmt.Fprintf(os.Stderr, "Robot:%d FunctionDamage() Damage:%d\n", current, Robots[current].Damage)
-	}
+	//if debug {
+	//	fmt.Fprintf(os.Stderr, "Robot:%d FunctionDamage() Damage:%d\n", current, Robots[current].Damage)
+	//}
 	return &object.NumberObject{Value: damage}
 }
 
@@ -73,9 +71,9 @@ func FunctionDrive(env builtin.Environment, args []object.Object) object.Object 
 	Robots[current].SpeedWanted = s
 	Robots[current].HeadingWanted = d
 
-	if debug {
-		fmt.Fprintf(os.Stderr, "Robot:%d FunctionDrive heading:%5.2f speedwanted:%5.2f\n", current, Robots[current].HeadingWanted, Robots[current].SpeedWanted)
-	}
+	//if debug {
+	//	fmt.Fprintf(os.Stderr, "Robot:%d FunctionDrive heading:%5.2f speedwanted:%5.2f\n", current, Robots[current].HeadingWanted, Robots[current].SpeedWanted)
+	//}
 
 	return &object.NumberObject{Value: 0.0}
 }
@@ -100,9 +98,9 @@ func FunctionScan(env builtin.Environment, args []object.Object) object.Object {
 
 	}
 
-	if debug {
-		fmt.Fprintf(os.Stderr, "SCAN angle: %f\n", angle)
-	}
+	//if debug {
+	//	fmt.Fprintf(os.Stderr, "SCAN angle: %f\n", angle)
+	//}
 
 	if width > 10.0 {
 		width = 10.0
@@ -113,8 +111,8 @@ func FunctionScan(env builtin.Environment, args []object.Object) object.Object {
 	Robots[current].Scan = angle
 	Robots[current].Width = width
 
-	if Robots[current].Damage >= 100 {
-		Robots[current].Status = DEAD
+	checkAlive(current)
+	if Robots[current].Status == DEAD {
 		return &object.NumberObject{Value: 0.0}
 	}
 	x1 := Robots[current].X
@@ -122,8 +120,8 @@ func FunctionScan(env builtin.Environment, args []object.Object) object.Object {
 
 	td := 1000.0
 	for i := 0; i < numberOfRobots; i++ {
-		if Robots[i].Damage >= 100 {
-			Robots[current].Status = DEAD
+		checkAlive(i)
+		if Robots[i].Status == DEAD {
 			continue
 		}
 		if i == current {
@@ -142,9 +140,9 @@ func FunctionScan(env builtin.Environment, args []object.Object) object.Object {
 		td = 0
 	}
 
-	if debug {
-		fmt.Fprintf(os.Stderr, "Robot:%d FunctionScan() angle:%5.2f width:%5.2f result:%5.2f\n", current, angle, width, td)
-	}
+	//if debug {
+	//	fmt.Fprintf(os.Stderr, "Robot:%d FunctionScan() angle:%5.2f width:%5.2f result:%5.2f\n", current, angle, width, td)
+	//}
 
 	return &object.NumberObject{Value: td}
 
@@ -191,10 +189,10 @@ func FunctionCannon(env builtin.Environment, args []object.Object) object.Object
 			Missiles[current][m].YO = Robots[current].Y
 			Missiles[current][m].X = Robots[current].X
 			Missiles[current][m].Y = Robots[current].Y
-			if debug {
-				fmt.Fprintf(os.Stderr, "Robot:%d FunctionCannon() missile:%d status:%d angle:%5.2f range:%5.2f OX:%5.2f OY:%5.2f\n",
-					current, m, Missiles[current][m].Status, angle, rang, Missiles[current][m].XOrigin, Missiles[current][m].YOrigin)
-			}
+			//if debug {
+			//	fmt.Fprintf(os.Stderr, "Robot:%d FunctionCannon() missile:%d status:%d angle:%5.2f range:%5.2f OX:%5.2f OY:%5.2f\n",
+			//		current, m, Missiles[current][m].Status, angle, rang, Missiles[current][m].XOrigin, Missiles[current][m].YOrigin)
+			//}
 			Robots[current].Reload = ROBOTRELOAD
 			break
 		}
