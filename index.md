@@ -6,6 +6,9 @@
 ## Releases
 - [v0.0.1b](https://github.com/misterunix/basicbots/releases)
 
+## Player Documentation 
+- [BASICBOT](https://github.com/misterunix/basicbots/documentation/BASICBOTS.md)
+
 <p align="center">
 <img width="100%" height="100%" src="images/example2.gif">
 </p>
