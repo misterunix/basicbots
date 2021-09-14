@@ -10,7 +10,7 @@
 - [BASICBOT](https://github.com/misterunix/basicbots/blob/main/documentation/BASICBOTS.md)
 
 <p align="center">
-<img width="100%" height="100%" src="images/example2.gif">
+<img width="100%" height="100%" src="images/example4.gif">
 </p>
 
 ## Example match results
