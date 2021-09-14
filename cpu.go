@@ -14,6 +14,27 @@ import (
 )
 
 func ResetRobots() error {
+
+	// Cheesy way to scamble a array
+	pp := make([]int, 4)
+	for i := 0; i < 4; i++ {
+		pp[i] = i
+	}
+	for i := 0; i < 25; i++ {
+		var s1, s2 int
+		s1 = rand.Intn(4)
+		for {
+			s2 = rand.Intn(4)
+			if s2 != s1 {
+				break
+			}
+		}
+		swap1 := pp[s1]
+		swap2 := pp[s2]
+		pp[s2] = swap1
+		pp[s1] = swap2
+	}
+
 	for i := 0; i < numberOfRobots; i++ {
 		Robots[i].Damage = 0
 		Robots[i].Status = ALIVE
@@ -29,25 +50,17 @@ func ResetRobots() error {
 		Robots[i].Cannon = 0
 
 		// Place the robots on the battle field.
-		switch i {
+		switch pp[i] {
 		case 0: // Upper Left
-			//Robots[i].X = 1.0
-			//Robots[i].Y = 1.0
 			Robots[i].X = float64(rand.Intn(100)) + 100.0
 			Robots[i].Y = float64(rand.Intn(100)) + 100.0
 		case 1: // Lower Right
-			//Robots[i].X = 500.0
-			//Robots[i].Y = 500.0
 			Robots[i].X = float64(rand.Intn(100)) + 800.0
 			Robots[i].Y = float64(rand.Intn(100)) + 800.0
 		case 2: // Upper Right
-			//Robots[i].X = 800.0
-			//Robots[i].Y = 200.0
 			Robots[i].X = float64(rand.Intn(100)) + 800.0
 			Robots[i].Y = float64(rand.Intn(100)) + 100.0
 		case 3: // Lower Left
-			//Robots[i].X = 200.0
-			//Robots[i].Y = 800.0
 			Robots[i].X = float64(rand.Intn(100)) + 100.0
 			Robots[i].Y = float64(rand.Intn(100)) + 800.0
 		}
