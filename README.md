@@ -35,10 +35,14 @@ I expect it will take time for me to learn the ins and outs of managing an Open 
   <img width="100%" height="100%" src="images/example4.gif">
 </p>
 
+## News
+
+- Nightly builds will be put on hold until I can find a way to automate it.
+
 ## Guidlines
 - [Contributing](docs/CONTRIBUTING.md)
 
  
 - [Updates](docs/UPDATES.md)
 
-I am on twitter as @misterunix and my email address is misterunix@gmail.com. Reachout with any questions.
+I am on twitter as @misterunix and @basicbots my email address is misterunix@gmail.com. Reachout with any questions.
