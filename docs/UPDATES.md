@@ -1,6 +1,10 @@
 # UPDATES
 
 ---
+
+- 09-13-2021
+  - More documentation on basicbots.md
+  - corner-v2.bas is out preforming the other test robots.
 - 09-12-2021
   - bug #12 fixed
   - version update
