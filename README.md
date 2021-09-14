@@ -39,6 +39,9 @@ I expect it will take time for me to learn the ins and outs of managing an Open 
 
 - Nightly builds will be put on hold until I can find a way to automate it.
 
+## Contributors
+- [People who deserve recognition.](docs/CONTRIBUTORS.md)
+
 ## Guidlines
 - [Contributing](docs/CONTRIBUTING.md)
 
