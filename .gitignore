@@ -5,7 +5,7 @@
 *.dll
 *.so
 *.dylib
-
+test.bat
 windows64.exe
 linux64
 basicbots
