@@ -131,5 +131,8 @@ Keywords
     0000000000010000 = 16
     0000000000100000 = 32
 
-## Whats next?
+## Whats next? Example code?
+
+Some of the following code is test on the original gobasic. It applies here as well.
+
 
