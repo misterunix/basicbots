@@ -13,18 +13,19 @@ func initDisplay() error {
 	defStyle = tcell.StyleDefault.Background(tcell.ColorReset).Foreground(tcell.ColorReset)
 	//boxStyle = tcell.StyleDefault.Foreground(tcell.ColorWhite).Background(tcell.ColorPurple)
 
-	// Initialize screen
+	// Creat a new tcell screen
 	scr, err = tcell.NewScreen()
 	if err != nil {
-		return err
+		return err // Something went wrong, pass the error down stream.
 	}
+
+	// Init the tcell screen
 	if err = scr.Init(); err != nil {
 		return err
 	}
 
+	// set the default style, white on black screen.
 	scr.SetStyle(defStyle)
-	//scr.EnableMouse()
-	//scr.EnablePaste()
 	scr.Clear()
 
 	// Draw initial boxes
@@ -33,7 +34,6 @@ func initDisplay() error {
 	drawBox(scr, 0, 0, battleSizeX, battleSizeY, defStyle, "Battlefield")
 	lox = (float64(battleSizeX) - 2.0) / MAXX
 	loy = (float64(battleSizeY) - 2.0) / MAXY
-	//drawBox(scr, 5, 9, 32, 14, boxStyle, "Press C to reset")
 
 	return nil
 }
@@ -93,14 +93,14 @@ func drawText(s tcell.Screen, x1, y1, x2, y2 int, style tcell.Style, text string
 	}
 }
 
-// evenloop : go routine for processing tcell events. Channel even passes back to main program to terminate.
+// evenloop : go routine for processing tcell events. Channel 'event' passes back to main program to terminate.
 func eventloop() {
 	for {
 		ev := scr.PollEvent()
 		switch ev := ev.(type) {
 		case *tcell.EventKey:
 			if ev.Key() == tcell.KeyEscape || ev.Key() == tcell.KeyCtrlC {
-				event <- 99
+				event <- ESCKEY // Escape key
 				break
 			}
 		}

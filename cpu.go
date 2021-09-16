@@ -13,6 +13,7 @@ import (
 	"path/filepath"
 )
 
+// ResetRobots : Reset all robots to default values. Used to reset robots between matches.
 func ResetRobots() error {
 
 	// Cheesy way to scamble a array
@@ -77,6 +78,7 @@ func ResetRobots() error {
 	return nil
 }
 
+// InitRobots : Initialize the robots. Used to load the program, reset eval and token.
 func InitRobots() error {
 	var err error
 
@@ -145,6 +147,7 @@ func InitRobots() error {
 	return nil
 }
 
+// RunRobots : Main loop for executing the code for the robots, triggers movement.
 func RunRobots() error {
 
 	var alive int
@@ -193,7 +196,7 @@ func RunRobots() error {
 				//evaluator[current].ProgramEnd = true
 				//fmt.Fprintf(os.Stderr, "Robot:%d DEAD evaluator[current].RunStep() err \n", current)
 				//alive--
-				etype = 98
+				etype = BASICERROR
 				em := fmt.Sprintf("Error running program:\n\t%s\n", err.Error())
 				return errors.New(em)
 			}
@@ -275,6 +278,7 @@ func RunRobots() error {
 	return nil
 }
 
+// checkAlive : The one and only test to see if a robot is dead and sets status to dead.
 func checkAlive(n int) {
 	if Robots[n].Status == DEAD {
 		return
