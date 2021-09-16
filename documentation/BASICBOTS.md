@@ -294,3 +294,21 @@ Hey, what was all that. Think about it before looking at the results below. Did 
 ~/go/src/gobasic$ 
 ```
 
+Next we will use a math function in the assignment.
+
+```
+5 PRINT "Pythagorean Theorem\n"
+10 LET A = 3
+20 LET B = 4
+30 LET C = SQR A + SQR B
+40 LET C = C * C
+40 PRINT A,B,C,"\n"
+50 END
+```
+```
+~/go/src/gobasic$ ./gobasic variables.bas 
+Pythagorean Theorem
+3 4 5.000000 
+~/go/src/gobasic$ 
+```
+
