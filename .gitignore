@@ -15,8 +15,8 @@ windows64.zip
 *.test
 
 # go files
-go.mod
-go.sum
+# go.mod
+# go.sum
 
 # Output of the go coverage tool, specifically when used with LiteIDE
 *.out
