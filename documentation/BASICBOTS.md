@@ -133,6 +133,123 @@ Keywords
 
 ## Whats next? Example code?
 
-Some of the following code is test on the original gobasic. It applies here as well.
+Some of the following code is tested on the original gobasic. It applies here as well. 
+
+Lets start with the universal first program. helloworld.bas
+```
+10 PRINT "Hello World\n"
+20 END
+```
+```
+~/go/src/gobasic$ ./gobasic helloworld.bas 
+Hello World
+~/go/src/gobasic$ 
+```
+
+If you followed allong congradulations, you just wrote your first basic program.
+
+Now lets introduce a `GOTO`. Remember `GOTO` transfers execacution to another line in the program.
+
+```
+10 PRINT "Hello World\n"
+20 GOTO 10
+```
+Notice the lack of the `END` statement. Thats because this program never ends. After printing Hello World on line 10, the `GOTO` on line 20 jumps back to line 10 and it starts all over again.
+
+```
+Hello World
+Hello World
+Hello World
+...
+...
+---
+Hello World
+Hello World
+Hello World
+```
+That is a bit much. Just printing Hello World over and over, forever.
+
+Lets setup a `FOR` `NEXT` loop.
+
+```
+10 FOR I = 1 TO 5 
+20 PRINT "Hello World\n"
+30 NEXT I
+40 END
+```
+
+```
+~/go/src/gobasic$ ./gobasic helloworld.bas 
+Hello World
+Hello World
+Hello World
+Hello World
+Hello World
+~/go/src/gobasic$ 
+```
+
+The `FOR` on line 10 assignes the variable I the value of 1 and sets the limit to 5. This is the start of the loop. 
+The lines following the `FOR` will execute until the loop is finished.
+The `NEXT I` causes the execution to transfer back to line 10 where I will be incremented by 1 and start the loop again. Once I equals 5 the `NEXT` statement will transfer exececution to the next line.
+In this case will be the `END` and program will terminate.
+
+Lets show that it is actuall incrementing. We will modified the `PRINT` state to include the variable I.
+
+```
+10 FOR I = 1 TO 5
+20 PRINT "Hello World ",I,"\n"
+30 NEXT I
+40 END
+```
+
+```
+~/go/src/gobasic$ ./gobasic helloworld.bas 
+Hello World  1 
+Hello World  2 
+Hello World  3 
+Hello World  4 
+Hello World  5 
+~/go/src/gobasic$ 
+```
+
+It is easy to see that the variable I is actuall incrementing by 1 on each pass of the loop. Next, we will check the `STEP` size. 
+
+```
+10 FOR I = 1 TO 10 STEP 2
+20 PRINT "Hello World ",I,"\n"
+30 NEXT I
+40 END
+```
+
+```
+~/go/src/gobasic$ ./gobasic helloworld.bas 
+Hello World  1 
+Hello World  3 
+Hello World  5 
+Hello World  7 
+Hello World  9 
+~/go/src/gobasic$ 
+
+```
+You can see that the loop stepped by 2 on each pass of the loop.
+Notice that the number 10 is never shown. Thats because I was larger than 10 so the execution went to the line following `NEXT`.
+You can all step backwards if needed. 
+
+```
+10 FOR I = 5 TO 1 STEP -1
+20 PRINT "Hello World ",I,"\n"
+30 NEXT I
+40 END
+```
+```
+~/go/src/gobasic$ ./gobasic helloworld.bas 
+Hello World  5 
+Hello World  4 
+Hello World  3 
+Hello World  2 
+Hello World  1 
+~/go/src/gobasic$ 
+
+```
 
 
