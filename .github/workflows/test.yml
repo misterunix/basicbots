@@ -16,3 +16,12 @@ jobs:
       uses: actions/checkout@v2
     - name: Test
       run: make
+
+    # Deploy to local repo
+    - name: Deploy
+      uses: s0/git-publish-subdir-action@master
+      env:
+        REPO: self
+        BRANCH: data_build
+        FOLDER: tools/data_build
+        GITHUB_TOKEN: ${{ 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 }}
