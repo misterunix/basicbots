@@ -110,3 +110,9 @@ const (
 	DAMNEAR  = 5  // DAMNEAR : Damage to robot at between MISNEAR and MISCLOSE
 	DAMCLOSE = 10 // DAMCLOSE : Damage to robot when at or below MISCLOSE
 )
+
+// Constants for channel events
+const (
+	ESCKEY     = 99
+	BASICERROR = 98
+)

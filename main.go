@@ -9,6 +9,7 @@ import (
 	"time"
 )
 
+// main : Really?
 func main() {
 
 	var err error
@@ -25,6 +26,8 @@ func main() {
 
 	flag.Parse()
 
+	// if -v is set and there are no robots on the command line, call version() to output the version data.
+	// I dont know why I am checking for robots. I really shouldnt.
 	if versionflag || len(flag.Args()) == 0 {
 		version()
 		os.Exit(0)
@@ -37,20 +40,18 @@ func main() {
 
 	Robots = make([]Robot, MAXROBOTS)
 	numberOfRobots = len(flag.Args())
-	if numberOfRobots > MAXROBOTS {
+	if numberOfRobots > MAXROBOTS { // Check number of robots on the command line
 		fmt.Fprintln(os.Stderr, "To many robots. Max:", MAXROBOTS)
 		os.Exit(3)
 	}
 
+	// If the battledisplay flag is set, make sure the matchcount = 1. OVerriding -m
 	if battledisplay {
 		matchcount = 1
-		initDisplay()
+		initDisplay() // Create and Initialize the tcell module.
 	}
 
 	for match := 0; match < matchcount; match++ {
-
-		//fmt.Fprintf(os.Stderr, "match start: %d\n", match)
-
 		err = InitRobots()
 		if err != nil {
 			fmt.Fprintln(os.Stderr, err)
@@ -61,32 +62,32 @@ func main() {
 		if etype != 0 {
 			break
 		}
-
-		//fmt.Fprintf(os.Stderr, "match end: %d\n", match)
-
 	}
 
+	// if battledisplay flaf is set finialize tcell
 	if battledisplay {
-		if etype != 99 {
+		// if the exit type is not a exit key then delay 10 seconds. Time to read the error or the score before restoring the screem
+		if etype != ESCKEY {
 			time.Sleep(10 * time.Second)
 		}
 		scr.Fini()
 	}
 
 	if exiterror != nil {
-		fmt.Fprintf(os.Stderr, "%v\n", exiterror)
-		os.Exit(1) // Exit without showing winner.
+		fmt.Fprintf(os.Stderr, "%v\n", exiterror) // Some kind of error, most likely error in basic program
+		os.Exit(1)                                // Exit without showing winner.
 	}
 
+	// Output the w,t,l,p for all robots
 	for i := 0; i < numberOfRobots; i++ {
 		space := strings.Repeat(" ", 20-len(Robots[i].Name))
 		points := (Robots[i].Winner * 3) + Robots[i].Tie
 		fmt.Printf("%s%s w:%05d t:%05d l:%05d p:%05d\n", Robots[i].Name, space, Robots[i].Winner, Robots[i].Tie, Robots[i].Lose, points)
-		//fmt.Printf("%+v\n", Robots[i])
 	}
 
 }
 
+// version : Print to stdout a version message along with copyright and other required messages.
 func version() {
 	fmt.Printf("basicbots %s\n\n", VERSION)
 	fmt.Printf("basicbots is created and copyrighted by William Jones\nand is licensed under GNU GPL v2\n\n")

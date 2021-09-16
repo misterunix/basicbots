@@ -196,7 +196,7 @@ func RunRobots() error {
 				//evaluator[current].ProgramEnd = true
 				//fmt.Fprintf(os.Stderr, "Robot:%d DEAD evaluator[current].RunStep() err \n", current)
 				//alive--
-				etype = 98
+				etype = BASICERROR
 				em := fmt.Sprintf("Error running program:\n\t%s\n", err.Error())
 				return errors.New(em)
 			}
