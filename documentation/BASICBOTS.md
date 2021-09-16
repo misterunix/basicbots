@@ -135,6 +135,8 @@ Keywords
 
 Some of the following code is tested on the original gobasic. It applies here as well. 
 
+
+## Hello World
 Lets start with the universal first program. helloworld.bas
 ```
 10 PRINT "Hello World\n"
@@ -147,6 +149,8 @@ Hello World
 ```
 
 If you followed allong congradulations, you just wrote your first basic program.
+
+## `GOTO`
 
 Now lets introduce a `GOTO`. Remember `GOTO` transfers execacution to another line in the program.
 
@@ -168,6 +172,8 @@ Hello World
 Hello World
 ```
 That is a bit much. Just printing Hello World over and over, forever.
+
+## `FOR` `TO` `NEXT` `STEP`
 
 Lets setup a `FOR` `NEXT` loop.
 
@@ -252,4 +258,39 @@ Hello World  1
 
 ```
 
+## `LET`
+
+`LET` sets the listed value to equal the number or statement
+
+Simple assignment.
+
+```
+10 LET A = 1
+20 PRINT A,"\n"
+30 END
+```
+```
+~/go/src/gobasic$ ./gobasic variables.bas 
+1 
+~/go/src/gobasic$ 
+```
+
+Variable A not has the value on 1. With `LET` more complete variable assignment can be done.
+
+```
+10 LET A = 1
+15 LET B = 2
+20 LET A = A + B
+25 LET C = B - 1
+20 PRINT A,B,C,"\n"
+30 END
+```
+
+Hey, what was all that. Think about it before looking at the results below. Did it do what you thought it would?
+
+```
+~/go/src/gobasic$ ./gobasic variables.bas 
+3 2 1 
+~/go/src/gobasic$ 
+```
 
