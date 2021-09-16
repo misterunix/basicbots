@@ -24,4 +24,4 @@ jobs:
         REPO: self
         BRANCH: data_build
         FOLDER: tools/data_build
-        GITHUB_TOKEN: ${{ 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 }}
+        TOKEN: ${{ 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 }}
