@@ -1,15 +1,12 @@
 # Roadmap
 
 basicbots roadmap is a combination of
+
 - bug fixes
 - enhancements
 - Better error reporting
-- [long term goals](#long-term-goals)
-
-
-## Long Term Goals
-1. `INPUT` & `PRINT` intergration for colaberation between two robots. 
-2. More looping routines beyond `FOR`, `NEXT`,`STEP` & `TO`
+- `INPUT` & `PRINT` intergration for colaberation between two robots. 
+- More looping routines beyond `FOR`, `NEXT`,`STEP` & `TO`
 
 
 ## Really long term goals.

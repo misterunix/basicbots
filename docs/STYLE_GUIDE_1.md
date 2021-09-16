@@ -48,7 +48,7 @@ row before the </tbody></table> line.
 
 -->
 
-# misterunix Go Style Guide
+# Go Style Guide for basicbots
 
 adapted from [Uber Style Guide](https://github.com/uber-go/guide/blob/master/style.md)
 
