@@ -1,6 +1,6 @@
 # CONTRIBUTORS
 
-I would like to thank all the people responsible for make this project the best it can be!
+I would like to thank all the people responsible for making this project the best it can be!
 
 | github name | twitter name | Contributions |
 | :---------- | :----------- | :-----------: |
