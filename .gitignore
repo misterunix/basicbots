@@ -6,9 +6,6 @@
 *.so
 *.dylib
 test.bat
-windows64.exe
-linux64
-basicbots
 
 # I dont think binaries should be in the branches.
 linux64.tgz
