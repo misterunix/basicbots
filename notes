@@ -1,0 +1,1 @@
+git clone -b mybranch --single-branch git://sub.domain.com/repo.git
