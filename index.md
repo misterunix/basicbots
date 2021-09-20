@@ -3,7 +3,7 @@
 ## What is it?
 **basicbots** is a programming game where you write a program in *BASIC* and have it compete against other robots.
 
-## Release
+## Releases
 - [v0.0.1c](https://github.com/misterunix/basicbots/releases/tag/v0.0.1c-beta)
 - [v0.0.1b](https://github.com/misterunix/basicbots/releases/tag/v0.0.1b-alpha)
 - [v0.0.1a](https://github.com/misterunix/basicbots/releases/tag/v0.0.1a-test-release)
@@ -11,8 +11,11 @@
 ## Player Documentation 
 - [BASICBOT](https://github.com/misterunix/basicbots/blob/main/documentation/BASICBOTS.md)
 
+
+---
+
 <p align="center">
-<img width="100%" height="100%" src="images/example4.gif">
+<img width="100%" height="100%" src="images/example5.gif">
 </p>
 
 ## Example match results
