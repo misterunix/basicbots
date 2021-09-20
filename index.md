@@ -6,7 +6,7 @@
 ## Release
 - [v0.0.1c](https://github.com/misterunix/basicbots/releases/tag/v0.0.1c-beta)
 - [v0.0.1b](https://github.com/misterunix/basicbots/releases/tag/v0.0.1b-alpha)
-- [0.0.1a](https://github.com/misterunix/basicbots/releases/tag/v0.0.1a-test-release)
+- [v0.0.1a](https://github.com/misterunix/basicbots/releases/tag/v0.0.1a-test-release)
 
 ## Player Documentation 
 - [BASICBOT](https://github.com/misterunix/basicbots/blob/main/documentation/BASICBOTS.md)
@@ -17,13 +17,14 @@
 
 ## Example match results
 
-    basicbots -m 311 robots/corner-v2.bas robots/corner-runner.bas robots/nexus.bas robots/rook.bas
-    corner-v2.bas        w:00305 t:00000 l:00006 p:00915
-    corner-runner.bas    w:00002 t:00000 l:00309 p:00006
-    nexus.bas            w:00000 t:00000 l:00311 p:00000
-    rook.bas             w:00004 t:00000 l:00307 p:00012
+     ./basicbots -m 311 robots/blaster.bas robots/corner-runner.bas robots/rook.bas robots/nexus.bas 
+     blaster.bas          w:00294 t:00001 l:00016 p:00883
+     corner-runner.bas    w:00005 t:00002 l:00304 p:00017
+     rook.bas             w:00009 t:00000 l:00302 p:00027
+     nexus.bas            w:00001 t:00001 l:00309 p:00004
 
-corner-v2.bas is out preforming my expections.
+
+blaster.bas is out preforming my expections.
    
 ## Play Testers
 - Even if you don't know *BASIC* it's easy to learn. There are resources on the internet about programming in *BASIC*, look for the really old ones. I and as time goes on, others will be more than happy to help out.
