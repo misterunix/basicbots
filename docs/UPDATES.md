@@ -1,7 +1,10 @@
 # UPDATES
 
 ---
-
+- 09-20-2021
+  - More commenting
+  - blaster.bas is the new top bot.
+  - Better makefile
 - 09-13-2021
   - More documentation on basicbots.md
   - corner-v2.bas is out preforming the other test robots.

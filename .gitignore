@@ -10,6 +10,7 @@ test.bat
 # I dont think binaries should be in the branches.
 linux64.tgz
 windows64.zip
+basicbots
 
 # Test binary, built with `go test -c`
 *.test

@@ -32,7 +32,7 @@ I expect it will take time for me to learn the ins and outs of managing an Open 
 
 
 <p align="center">
-  <img width="100%" height="100%" src="images/example4.gif">
+  <img width="100%" height="100%" src="images/example5.gif">
 </p>
 
 ## News
