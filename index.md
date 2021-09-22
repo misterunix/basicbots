@@ -9,8 +9,8 @@
 - [v0.0.1a](https://github.com/misterunix/basicbots/releases/tag/v0.0.1a-test-release)
 
 ## Player Documentation 
-- [BASICBOT](https://github.com/misterunix/basicbots/blob/main/documentation/BASICBOTS.md)
-
+- [BASICBOT](BASICBOTS.md) - Not complete.
+- Look at the source to blaster.bas.
 
 ---
 
