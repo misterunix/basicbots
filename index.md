@@ -15,7 +15,7 @@
 ---
 
 <p align="center">
-<img width="100%" height="100%" src="images/example5.gif">
+<img width="100%" height="100%" src="images/current.gif">
 </p>
 
 ## Example match results
