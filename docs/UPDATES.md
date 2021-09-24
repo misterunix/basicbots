@@ -1,6 +1,11 @@
 # UPDATES
 
 ---
+- 09-24-2021
+  - Updating documentation
+- 09-21-2021
+  - Updated webpages
+  - New gif
 - 09-20-2021
   - More commenting
   - blaster.bas is the new top bot.
