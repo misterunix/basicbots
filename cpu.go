@@ -17,10 +17,12 @@ import (
 func ResetRobots() error {
 
 	// Cheesy way to scamble a array
+	// Used for randomizing the starting location of robots.
 	pp := make([]int, 4)
 	for i := 0; i < 4; i++ {
 		pp[i] = i
 	}
+	// 25 rounds of swaps
 	for i := 0; i < 25; i++ {
 		var s1, s2 int
 		s1 = rand.Intn(4)
@@ -36,6 +38,7 @@ func ResetRobots() error {
 		pp[s1] = swap2
 	}
 
+	// Reset / Init all robots.
 	for i := 0; i < numberOfRobots; i++ {
 		Robots[i].Damage = 0
 		Robots[i].Status = ALIVE
@@ -69,6 +72,7 @@ func ResetRobots() error {
 		Robots[i].XOrigin = Robots[i].X
 		Robots[i].YOrigin = Robots[i].Y
 
+		// Set all missiles to default.
 		for m := 0; m < MAXMISSILES; m++ {
 			Missiles[i][m].Status = AVAILABLE
 			Missiles[i][m].Reload = 0
@@ -87,13 +91,17 @@ func InitRobots() error {
 		return err
 	}
 
+	// Clear the previous slice if any
 	if len(evaluator) != 0 {
 		evaluator = evaluator[:0]
 	}
+
+	// Clear the previous slice if any
 	if len(token) != 0 {
 		token = token[:0]
 	}
 
+	// Loop and load each robots source and initialize eval,token and customer basic functions.
 	for i := 0; i < numberOfRobots; i++ {
 
 		/*
@@ -114,10 +122,11 @@ func InitRobots() error {
 			Robots[i].Name = filepath.Base(flag.Args()[i])
 		}
 
-		// Tokenize
+		// Create tokens for the robots source. Tokenize
 		tt := tokenizer.New(string(Robots[i].Program))
 		token = append(token, tt)
 
+		// Create new eval for the robot.
 		ee, err := eval.New(token[i])
 		if err != nil {
 			return err
@@ -133,6 +142,8 @@ func InitRobots() error {
 				ee.SetTrace(true)
 			}
 		}
+
+		// Add the customer funcitons of basicbots to the eval
 		ee.RegisterBuiltin("LOCX", 0, FunctionLocX)
 		ee.RegisterBuiltin("LOCY", 0, FunctionLocY)
 		ee.RegisterBuiltin("SPEED", 0, FunctionSpeed)
