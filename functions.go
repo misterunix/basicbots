@@ -7,6 +7,33 @@ import (
 	"math"
 )
 
+// FunctionTeam : Return the team number and set it is on a team.
+func FunctionTeam(env builtin.Environment, args []object.Object) object.Object {
+	var t float64
+
+	if current == 0 {
+		t = 1
+		teams[0] = 1
+	}
+
+	if current == 1 {
+		t = 1
+		teams[1] = 1
+	}
+
+	if current == 2 {
+		t = 2
+		teams[2] = 2
+	}
+
+	if current == 3 {
+		t = 2
+		teams[3] = 2
+	}
+
+	return &object.NumberObject{Value: t}
+}
+
 // FunctionLocX : Basic statement. LOCX returns the current Y location.
 func FunctionLocX(env builtin.Environment, args []object.Object) object.Object {
 	X := Robots[current].X
@@ -121,13 +148,25 @@ func FunctionScan(env builtin.Environment, args []object.Object) object.Object {
 
 	td := 1000.0
 	for i := 0; i < numberOfRobots; i++ {
+		// fmt.Println("i=", i, numberOfRobots)
+
 		checkAlive(i)
+
 		if Robots[i].Status == DEAD {
 			continue
 		}
+
 		if i == current {
 			continue
 		}
+
+		if teams[i] != -1 {
+			if teams[i] == teams[current] {
+				//fmt.Println(i, current, teams[i], teams[current])
+				continue
+			}
+		}
+
 		x2 := Robots[i].X
 		y2 := Robots[i].Y
 		t := Scanner(angle, width, x1, y1, x2, y2)

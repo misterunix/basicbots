@@ -40,6 +40,7 @@ func ResetRobots() error {
 
 	// Reset / Init all robots.
 	for i := 0; i < numberOfRobots; i++ {
+		teams[i] = -1
 		Robots[i].Damage = 0
 		Robots[i].Status = ALIVE
 		Robots[i].Heading = 0.0 // float64(rand.Intn(359)) // Should be 0-359
@@ -154,6 +155,7 @@ func InitRobots() error {
 		ee.RegisterBuiltin("IN", 0, FunctionIn)
 		ee.RegisterBuiltin("OUT", 1, FunctionOut)
 		ee.RegisterBuiltin("STRC$", 2, FunctionSTRC) // STRC <number>, <count>
+		ee.RegisterBuiltin("TEAM", 0, FunctionTeam)
 		evaluator = append(evaluator, ee)
 
 	}
