@@ -35,6 +35,9 @@ var event = make(chan int)    // event : Channel for getting out of tcell with e
 var team1 = make(chan string) // team1 : Team 1 comm channel
 var team2 = make(chan string) // team2 : Team 2 comm channel
 
+var team1message string
+var team2message string
+
 var lox float64     // lox : scaling factor for battlefield to console area.
 var loy float64     // loy : scalling factor for battlefield to console area.
 var battleSizeX int // battleSizeX : Size of the battlescreen on the console in the X direction.

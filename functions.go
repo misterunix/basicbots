@@ -3,6 +3,7 @@ package main
 import (
 	"basicbots/builtin"
 	"basicbots/object"
+	"fmt"
 	"math"
 )
 
@@ -200,4 +201,77 @@ func FunctionCannon(env builtin.Environment, args []object.Object) object.Object
 
 	return &object.NumberObject{Value: 1.0}
 
+}
+
+func FunctionOut(env builtin.Environment, args []object.Object) object.Object {
+
+	var outmessage string
+
+	if args[0].Type() == object.STRING {
+		outmessage = args[0].(*object.StringObject).Value
+	}
+
+	if current == 0 || current == 1 {
+		select {
+		case team1 <- outmessage:
+		default:
+		}
+	} else {
+		select {
+		case team2 <- outmessage:
+		default:
+		}
+	}
+	return &object.NumberObject{Value: 0.0}
+}
+
+func FunctionIn(env builtin.Environment, args []object.Object) object.Object {
+	var msg string
+
+	if current == 0 || current == 1 {
+		select {
+		case msg = <-team1:
+			// fmt.Println("received message", msg)
+		default:
+		}
+	} else {
+		select {
+		case msg = <-team2:
+			// fmt.Println("received message", msg)
+		default:
+		}
+	}
+
+	return &object.StringObject{Value: msg}
+
+}
+
+// STR converts a number to a string
+func FunctionSTRC(env builtin.Environment, args []object.Object) object.Object {
+
+	var num, c int
+	// Error?
+	if args[0].Type() == object.ERROR {
+		return args[0]
+	}
+
+	// Already a string?
+	if args[0].Type() == object.STRING {
+		return args[0]
+	}
+
+	if args[0].Type() == object.NUMBER {
+		i := args[0].(*object.NumberObject).Value
+		num = int(i)
+	}
+
+	if args[1].Type() == object.NUMBER {
+		i := args[1].(*object.NumberObject).Value
+		c = int(i)
+	}
+
+	// Get the value
+	s := fmt.Sprintf("%%%d%d", c, num)
+
+	return &object.StringObject{Value: s}
 }

@@ -151,6 +151,9 @@ func InitRobots() error {
 		ee.RegisterBuiltin("DRIVE", 2, FunctionDrive)
 		ee.RegisterBuiltin("SCAN", 2, FunctionScan)
 		ee.RegisterBuiltin("CANNON", 2, FunctionCannon)
+		ee.RegisterBuiltin("IN", 0, FunctionIn)
+		ee.RegisterBuiltin("OUT", 1, FunctionOut)
+		ee.RegisterBuiltin("STRC$", 2, FunctionSTRC) // STRC <number>, <count>
 		evaluator = append(evaluator, ee)
 
 	}
