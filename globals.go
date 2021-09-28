@@ -31,7 +31,9 @@ var defStyle tcell.Style // defStyle : white on blank for text. Used in tcell.
 //var boxStyle tcell.Style // boxStyle : Leagacy purple
 var scr tcell.Screen // scr : tcell screen interface. Using global to keep from haveing go routines.
 
-var event = make(chan int) // event : Channel for getting out of tcell with escape key.
+var event = make(chan int)    // event : Channel for getting out of tcell with escape key.
+var team1 = make(chan string) // team1 : Team 1 comm channel
+var team2 = make(chan string) // team2 : Team 2 comm channel
 
 var lox float64     // lox : scaling factor for battlefield to console area.
 var loy float64     // loy : scalling factor for battlefield to console area.
