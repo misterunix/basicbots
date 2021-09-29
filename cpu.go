@@ -166,7 +166,7 @@ func InitRobots() error {
 // RunRobots : Main loop for executing the code for the robots, triggers movement.
 func RunRobots() error {
 
-	var alive int
+	// var alive int
 
 	if battledisplay {
 		scr.Show()
@@ -225,22 +225,34 @@ func RunRobots() error {
 
 		}
 
-		alive = 0
-		for nn := 0; nn < numberOfRobots; nn++ {
-			if Robots[nn].Status == ALIVE {
-				alive++
-			}
-		}
-
-		// if there is only 1 or 0 robots left alive - break out of the loop
-		if alive == 0 || alive == 1 {
+		if TeamsWinner() {
 			break
 		}
+
+		//alive = countAlive()
+		/*
+			for nn := 0; nn < numberOfRobots; nn++ {
+				if Robots[nn].Status == ALIVE {
+					alive++
+				}
+			}
+		*/
+
+		// if there is only 1 or 0 robots left alive - break out of the loop
+		//if alive == 0 || alive == 1 {
+		//	break
+		//}
 
 		cycles++
 
 		// end of simulation ?
 		if cycles == maxCycles {
+			for nn := 0; nn < numberOfRobots; nn++ {
+				if Robots[nn].Status == ALIVE {
+					Robots[nn].Tie++
+					Robots[nn].Points++
+				}
+			}
 			if debug {
 				fmt.Fprintln(os.Stderr, "Cycle limit has been reached.")
 			}
@@ -261,36 +273,40 @@ func RunRobots() error {
 	}
 
 	//	fmt.Fprintf(os.Stderr, "out of cpu loop %d - alive=%d\n", cycles, alive)
-	if alive == 0 {
-		for nn := 0; nn < numberOfRobots; nn++ {
-			Robots[nn].Tie++
-			// fmt.Fprintf(os.Stderr, "nn:%d %d\n", nn, Robots[nn].Status)
-		}
-	}
+	//TeamsWinner()
 
-	if alive != 0 {
-		if alive == 1 {
+	/*
+		if alive == 0 {
 			for nn := 0; nn < numberOfRobots; nn++ {
-				if Robots[nn].Status == ALIVE {
-					Robots[nn].Winner++
-				} else {
-					Robots[nn].Lose++
+				Robots[nn].Tie++
+				// fmt.Fprintf(os.Stderr, "nn:%d %d\n", nn, Robots[nn].Status)
+			}
+		}
+	*/
+	/*
+		if alive != 0 {
+			if alive == 1 {
+				for nn := 0; nn < numberOfRobots; nn++ {
+					if Robots[nn].Status == ALIVE {
+						Robots[nn].Winner++
+					} else {
+						Robots[nn].Lose++
+					}
+				}
+			}
+
+			if alive > 1 {
+				for nn := 0; nn < numberOfRobots; nn++ {
+					if Robots[nn].Status == ALIVE {
+						Robots[nn].Tie++
+					}
+					if Robots[nn].Status == DEAD {
+						Robots[nn].Lose++
+					}
 				}
 			}
 		}
-
-		if alive > 1 {
-			for nn := 0; nn < numberOfRobots; nn++ {
-				if Robots[nn].Status == ALIVE {
-					Robots[nn].Tie++
-				}
-				if Robots[nn].Status == DEAD {
-					Robots[nn].Lose++
-				}
-			}
-		}
-	}
-
+	*/
 	return nil
 }
 
@@ -302,4 +318,111 @@ func checkAlive(n int) {
 	if Robots[n].Damage >= 100 {
 		Robots[n].Status = DEAD
 	}
+}
+
+func countAlive() int {
+	a := 0
+	for nn := 0; nn < numberOfRobots; nn++ {
+		if Robots[nn].Status == ALIVE {
+			a++
+		}
+	}
+	return a
+}
+
+func TeamsWinner() bool {
+	t1 := 0
+	t2 := 0
+
+	if teams[0] == 1 && Robots[0].Status == ALIVE {
+		t1++
+	}
+	if teams[1] == 1 && Robots[1].Status == ALIVE {
+		t1++
+	}
+
+	if teams[2] == 2 && Robots[2].Status == ALIVE {
+		t2++
+	}
+	if teams[3] == 2 && Robots[3].Status == ALIVE {
+		t2++
+	}
+
+	a := countAlive()
+	if a == 0 {
+		for i := 0; i < numberOfRobots; i++ {
+			Robots[i].Tie++
+			Robots[i].Points++
+		}
+		break
+	}
+
+	if a == 1 {
+		if t1 == 2 && t2 = 0 {
+			Robots[0].Winner++
+			Robots[0].Points += 3
+			Robots[1].Winner++
+			Robots[1].Points += 3
+			Robots[2].Lose++
+			Robots[3].Lose++	
+		}
+		
+
+
+
+	}
+
+
+
+
+	if t1 == 2 && t2 < 2 {
+		Robots[0].Winner++
+		Robots[0].Points += 3
+		Robots[1].Winner++
+		Robots[1].Points += 3
+		Robots[2].Lose++
+		Robots[3].Lose++
+		return true
+	}
+	if t2 == 2 && t1 < 2 {
+		Robots[2].Winner++
+		Robots[2].Points += 3
+		Robots[3].Winner++
+		Robots[3].Points += 3
+		Robots[0].Lose++
+		Robots[1].Lose++
+		return true
+	}
+
+	alive := countAlive()
+	if alive == 0 {
+		for i := 0; i < numberOfRobots; i++ {
+			Robots[i].Tie++
+			Robots[i].Points++
+		}
+		return true
+	}
+	if alive == 1 {
+		for i := 0; i < numberOfRobots; i++ {
+			if Robots[i].Status == ALIVE {
+				Robots[i].Winner++
+				Robots[i].Points += 3
+			}
+			if Robots[i].Status == DEAD {
+				Robots[i].Lose++
+			}
+		}
+		return true
+	}
+	/*
+		if alive > 1 {
+			for i := 0; i < numberOfRobots; i++ {
+				if Robots[i].Status == ALIVE { Robots[i].Tie ++ }
+				if Robots[i].Status == DEAD { Robots[i].Lose ++ }
+			}
+			return
+		}
+	*/
+	return false
+
 }
