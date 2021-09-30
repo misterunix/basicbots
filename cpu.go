@@ -334,30 +334,126 @@ func TeamsWinner() bool {
 	t1 := 0
 	t2 := 0
 
-	if teams[0] == 1 && Robots[0].Status == ALIVE {
-		t1++
+	if teams[0] == 1 && teams[1] == 1 {
+		t1 = 1
 	}
-	if teams[1] == 1 && Robots[1].Status == ALIVE {
-		t1++
+	if teams[2] == 2 && teams[3] == 2 {
+		t2 = 1
 	}
-
-	if teams[2] == 2 && Robots[2].Status == ALIVE {
-		t2++
-	}
-	if teams[3] == 2 && Robots[3].Status == ALIVE {
-		t2++
-	}
-
+// -----------------------
 	a := countAlive()
 	if a == 0 {
 		for i := 0; i < numberOfRobots; i++ {
 			Robots[i].Tie++
 			Robots[i].Points++
 		}
-		break
+		return true
+	}
+// -----------------------
+	if a == 1 {
+		if Robots[0].Status == ALIVE && t1 == 1 {
+			Robots[0].Winner++
+			Robots[0].Points += 3
+			Robots[1].Winner++
+			Robots[1].Points += 3
+			Robots[2].Lose++
+			Robots[3].Lose++	
+			return true
+		}
+		if Robots[1].Status == ALIVE && t1 == 1 {
+			Robots[0].Winner++
+			Robots[0].Points += 3
+			Robots[1].Winner++
+			Robots[1].Points += 3
+			Robots[2].Lose++
+			Robots[3].Lose++	
+			return true
+		}
+
+		if Robots[2].Status == ALIVE && t2 == 1 {
+			Robots[2].Winner++
+			Robots[2].Points += 3
+			Robots[3].Winner++
+			Robots[3].Points += 3
+			Robots[0].Lose++
+			Robots[1].Lose++	
+			return true
+		}
+		if Robots[3].Status == ALIVE && t1 == 1 {
+			Robots[2].Winner++
+			Robots[2].Points += 3
+			Robots[3].Winner++
+			Robots[3].Points += 3
+			Robots[0].Lose++
+			Robots[1].Lose++	
+			return true
+		}
+	}
+// -----------------------
+	if a == 2 {
+		// team 1 total victory ?
+		if t1 == 1 && t2 == 0 {
+			if Robots[0].Status == ALIVE && Robots[1].Status == ALIVE {
+				Robots[0].Winner++
+				Robots[0].Points += 3
+				Robots[1].Winner++
+				Robots[1].Points += 3
+				Robots[2].Lose++
+				Robots[3].Lose++	
+				return true		
+			}
+		}
+		// team 2 total victory
+		if t2 == 1 && t1 == 0 {
+			Robots[2].Winner++
+			Robots[2].Points += 3
+			Robots[3].Winner++
+			Robots[3].Points += 3
+			Robots[0].Lose++
+			Robots[1].Lose++	
+			return true
+		}
+
+		if t1 == 1 && t2 == 1 {
+			// split
+			if (Robots[0].Status == ALIVE || Robots[1].Status == ALIVE) && (Robots[2].Status == ALIVE || Robots[3].Status == ALIVE) {
+				Robots[0].Winner++
+				Robots[1].Winner++
+				Robots[2].Winner++
+				Robots[3].Winner++
+				Robots[0].Points += 2
+				Robots[1].Points += 2
+				Robots[2].Points += 2
+				Robots[3].Points += 2
+				return true
+			}
+			if Robots[0].Status == ALIVE && Robots[1].Status == ALIVE {
+				Robots[0].Winner++
+				Robots[0].Points += 3
+				Robots[1].Winner++
+				Robots[1].Points += 3
+				Robots[2].Lose++
+				Robots[3].Lose++	
+			}
+			if Robots[2].Status == ALIVE && Robots[3].Status == ALIVE {
+				Robots[2].Winner++
+				Robots[2].Points += 3
+				Robots[3].Winner++
+				Robots[3].Points += 3
+				Robots[0].Lose++
+				Robots[0].Lose++	
+			}
+
+		}
+
+
+
 	}
 
-	if a == 1 {
+
+
+
+
 		if t1 == 2 && t2 = 0 {
 			Robots[0].Winner++
 			Robots[0].Points += 3
