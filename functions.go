@@ -11,24 +11,16 @@ import (
 func FunctionTeam(env builtin.Environment, args []object.Object) object.Object {
 	var t float64
 
-	if current == 0 {
+	if !teams {
+		return &object.NumberObject{Value: 0}
+	}
+
+	if current == 0 || current == 1 {
 		t = 1
-		teams[0] = 1
 	}
 
-	if current == 1 {
-		t = 1
-		teams[1] = 1
-	}
-
-	if current == 2 {
+	if current == 2 || current == 3 {
 		t = 2
-		teams[2] = 2
-	}
-
-	if current == 3 {
-		t = 2
-		teams[3] = 2
 	}
 
 	return &object.NumberObject{Value: t}
@@ -160,10 +152,27 @@ func FunctionScan(env builtin.Environment, args []object.Object) object.Object {
 			continue
 		}
 
-		if teams[i] != -1 {
-			if teams[i] == teams[current] {
-				//fmt.Println(i, current, teams[i], teams[current])
-				continue
+		if teams {
+			if current == 0 {
+				if i == 1 {
+					continue
+				}
+			}
+			if current == 1 {
+				if i == 0 {
+					continue
+				}
+			}
+
+			if current == 2 {
+				if i == 3 {
+					continue
+				}
+			}
+			if current == 3 {
+				if i == 2 {
+					continue
+				}
 			}
 		}
 
