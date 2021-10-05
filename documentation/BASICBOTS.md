@@ -70,6 +70,33 @@ Keywords
 | DRIVE | angle | speed% | | | |  Engage the drive in the direction of angle with a speed of speed%
 
 
+---
+
+### Operators
+
+ |Operator |      |
+ |:------ | :--- |
+ | = | Assign |
+ | * | Multiplication |
+ | - | Subtraction |
+ | % | Modulus |
+ | + | Addition |
+ | / | Division |
+ | ^ | Power |
+ | ( | Left Paren |
+ | ) | Right Paren |
+ | [ | Left index bracket |
+ | ] | Right index bracket |
+ | | |
+
+
+ |Operator | Returns non zero if true |
+ |:------ | :--- |
+ | > | Greater than |
+ | >= | Greater than or equal to |
+ | < | Less than |
+ | <= | Less than or equal to |
+ | <> | Not equal to |
 
 
 

@@ -35,6 +35,25 @@ I expect it will take time for me to learn the ins and outs of managing an Open 
   <img width="100%" height="100%" src="images/example5.gif">
 </p>
 
+---
+
+## Teams with simple robots.
+
+<p align="center">
+  <img width="100%" height="100%" src="images/example6.gif">
+</p>
+
+## Match with teams
+```
+./basicbots -t -m 111 testbots/shooter.bas testbots/teamtest.bas testbots/shooter.bas testbots/teamtest.bas
+shooter.bas          w:00052 t:00002 l:00057 p:00156
+teamtest.bas         w:00052 t:00001 l:00057 p:00131
+shooter.bas          w:00057 t:00001 l:00052 p:00172
+teamtest.bas         w:00057 t:00002 l:00052 p:00143
+Team1                w:00104 t:00003 l:00114 p:00287
+Team2                w:00114 t:00003 l:00104 p:00315
+```
+
 ## News
 
 - Nightly builds will be put on hold until I can find a way to automate it.
