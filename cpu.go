@@ -258,262 +258,446 @@ func RunRobots() error {
 	}
 
 	a := robotStatusToint()
-	fmt.Println(teams, a)
 	if teams {
-		if a == 0 {
-			Robots[0].Winner = 0
-			Robots[0].Tie = 1
-			Robots[0].Lose = 0
-			Robots[0].Points = 1
-			Robots[1].Winner = 0
-			Robots[1].Tie = 1
-			Robots[1].Lose = 0
-			Robots[1].Points = 1
-			Robots[2].Winner = 0
-			Robots[2].Tie = 1
-			Robots[2].Lose = 0
-			Robots[2].Points = 1
-			Robots[3].Winner = 0
-			Robots[3].Tie = 1
-			Robots[3].Lose = 0
-			Robots[3].Points = 1
+		if a == 0 { // no survivors - tie
+			Robots[0].Winner += 0
+			Robots[0].Tie += 1
+			Robots[0].Lose += 0
+			Robots[0].Points += 1
+			Robots[1].Winner += 0
+			Robots[1].Tie += 1
+			Robots[1].Lose += 0
+			Robots[1].Points += 1
+			Robots[2].Winner += 0
+			Robots[2].Tie += 1
+			Robots[2].Lose += 0
+			Robots[2].Points += 1
+			Robots[3].Winner += 0
+			Robots[3].Tie += 1
+			Robots[3].Lose += 0
+			Robots[3].Points += 1
 		}
-		if a == 1 {
-			Robots[0].Winner = 1
-			Robots[0].Tie = 0
-			Robots[0].Lose = 0
-			Robots[0].Points = 3
-			Robots[1].Winner = 1
-			Robots[1].Tie = 0
-			Robots[1].Lose = 0
-			Robots[1].Points = 2
-			Robots[2].Winner = 0
-			Robots[2].Tie = 0
-			Robots[2].Lose = 1
-			Robots[2].Points = 0
-			Robots[3].Winner = 0
-			Robots[3].Tie = 0
-			Robots[3].Lose = 1
-			Robots[3].Points = 0
+		if a == 1 { // Robots[0] is the winner, Robot[2] gets win as well.
+			Robots[0].Winner += 1
+			Robots[0].Tie += 0
+			Robots[0].Lose += 0
+			Robots[0].Points += 3
+			Robots[1].Winner += 1
+			Robots[1].Tie += 0
+			Robots[1].Lose += 0
+			Robots[1].Points += 2
+			Robots[2].Winner += 0
+			Robots[2].Tie += 0
+			Robots[2].Lose += 1
+			Robots[2].Points += 0
+			Robots[3].Winner += 0
+			Robots[3].Tie += 0
+			Robots[3].Lose += 1
+			Robots[3].Points += 0
 		}
-		if a == 2 {
-			Robots[0].Winner = 1
-			Robots[0].Tie = 0
-			Robots[0].Lose = 0
-			Robots[0].Points = 2
-			Robots[1].Winner = 1
-			Robots[1].Tie = 0
-			Robots[1].Lose = 0
-			Robots[1].Points = 3
-			Robots[2].Winner = 0
-			Robots[2].Tie = 0
-			Robots[2].Lose = 1
-			Robots[2].Points = 0
-			Robots[3].Winner = 0
-			Robots[3].Tie = 0
-			Robots[3].Lose = 1
-			Robots[3].Points = 0
+		if a == 2 { // Robots[1] is the winner. Robots[0] gets win as well.
+			Robots[0].Winner += 1
+			Robots[0].Tie += 0
+			Robots[0].Lose += 0
+			Robots[0].Points += 2
+			Robots[1].Winner += 1
+			Robots[1].Tie += 0
+			Robots[1].Lose += 0
+			Robots[1].Points += 3
+			Robots[2].Winner += 0
+			Robots[2].Tie += 0
+			Robots[2].Lose += 1
+			Robots[2].Points += 0
+			Robots[3].Winner += 0
+			Robots[3].Tie += 0
+			Robots[3].Lose += 1
+			Robots[3].Points += 0
 		}
-		if a == 3 {
-			Robots[0].Winner = 1
-			Robots[0].Tie = 0
-			Robots[0].Lose = 0
-			Robots[0].Points = 3
-			Robots[1].Winner = 1
-			Robots[1].Tie = 0
-			Robots[1].Lose = 0
-			Robots[1].Points = 3
-			Robots[2].Winner = 0
-			Robots[2].Tie = 0
-			Robots[2].Lose = 1
-			Robots[2].Points = 0
-			Robots[3].Winner = 0
-			Robots[3].Tie = 0
-			Robots[3].Lose = 1
-			Robots[3].Points = 0
+		if a == 3 { // Robots[0] and Robots[1] are the winners
+			Robots[0].Winner += 1
+			Robots[0].Tie += 0
+			Robots[0].Lose += 0
+			Robots[0].Points += 3
+			Robots[1].Winner += 1
+			Robots[1].Tie += 0
+			Robots[1].Lose += 0
+			Robots[1].Points += 3
+			Robots[2].Winner += 0
+			Robots[2].Tie += 0
+			Robots[2].Lose += 1
+			Robots[2].Points += 0
+			Robots[3].Winner += 0
+			Robots[3].Tie += 0
+			Robots[3].Lose += 1
+			Robots[3].Points += 0
 		}
-		if a == 4 {
-			Robots[0].Winner = 0
-			Robots[0].Tie = 0
-			Robots[0].Lose = 1
-			Robots[0].Points = 0
-			Robots[1].Winner = 0
-			Robots[1].Tie = 0
-			Robots[1].Lose = 1
-			Robots[1].Points = 0
-			Robots[2].Winner = 1
-			Robots[2].Tie = 0
-			Robots[2].Lose = 0
-			Robots[2].Points = 3
-			Robots[3].Winner = 1
-			Robots[3].Tie = 0
-			Robots[3].Lose = 0
-			Robots[3].Points = 2
+		if a == 4 { // Robots[2] is the winner and Robots[3] get carried along as well.
+			Robots[0].Winner += 0
+			Robots[0].Tie += 0
+			Robots[0].Lose += 1
+			Robots[0].Points += 0
+			Robots[1].Winner += 0
+			Robots[1].Tie += 0
+			Robots[1].Lose += 1
+			Robots[1].Points += 0
+			Robots[2].Winner += 1
+			Robots[2].Tie += 0
+			Robots[2].Lose += 0
+			Robots[2].Points += 3
+			Robots[3].Winner += 1
+			Robots[3].Tie += 0
+			Robots[3].Lose += 0
+			Robots[3].Points += 2
 		}
-		if a == 8 {
-			Robots[0].Winner = 0
-			Robots[0].Tie = 0
-			Robots[0].Lose = 1
-			Robots[0].Points = 0
-			Robots[1].Winner = 0
-			Robots[1].Tie = 0
-			Robots[1].Lose = 1
-			Robots[1].Points = 0
-			Robots[2].Winner = 1
-			Robots[2].Tie = 0
-			Robots[2].Lose = 0
-			Robots[2].Points = 2
-			Robots[3].Winner = 1
-			Robots[3].Tie = 0
-			Robots[3].Lose = 0
-			Robots[3].Points = 3
+		if a == 8 { // Robots[3] is the winner and Robots[2] get carried along as well.
+			Robots[0].Winner += 0
+			Robots[0].Tie += 0
+			Robots[0].Lose += 1
+			Robots[0].Points += 0
+			Robots[1].Winner += 0
+			Robots[1].Tie += 0
+			Robots[1].Lose += 1
+			Robots[1].Points += 0
+			Robots[2].Winner += 1
+			Robots[2].Tie += 0
+			Robots[2].Lose += 0
+			Robots[2].Points += 2
+			Robots[3].Winner += 1
+			Robots[3].Tie += 0
+			Robots[3].Lose += 0
+			Robots[3].Points += 3
 		}
-		if a == 12 {
-			Robots[0].Winner = 0
-			Robots[0].Tie = 0
-			Robots[0].Lose = 1
-			Robots[0].Points = 0
-			Robots[1].Winner = 0
-			Robots[1].Tie = 0
-			Robots[1].Lose = 1
-			Robots[1].Points = 0
-			Robots[2].Winner = 1
-			Robots[2].Tie = 0
-			Robots[2].Lose = 0
-			Robots[2].Points = 3
-			Robots[3].Winner = 1
-			Robots[3].Tie = 0
-			Robots[3].Lose = 0
-			Robots[3].Points = 3
+		if a == 12 { // Robots[2] and Robots[3] are the Winners
+			Robots[0].Winner += 0
+			Robots[0].Tie += 0
+			Robots[0].Lose += 1
+			Robots[0].Points += 0
+			Robots[1].Winner += 0
+			Robots[1].Tie += 0
+			Robots[1].Lose += 1
+			Robots[1].Points += 0
+			Robots[2].Winner += 1
+			Robots[2].Tie += 0
+			Robots[2].Lose += 0
+			Robots[2].Points += 3
+			Robots[3].Winner += 1
+			Robots[3].Tie += 0
+			Robots[3].Lose += 0
+			Robots[3].Points += 3
 		}
-		if a == 15 {
-			Robots[0].Winner = 0
-			Robots[0].Tie = 1
-			Robots[0].Lose = 0
-			Robots[0].Points = 1
-			Robots[1].Winner = 0
-			Robots[1].Tie = 1
-			Robots[1].Lose = 0
-			Robots[1].Points = 1
-			Robots[2].Winner = 0
-			Robots[2].Tie = 1
-			Robots[2].Lose = 0
-			Robots[2].Points = 1
-			Robots[3].Winner = 0
-			Robots[3].Tie = 1
-			Robots[3].Lose = 0
-			Robots[3].Points = 1
+		if a == 15 { // All robots are still alaive, must be max cycles. Tie for everyone
+			Robots[0].Winner += 0
+			Robots[0].Tie += 1
+			Robots[0].Lose += 0
+			Robots[0].Points += 1
+			Robots[1].Winner += 0
+			Robots[1].Tie += 1
+			Robots[1].Lose += 0
+			Robots[1].Points += 1
+			Robots[2].Winner += 0
+			Robots[2].Tie += 1
+			Robots[2].Lose += 0
+			Robots[2].Points += 1
+			Robots[3].Winner += 0
+			Robots[3].Tie += 1
+			Robots[3].Lose += 0
+			Robots[3].Points += 1
 		}
 	} else {
+		if a == 0 { // Every Robot is dead
+			Robots[0].Winner += 0
+			Robots[0].Tie += 1
+			Robots[0].Lose += 0
+			Robots[0].Points += 1
+			Robots[1].Winner += 0
+			Robots[1].Tie += 1
+			Robots[1].Lose += 0
+			Robots[1].Points += 1
+			Robots[2].Winner += 0
+			Robots[2].Tie += 1
+			Robots[2].Lose += 0
+			Robots[2].Points += 1
+			Robots[3].Winner += 0
+			Robots[3].Tie += 1
+			Robots[3].Lose += 0
+			Robots[3].Points += 1
+		}
+		if a == 1 { // Robots[0] is the winner
+			Robots[0].Winner += 1
+			Robots[0].Tie += 0
+			Robots[0].Lose += 0
+			Robots[0].Points += 3
+			Robots[1].Winner += 0
+			Robots[1].Tie += 0
+			Robots[1].Lose += 1
+			Robots[1].Points += 0
+			Robots[2].Winner += 0
+			Robots[2].Tie += 0
+			Robots[2].Lose += 1
+			Robots[2].Points += 0
+			Robots[3].Winner += 0
+			Robots[3].Tie += 0
+			Robots[3].Lose += 1
+			Robots[3].Points += 0
+		}
+		if a == 2 { // Robots[1] is the winner
+			Robots[0].Winner += 0
+			Robots[0].Tie += 0
+			Robots[0].Lose += 1
+			Robots[0].Points += 0
+			Robots[1].Winner += 1
+			Robots[1].Tie += 0
+			Robots[1].Lose += 0
+			Robots[1].Points += 3
+			Robots[2].Winner += 0
+			Robots[2].Tie += 0
+			Robots[2].Lose += 1
+			Robots[2].Points += 0
+			Robots[3].Winner += 0
+			Robots[3].Tie += 0
+			Robots[3].Lose += 1
+			Robots[3].Points += 0
+		}
+		if a == 4 { // Robots[2] is the winner
+			Robots[0].Winner += 0
+			Robots[0].Tie += 0
+			Robots[0].Lose += 1
+			Robots[0].Points += 0
+			Robots[1].Winner += 0
+			Robots[1].Tie += 0
+			Robots[1].Lose += 1
+			Robots[1].Points += 0
+			Robots[2].Winner += 1
+			Robots[2].Tie += 0
+			Robots[2].Lose += 0
+			Robots[2].Points += 3
+			Robots[3].Winner += 0
+			Robots[3].Tie += 0
+			Robots[3].Lose += 1
+			Robots[3].Points += 0
+		}
+		if a == 8 { // Robots[3] is the winner
+			Robots[0].Winner += 0
+			Robots[0].Tie += 0
+			Robots[0].Lose += 1
+			Robots[0].Points += 0
+			Robots[1].Winner += 0
+			Robots[1].Tie += 0
+			Robots[1].Lose += 1
+			Robots[1].Points += 0
+			Robots[2].Winner += 0
+			Robots[2].Tie += 0
+			Robots[2].Lose += 1
+			Robots[2].Points += 0
+			Robots[3].Winner += 1
+			Robots[3].Tie += 0
+			Robots[3].Lose += 0
+			Robots[3].Points += 3
+		}
+		if a == 15 { // All robots still alive - tie for all.
+			Robots[0].Winner += 0
+			Robots[0].Tie += 1
+			Robots[0].Lose += 0
+			Robots[0].Points += 1
+			Robots[1].Winner += 0
+			Robots[1].Tie += 1
+			Robots[1].Lose += 0
+			Robots[1].Points += 1
+			Robots[2].Winner += 0
+			Robots[2].Tie += 1
+			Robots[2].Lose += 0
+			Robots[2].Points += 1
+			Robots[3].Winner += 0
+			Robots[3].Tie += 1
+			Robots[3].Lose += 0
+			Robots[3].Points += 1
+		}
+		// maxCycles ties
 		if a == 0 {
-			Robots[0].Winner = 0
-			Robots[0].Tie = 1
-			Robots[0].Lose = 0
-			Robots[0].Points = 1
-			Robots[1].Winner = 0
-			Robots[1].Tie = 1
-			Robots[1].Lose = 0
-			Robots[1].Points = 1
-			Robots[2].Winner = 0
-			Robots[2].Tie = 1
-			Robots[2].Lose = 0
-			Robots[2].Points = 1
-			Robots[3].Winner = 0
-			Robots[3].Tie = 1
-			Robots[3].Lose = 0
-			Robots[3].Points = 1
+			Robots[0].Winner += 0
+			Robots[0].Tie += 0
+			Robots[0].Lose += 0
+			Robots[0].Points += 0
+			Robots[1].Winner += 0
+			Robots[1].Tie += 0
+			Robots[1].Lose += 0
+			Robots[1].Points += 0
+			Robots[2].Winner += 0
+			Robots[2].Tie += 0
+			Robots[2].Lose += 0
+			Robots[2].Points += 0
+			Robots[3].Winner += 0
+			Robots[3].Tie += 0
+			Robots[3].Lose += 0
+			Robots[3].Points += 0
 		}
-		if a == 1 {
-			Robots[0].Winner = 1
-			Robots[0].Tie = 0
-			Robots[0].Lose = 0
-			Robots[0].Points = 3
-			Robots[1].Winner = 0
-			Robots[1].Tie = 0
-			Robots[1].Lose = 1
-			Robots[1].Points = 0
-			Robots[2].Winner = 0
-			Robots[2].Tie = 0
-			Robots[2].Lose = 1
-			Robots[2].Points = 0
-			Robots[3].Winner = 0
-			Robots[3].Tie = 0
-			Robots[3].Lose = 1
-			Robots[3].Points = 0
+
+		if a == 3 {
+			Robots[0].Winner += 0
+			Robots[0].Tie += 1
+			Robots[0].Lose += 0
+			Robots[0].Points += 1
+			Robots[1].Winner += 0
+			Robots[1].Tie += 1
+			Robots[1].Lose += 0
+			Robots[1].Points += 1
+			Robots[2].Winner += 0
+			Robots[2].Tie += 0
+			Robots[2].Lose += 1
+			Robots[2].Points += 0
+			Robots[3].Winner += 0
+			Robots[3].Tie += 0
+			Robots[3].Lose += 1
+			Robots[3].Points += 0
 		}
-		if a == 2 {
-			Robots[0].Winner = 0
-			Robots[0].Tie = 0
-			Robots[0].Lose = 1
-			Robots[0].Points = 0
-			Robots[1].Winner = 1
-			Robots[1].Tie = 0
-			Robots[1].Lose = 0
-			Robots[1].Points = 3
-			Robots[2].Winner = 0
-			Robots[2].Tie = 0
-			Robots[2].Lose = 1
-			Robots[2].Points = 0
-			Robots[3].Winner = 0
-			Robots[3].Tie = 0
-			Robots[3].Lose = 1
-			Robots[3].Points = 0
+		if a == 5 {
+			Robots[0].Winner += 0
+			Robots[0].Tie += 1
+			Robots[0].Lose += 0
+			Robots[0].Points += 0
+			Robots[1].Winner += 1
+			Robots[1].Tie += 0
+			Robots[1].Lose += 1
+			Robots[1].Points += 0
+			Robots[2].Winner += 0
+			Robots[2].Tie += 1
+			Robots[2].Lose += 0
+			Robots[2].Points += 1
+			Robots[3].Winner += 0
+			Robots[3].Tie += 0
+			Robots[3].Lose += 1
+			Robots[3].Points += 0
 		}
-		if a == 4 {
-			Robots[0].Winner = 0
-			Robots[0].Tie = 0
-			Robots[0].Lose = 1
-			Robots[0].Points = 0
-			Robots[1].Winner = 0
-			Robots[1].Tie = 0
-			Robots[1].Lose = 1
-			Robots[1].Points = 0
-			Robots[2].Winner = 1
-			Robots[2].Tie = 0
-			Robots[2].Lose = 0
-			Robots[2].Points = 3
-			Robots[3].Winner = 0
-			Robots[3].Tie = 0
-			Robots[3].Lose = 1
-			Robots[3].Points = 0
+		if a == 6 {
+			Robots[0].Winner += 0
+			Robots[0].Tie += 0
+			Robots[0].Lose += 1
+			Robots[0].Points += 0
+			Robots[1].Winner += 0
+			Robots[1].Tie += 1
+			Robots[1].Lose += 0
+			Robots[1].Points += 1
+			Robots[2].Winner += 0
+			Robots[2].Tie += 1
+			Robots[2].Lose += 0
+			Robots[2].Points += 1
+			Robots[3].Winner += 0
+			Robots[3].Tie += 0
+			Robots[3].Lose += 1
+			Robots[3].Points += 0
 		}
-		if a == 8 {
-			Robots[0].Winner = 0
-			Robots[0].Tie = 0
-			Robots[0].Lose = 1
-			Robots[0].Points = 0
-			Robots[1].Winner = 0
-			Robots[1].Tie = 0
-			Robots[1].Lose = 1
-			Robots[1].Points = 0
-			Robots[2].Winner = 0
-			Robots[2].Tie = 0
-			Robots[2].Lose = 1
-			Robots[2].Points = 0
-			Robots[3].Winner = 1
-			Robots[3].Tie = 0
-			Robots[3].Lose = 0
-			Robots[3].Points = 3
+		if a == 7 {
+			Robots[0].Winner += 0
+			Robots[0].Tie += 1
+			Robots[0].Lose += 0
+			Robots[0].Points += 1
+			Robots[1].Winner += 0
+			Robots[1].Tie += 1
+			Robots[1].Lose += 0
+			Robots[1].Points += 1
+			Robots[2].Winner += 0
+			Robots[2].Tie += 1
+			Robots[2].Lose += 0
+			Robots[2].Points += 1
+			Robots[3].Winner += 0
+			Robots[3].Tie += 0
+			Robots[3].Lose += 1
+			Robots[3].Points += 0
 		}
-		if a == 15 {
-			Robots[0].Winner = 0
-			Robots[0].Tie = 1
-			Robots[0].Lose = 0
-			Robots[0].Points = 1
-			Robots[1].Winner = 0
-			Robots[1].Tie = 1
-			Robots[1].Lose = 0
-			Robots[1].Points = 1
-			Robots[2].Winner = 0
-			Robots[2].Tie = 1
-			Robots[2].Lose = 0
-			Robots[2].Points = 1
-			Robots[3].Winner = 0
-			Robots[3].Tie = 1
-			Robots[3].Lose = 0
-			Robots[3].Points = 1
+		if a == 10 {
+			Robots[0].Winner += 0
+			Robots[0].Tie += 0
+			Robots[0].Lose += 1
+			Robots[0].Points += 0
+			Robots[1].Winner += 0
+			Robots[1].Tie += 1
+			Robots[1].Lose += 0
+			Robots[1].Points += 1
+			Robots[2].Winner += 0
+			Robots[2].Tie += 0
+			Robots[2].Lose += 1
+			Robots[2].Points += 0
+			Robots[3].Winner += 0
+			Robots[3].Tie += 1
+			Robots[3].Lose += 0
+			Robots[3].Points += 1
 		}
+		if a == 11 {
+			Robots[0].Winner += 0
+			Robots[0].Tie += 1
+			Robots[0].Lose += 0
+			Robots[0].Points += 1
+			Robots[1].Winner += 0
+			Robots[1].Tie += 1
+			Robots[1].Lose += 0
+			Robots[1].Points += 1
+			Robots[2].Winner += 0
+			Robots[2].Tie += 0
+			Robots[2].Lose += 1
+			Robots[2].Points += 0
+			Robots[3].Winner += 0
+			Robots[3].Tie += 1
+			Robots[3].Lose += 0
+			Robots[3].Points += 1
+		}
+		if a == 12 {
+			Robots[0].Winner += 0
+			Robots[0].Tie += 0
+			Robots[0].Lose += 1
+			Robots[0].Points += 0
+			Robots[1].Winner += 0
+			Robots[1].Tie += 0
+			Robots[1].Lose += 1
+			Robots[1].Points += 0
+			Robots[2].Winner += 0
+			Robots[2].Tie += 1
+			Robots[2].Lose += 0
+			Robots[2].Points += 1
+			Robots[3].Winner += 0
+			Robots[3].Tie += 1
+			Robots[3].Lose += 0
+			Robots[3].Points += 1
+		}
+		if a == 0 {
+			Robots[0].Winner += 0
+			Robots[0].Tie += 1
+			Robots[0].Lose += 0
+			Robots[0].Points += 1
+			Robots[1].Winner += 0
+			Robots[1].Tie += 0
+			Robots[1].Lose += 1
+			Robots[1].Points += 0
+			Robots[2].Winner += 0
+			Robots[2].Tie += 1
+			Robots[2].Lose += 0
+			Robots[2].Points += 1
+			Robots[3].Winner += 0
+			Robots[3].Tie += 1
+			Robots[3].Lose += 0
+			Robots[3].Points += 1
+		}
+		if a == 14 {
+			Robots[0].Winner += 0
+			Robots[0].Tie += 0
+			Robots[0].Lose += 1
+			Robots[0].Points += 0
+			Robots[1].Winner += 0
+			Robots[1].Tie += 1
+			Robots[1].Lose += 0
+			Robots[1].Points += 1
+			Robots[2].Winner += 0
+			Robots[2].Tie += 1
+			Robots[2].Lose += 0
+			Robots[2].Points += 1
+			Robots[3].Winner += 0
+			Robots[3].Tie += 1
+			Robots[3].Lose += 0
+			Robots[3].Points += 1
+		}
+
 	}
+
+	//fmt.Println(teams, a)
 
 	//	fmt.Fprintf(os.Stderr, "out of cpu loop %d - alive=%d\n", cycles, alive)
 	//TeamsWinner()
