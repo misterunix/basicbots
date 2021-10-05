@@ -132,14 +132,15 @@ func COS(env Environment, args []object.Object) object.Object {
 		return object.Error("Wrong type")
 	}
 	i := args[0].(*object.NumberObject).Value
+	i = math.Mod(i, 360)
+	if i < 0.0 {
+		i += 360.0
+	}
+	if i > 360.0 {
+		i -= 360.0
+	}
 	r := math.Cos(i * DEG2RAD)
-	r = math.Mod(r, 360)
-	if r < 0.0 {
-		r += 360.0
-	}
-	if r > 360.0 {
-		r -= 360.0
-	}
+
 	return &object.NumberObject{Value: r}
 }
 
@@ -232,14 +233,15 @@ func SIN(env Environment, args []object.Object) object.Object {
 		return object.Error("Wrong type")
 	}
 	i := args[0].(*object.NumberObject).Value
+	i = math.Mod(i, 360)
+	if i < 0.0 {
+		i += 360.0
+	}
+	if i > 360.0 {
+		i -= 360.0
+	}
+
 	r := math.Sin(i * DEG2RAD)
-	r = math.Mod(r, 360)
-	if r < 0.0 {
-		r += 360.0
-	}
-	if r > 360.0 {
-		r -= 360.0
-	}
 	return &object.NumberObject{Value: r}
 }
 

@@ -1,6 +1,8 @@
 # UPDATES
 
 ---
+- 10-05-2021
+  - Teams is working. Not fully tested yet.
 - 09-24-2021
   - Updating documentation
 - 09-21-2021

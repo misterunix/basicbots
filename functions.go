@@ -3,8 +3,28 @@ package main
 import (
 	"basicbots/builtin"
 	"basicbots/object"
+	"fmt"
 	"math"
 )
+
+// FunctionTeam : Return the team number and set it is on a team.
+func FunctionTeam(env builtin.Environment, args []object.Object) object.Object {
+	var t float64
+
+	if !teams {
+		return &object.NumberObject{Value: 0}
+	}
+
+	if current == 0 || current == 1 {
+		t = 1
+	}
+
+	if current == 2 || current == 3 {
+		t = 2
+	}
+
+	return &object.NumberObject{Value: t}
+}
 
 // FunctionLocX : Basic statement. LOCX returns the current Y location.
 func FunctionLocX(env builtin.Environment, args []object.Object) object.Object {
@@ -120,13 +140,42 @@ func FunctionScan(env builtin.Environment, args []object.Object) object.Object {
 
 	td := 1000.0
 	for i := 0; i < numberOfRobots; i++ {
+		// fmt.Println("i=", i, numberOfRobots)
+
 		checkAlive(i)
+
 		if Robots[i].Status == DEAD {
 			continue
 		}
+
 		if i == current {
 			continue
 		}
+
+		if teams {
+			if current == 0 {
+				if i == 1 {
+					continue
+				}
+			}
+			if current == 1 {
+				if i == 0 {
+					continue
+				}
+			}
+
+			if current == 2 {
+				if i == 3 {
+					continue
+				}
+			}
+			if current == 3 {
+				if i == 2 {
+					continue
+				}
+			}
+		}
+
 		x2 := Robots[i].X
 		y2 := Robots[i].Y
 		t := Scanner(angle, width, x1, y1, x2, y2)
@@ -200,4 +249,77 @@ func FunctionCannon(env builtin.Environment, args []object.Object) object.Object
 
 	return &object.NumberObject{Value: 1.0}
 
+}
+
+func FunctionOut(env builtin.Environment, args []object.Object) object.Object {
+
+	var outmessage string
+
+	if args[0].Type() == object.STRING {
+		outmessage = args[0].(*object.StringObject).Value
+	}
+
+	if current == 0 || current == 1 {
+		select {
+		case team1 <- outmessage:
+		default:
+		}
+	} else {
+		select {
+		case team2 <- outmessage:
+		default:
+		}
+	}
+	return &object.NumberObject{Value: 0.0}
+}
+
+func FunctionIn(env builtin.Environment, args []object.Object) object.Object {
+	var msg string
+
+	if current == 0 || current == 1 {
+		select {
+		case msg = <-team1:
+			// fmt.Println("received message", msg)
+		default:
+		}
+	} else {
+		select {
+		case msg = <-team2:
+			// fmt.Println("received message", msg)
+		default:
+		}
+	}
+
+	return &object.StringObject{Value: msg}
+
+}
+
+// STR converts a number to a string
+func FunctionSTRC(env builtin.Environment, args []object.Object) object.Object {
+
+	var num, c int
+	// Error?
+	if args[0].Type() == object.ERROR {
+		return args[0]
+	}
+
+	// Already a string?
+	if args[0].Type() == object.STRING {
+		return args[0]
+	}
+
+	if args[0].Type() == object.NUMBER {
+		i := args[0].(*object.NumberObject).Value
+		num = int(i)
+	}
+
+	if args[1].Type() == object.NUMBER {
+		i := args[1].(*object.NumberObject).Value
+		c = int(i)
+	}
+
+	// Get the value
+	s := fmt.Sprintf("%%%d%d", c, num)
+
+	return &object.StringObject{Value: s}
 }

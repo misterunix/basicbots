@@ -32,6 +32,7 @@ type Robot struct {
 	Winner int // Winner : Number of wins
 	Lose   int // Lose : Number off times lost
 	Tie    int // Tie : Number of times tied
+	Points int // Points : Number of points this run.
 
 	Program []byte // Program : Byte slice holding the program's text file.
 }

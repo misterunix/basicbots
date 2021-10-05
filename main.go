@@ -19,10 +19,11 @@ func main() {
 	// Parse flags to expose the arguments
 	flag.IntVar(&maxCycles, "c", 1500000, "Maximum number of cycles. Default is 1500000.")
 	flag.BoolVar(&debug, "d", false, "Enable debug.")
-	flag.BoolVar(&trace, "t", false, "Enale program trace.")
+	flag.BoolVar(&trace, "trace", false, "Enale program trace.")
 	flag.BoolVar(&battledisplay, "b", false, "Enale battle display.")
 	flag.IntVar(&matchcount, "m", 1, "Number of matches to simulate.")
 	flag.BoolVar(&versionflag, "v", false, "Display version and credits.")
+	flag.BoolVar(&teams, "t", false, "Enable teams.")
 
 	flag.Parse()
 
@@ -42,6 +43,12 @@ func main() {
 	numberOfRobots = len(flag.Args())
 	if numberOfRobots > MAXROBOTS { // Check number of robots on the command line
 		fmt.Fprintln(os.Stderr, "To many robots. Max:", MAXROBOTS)
+		os.Exit(3)
+	}
+
+	// if teams is set, number of robots must be four
+	if numberOfRobots != 4 && teams {
+		fmt.Fprintf(os.Stderr, "Teams flag is set and the number of robots does not equal four.\n")
 		os.Exit(3)
 	}
 
@@ -81,8 +88,8 @@ func main() {
 	// Output the w,t,l,p for all robots
 	for i := 0; i < numberOfRobots; i++ {
 		space := strings.Repeat(" ", 20-len(Robots[i].Name))
-		points := (Robots[i].Winner * 3) + Robots[i].Tie
-		fmt.Printf("%s%s w:%05d t:%05d l:%05d p:%05d\n", Robots[i].Name, space, Robots[i].Winner, Robots[i].Tie, Robots[i].Lose, points)
+		//points := (Robots[i].Winner * 3) + Robots[i].Tie
+		fmt.Printf("%s%s w:%05d t:%05d l:%05d p:%05d\n", Robots[i].Name, space, Robots[i].Winner, Robots[i].Tie, Robots[i].Lose, Robots[i].Points)
 	}
 
 }
