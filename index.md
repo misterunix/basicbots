@@ -32,7 +32,25 @@
 
 
 blaster.bas is out preforming my expections.
-   
+
+## Teams with simple robots.
+
+<p align="center">
+  <img width="100%" height="100%" src="images/example6.gif">
+</p>
+
+## Match with teams
+```
+./basicbots -t -m 111 testbots/shooter.bas testbots/teamtest.bas testbots/shooter.bas testbots/teamtest.bas
+shooter.bas          w:00052 t:00002 l:00057 p:00156
+teamtest.bas         w:00052 t:00001 l:00057 p:00131
+shooter.bas          w:00057 t:00001 l:00052 p:00172
+teamtest.bas         w:00057 t:00002 l:00052 p:00143
+Team1                w:00104 t:00003 l:00114 p:00287
+Team2                w:00114 t:00003 l:00104 p:00315
+```
+
+
 ## Play Testers
 - Even if you don't know *BASIC* it's easy to learn. There are resources on the internet about programming in *BASIC*, look for the really old ones. I and as time goes on, others will be more than happy to help out.
 
