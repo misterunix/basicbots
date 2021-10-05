@@ -55,7 +55,7 @@ var teams bool      // teams : true if the teams flag is set.
 	CONSTANTS
 */
 
-const VERSION = "v0.0.1b"
+const VERSION = "v0.0.2a"
 
 // Constants for cycles routines. Mainly movements.
 const (
