@@ -8,14 +8,20 @@
   - demo and docs coming soon!
 
 ## Releases
+- [v0.0.2a](https://github.com/misterunix/basicbots/releases/tag/v0.0.2a)
 - [v0.0.1c](https://github.com/misterunix/basicbots/releases/tag/v0.0.1c-beta)
 - [v0.0.1b](https://github.com/misterunix/basicbots/releases/tag/v0.0.1b-alpha)
 - [v0.0.1a](https://github.com/misterunix/basicbots/releases/tag/v0.0.1a-test-release)
 
 ## Player Documentation 
 - [BASICBOT](BASICBOTS.md) - Not complete.
-- Look at the source to blaster.bas.
+- [BASIC Commands](BASIC.md) - Quick notes, not complete.
 
+## Example bots (most complex so far)
+- Free for all
+  - [blaster.bas](https://github.com/misterunix/basicbots/blob/main/robots/blaster.bas)
+- Teams
+  - [shooter.bas](https://github.com/misterunix/basicbots/blob/main/testbots/shooter.bas)
 ---
 
 <p align="center">
