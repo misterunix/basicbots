@@ -11,6 +11,7 @@ test.bat
 linux64.tgz
 windows64.zip
 basicbots
+latest
 
 # Test binary, built with `go test -c`
 *.test
