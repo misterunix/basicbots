@@ -38,6 +38,8 @@ I expect it will take time for me to learn the ins and outs of managing an Open 
 ## News
 
 - Nightly builds will be put on hold until I can find a way to automate it.
+- Teams is working.
+  - Demo and docs coming soon.
 
 ## Contributors
 - [People who deserve recognition.](docs/CONTRIBUTORS.md)
