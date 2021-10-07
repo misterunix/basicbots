@@ -95,18 +95,18 @@ func main() {
 		t := "Team1"
 		space := strings.Repeat(" ", 20-len(t))
 		fmt.Printf("%s%s w:%05d t:%05d l:%05d p:%05d\n", t, space,
-			Robots[0].Winner+Robots[1].Winner,
-			Robots[0].Tie+Robots[1].Tie,
-			Robots[0].Lose+Robots[1].Lose,
-			Robots[0].Points+Robots[1].Points)
+			Robots[0].Winner|Robots[1].Winner,
+			Robots[0].Tie|Robots[1].Tie,
+			Robots[0].Lose|Robots[1].Lose,
+			Robots[0].Points|Robots[1].Points)
 
 		t = "Team2"
 		space = strings.Repeat(" ", 20-len(t))
 		fmt.Printf("%s%s w:%05d t:%05d l:%05d p:%05d\n", t, space,
-			Robots[2].Winner+Robots[3].Winner,
-			Robots[2].Tie+Robots[3].Tie,
-			Robots[2].Lose+Robots[3].Lose,
-			Robots[2].Points+Robots[3].Points)
+			Robots[2].Winner|Robots[3].Winner,
+			Robots[2].Tie|Robots[3].Tie,
+			Robots[2].Lose|Robots[3].Lose,
+			Robots[2].Points|Robots[3].Points)
 	}
 
 }

@@ -2600,9 +2600,9 @@ func (e *Interpreter) RunStep() error {
 	// Here we've finished with no error, but we want to
 	// alert on unclosed FOR-loops.
 	//
-	if !e.loops.Empty() {
-		return fmt.Errorf("unclosed FOR loop")
-	}
+	//if !e.loops.Empty() {
+	//	return fmt.Errorf("unclosed FOR loop")
+	//}
 
 	return nil
 }
