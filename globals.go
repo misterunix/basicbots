@@ -13,6 +13,7 @@ import (
 var debug bool         // debug : Debug flag
 var trace bool         // trace : Trace flag
 var battledisplay bool // battledisplay : true show graphics
+var bench bool         // bench : do benchmarking
 
 var numberOfRobots int // numberOfRobots : The number of robots in this simulation
 var cycles int         // cycles : The number of cpu cycles

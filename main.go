@@ -24,16 +24,18 @@ func main() {
 	flag.IntVar(&matchcount, "m", 1, "Number of matches to simulate.")
 	flag.BoolVar(&versionflag, "v", false, "Display version and credits.")
 	flag.BoolVar(&teams, "t", false, "Enable teams.")
+	flag.BoolVar(&bench, "bench", false, "Do benchmarking.")
 
 	flag.Parse()
 
-	// if -v is set and there are no robots on the command line, call version() to output the version data.
-	// I dont know why I am checking for robots. I really shouldnt.
-	if versionflag || len(flag.Args()) == 0 {
-		version()
-		os.Exit(0)
+	if !bench {
+		// if -v is set and there are no robots on the command line, call version() to output the version data.
+		// I dont know why I am checking for robots. I really shouldnt.
+		if versionflag || len(flag.Args()) == 0 {
+			version()
+			os.Exit(0)
+		}
 	}
-
 	cycledelay = int64(time.Microsecond * 100)
 
 	// Seed the random number generator. Doesn't need to be crypto strong.
@@ -52,12 +54,19 @@ func main() {
 		os.Exit(3)
 	}
 
+	if bench {
+		numberOfRobots = 4
+		battledisplay = false
+		matchcount = 500
+	}
+
 	// If the battledisplay flag is set, make sure the matchcount = 1. OVerriding -m
 	if battledisplay {
 		matchcount = 1
 		initDisplay() // Create and Initialize the tcell module.
 	}
 
+	startTime := time.Now()
 	for match := 0; match < matchcount; match++ {
 		err = InitRobots()
 		if err != nil {
@@ -69,6 +78,13 @@ func main() {
 		if etype != 0 {
 			break
 		}
+	}
+	//endDuration := time.Now().Sub(startTime).Seconds()
+	endDuration := time.Since(startTime).Seconds()
+	if bench {
+		ww := (1500000 * 500) / endDuration
+		fmt.Printf("Bench: %f\n", ww)
+		os.Exit(0)
 	}
 
 	// if battledisplay flaf is set finialize tcell
