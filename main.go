@@ -48,16 +48,17 @@ func main() {
 		os.Exit(3)
 	}
 
-	// if teams is set, number of robots must be four
-	if numberOfRobots != 4 && teams {
-		fmt.Fprintf(os.Stderr, "Teams flag is set and the number of robots does not equal four.\n")
-		os.Exit(3)
-	}
-
 	if bench {
 		numberOfRobots = 4
 		battledisplay = false
 		matchcount = 500
+		teams = false
+	}
+
+	// if teams is set, number of robots must be four
+	if numberOfRobots != 4 && teams {
+		fmt.Fprintf(os.Stderr, "Teams flag is set and the number of robots does not equal four.\n")
+		os.Exit(3)
 	}
 
 	// If the battledisplay flag is set, make sure the matchcount = 1. OVerriding -m
@@ -66,7 +67,7 @@ func main() {
 		initDisplay() // Create and Initialize the tcell module.
 	}
 
-	startTime := time.Now()
+	startTime := time.Now() // benching
 	for match := 0; match < matchcount; match++ {
 		err = InitRobots()
 		if err != nil {
@@ -79,11 +80,12 @@ func main() {
 			break
 		}
 	}
-	//endDuration := time.Now().Sub(startTime).Seconds()
+
+	// benching based on SGNIPS from https://crobots.deepthought.it/home.php?page=sgnips
 	endDuration := time.Since(startTime).Seconds()
 	if bench {
 		ww := (1500000 * 500) / endDuration
-		fmt.Printf("Bench: %f\n", ww)
+		fmt.Printf("Bench: %d\n", int(ww))
 		os.Exit(0)
 	}
 
