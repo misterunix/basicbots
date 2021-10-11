@@ -111,15 +111,21 @@ func InitRobots() error {
 			robotDebug1 := "logs/" + robotFileNameNoExt + ".d1"
 			robotDebug2 := "logs/" + robotFileNameNoExt + ".d2"
 		*/
-
-		robotFileNameWithPath := flag.Args()[i]
+		var robotFileNameWithPath string
+		if bench {
+			robotFileNameWithPath = "/home/bjones/go/src/basicbots/testbots/bench2.bas"
+		} else {
+			robotFileNameWithPath = flag.Args()[i]
+		}
 		if len(Robots[i].Program) == 0 {
 			Robots[i].Program, err = ioutil.ReadFile(robotFileNameWithPath)
 			if err != nil {
 				fmt.Fprintf(os.Stderr, "Could not load '%s'\n", flag.Args()[i])
 				os.Exit(1)
 			}
-			Robots[i].Name = filepath.Base(flag.Args()[i])
+			//Robots[i].Name = filepath.Base(flag.Args()[i])
+			Robots[i].Name = filepath.Base(robotFileNameWithPath)
+
 		}
 
 		// Create tokens for the robots source. Tokenize

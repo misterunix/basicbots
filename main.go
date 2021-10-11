@@ -24,16 +24,18 @@ func main() {
 	flag.IntVar(&matchcount, "m", 1, "Number of matches to simulate.")
 	flag.BoolVar(&versionflag, "v", false, "Display version and credits.")
 	flag.BoolVar(&teams, "t", false, "Enable teams.")
+	flag.BoolVar(&bench, "bench", false, "Do benchmarking.")
 
 	flag.Parse()
 
-	// if -v is set and there are no robots on the command line, call version() to output the version data.
-	// I dont know why I am checking for robots. I really shouldnt.
-	if versionflag || len(flag.Args()) == 0 {
-		version()
-		os.Exit(0)
+	if !bench {
+		// if -v is set and there are no robots on the command line, call version() to output the version data.
+		// I dont know why I am checking for robots. I really shouldnt.
+		if versionflag || len(flag.Args()) == 0 {
+			version()
+			os.Exit(0)
+		}
 	}
-
 	cycledelay = int64(time.Microsecond * 100)
 
 	// Seed the random number generator. Doesn't need to be crypto strong.
@@ -44,6 +46,13 @@ func main() {
 	if numberOfRobots > MAXROBOTS { // Check number of robots on the command line
 		fmt.Fprintln(os.Stderr, "To many robots. Max:", MAXROBOTS)
 		os.Exit(3)
+	}
+
+	if bench {
+		numberOfRobots = 4
+		battledisplay = false
+		matchcount = 500
+		teams = false
 	}
 
 	// if teams is set, number of robots must be four
@@ -58,6 +67,7 @@ func main() {
 		initDisplay() // Create and Initialize the tcell module.
 	}
 
+	startTime := time.Now() // benching
 	for match := 0; match < matchcount; match++ {
 		err = InitRobots()
 		if err != nil {
@@ -69,6 +79,14 @@ func main() {
 		if etype != 0 {
 			break
 		}
+	}
+
+	// benching based on SGNIPS from https://crobots.deepthought.it/home.php?page=sgnips
+	endDuration := time.Since(startTime).Seconds()
+	if bench {
+		ww := (1500000 * 500) / endDuration
+		fmt.Printf("Bench: %d\n", int(ww))
+		os.Exit(0)
 	}
 
 	// if battledisplay flaf is set finialize tcell
