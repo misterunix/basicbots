@@ -31,8 +31,11 @@ Table of contents.
 
   - Git Commit Messages
   - [Effective Go](docs/EFFECTIVE_GO.md)
+    - The only one needed for now
   - [Style Guide 1](docs/STYPE_GUIDE_1.md)
+    - studing
   - [Style Guide 2](docs/STYPE_GUIDE_2.md)
+    - studing
   - Specs Styleguide
   - Documentation Styleguide
  
