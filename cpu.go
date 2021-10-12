@@ -42,7 +42,7 @@ func ResetRobots() error {
 	for i := 0; i < numberOfRobots; i++ {
 		Robots[i].Damage = 0
 		Robots[i].Status = ALIVE
-		Robots[i].Heading = 0.0 // float64(rand.Intn(359)) // Should be 0-359
+		Robots[i].Heading = 0.0
 		Robots[i].HeadingWanted = Robots[i].Heading
 		Robots[i].Speed = 0.0
 		Robots[i].SpeedWanted = Robots[i].Speed
@@ -68,7 +68,7 @@ func ResetRobots() error {
 			Robots[i].X = float64(rand.Intn(100)) + 100.0
 			Robots[i].Y = float64(rand.Intn(100)) + 800.0
 		}
-
+		// make sure the origins for movement is set
 		Robots[i].XOrigin = Robots[i].X
 		Robots[i].YOrigin = Robots[i].Y
 
@@ -86,17 +86,19 @@ func ResetRobots() error {
 func InitRobots() error {
 	var err error
 
+	// reset the structs for the robots.
 	err = ResetRobots()
 	if err != nil {
 		return err
 	}
 
-	// Clear the previous slice if any
+	// The next two are needed to reset the Interpreter.
+	// Clear the previous slice if any exist
 	if len(evaluator) != 0 {
 		evaluator = evaluator[:0]
 	}
 
-	// Clear the previous slice if any
+	// Clear the previous slice if any exsist
 	if len(token) != 0 {
 		token = token[:0]
 	}
@@ -112,22 +114,23 @@ func InitRobots() error {
 			robotDebug2 := "logs/" + robotFileNameNoExt + ".d2"
 		*/
 		var robotFileNameWithPath string
-		if bench {
+		if bench { // need to load saved robot from constansts
 			robotFileNameWithPath = "testbots/bench2.bas"
-		} else {
+		} else { // normal set the path to the cli arguments.
 			robotFileNameWithPath = flag.Args()[i]
 		}
 		if len(Robots[i].Program) == 0 {
-			if bench {
+			if bench { // set the program slice to the stored robot.
 				Robots[i].Program = []byte(benchbot)
-			} else {
+			} else { // load the program from the file set previous.
 				Robots[i].Program, err = ioutil.ReadFile(robotFileNameWithPath)
 			}
 			if err != nil {
 				fmt.Fprintf(os.Stderr, "Could not load '%s'\n", flag.Args()[i])
 				os.Exit(1)
 			}
-			//Robots[i].Name = filepath.Base(flag.Args()[i])
+
+			// parse the full filename and path to return only the filename. Needed for battlescreen and final output.
 			Robots[i].Name = filepath.Base(robotFileNameWithPath)
 
 		}
@@ -174,8 +177,6 @@ func InitRobots() error {
 
 // RunRobots : Main loop for executing the code for the robots, triggers movement.
 func RunRobots() error {
-
-	// var alive int
 
 	if battledisplay {
 		scr.Show()
