@@ -2,6 +2,7 @@
 
 /* delay
 Windows code for timing delay. Only included when OS is windows.
+Sleep is not accurate and the delay needs to be accurate for setting the number of times the battlescreen is updated, thus setting the speed of the game.
 */
 package delay
 
