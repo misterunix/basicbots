@@ -113,12 +113,16 @@ func InitRobots() error {
 		*/
 		var robotFileNameWithPath string
 		if bench {
-			robotFileNameWithPath = "/home/bjones/go/src/basicbots/testbots/bench2.bas"
+			robotFileNameWithPath = "testbots/bench2.bas"
 		} else {
 			robotFileNameWithPath = flag.Args()[i]
 		}
 		if len(Robots[i].Program) == 0 {
-			Robots[i].Program, err = ioutil.ReadFile(robotFileNameWithPath)
+			if bench {
+				Robots[i].Program = []byte(benchbot)
+			} else {
+				Robots[i].Program, err = ioutil.ReadFile(robotFileNameWithPath)
+			}
 			if err != nil {
 				fmt.Fprintf(os.Stderr, "Could not load '%s'\n", flag.Args()[i])
 				os.Exit(1)
