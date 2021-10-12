@@ -20,8 +20,8 @@ var cycles int         // cycles : The number of cpu cycles
 var Robots []Robot     // Robots : Array of the robots
 var current int        // current : The current active robot
 
-var token []*tokenizer.Tokenizer // token : slice of tokienizers
-
+// basic interpreter
+var token []*tokenizer.Tokenizer  // token : slice of tokienizers
 var evaluator []*eval.Interpreter // evaluator : Slice of Interpreters.
 
 var maxCycles int // maxCycles : Maximum numer of cycles per match. Can change with cli flag.
@@ -36,8 +36,8 @@ var event = make(chan int)    // event : Channel for getting out of tcell with e
 var team1 = make(chan string) // team1 : Team 1 comm channel
 var team2 = make(chan string) // team2 : Team 2 comm channel
 
-var team1message string
-var team2message string
+//var team1message string
+//var team2message string
 
 var lox float64     // lox : scaling factor for battlefield to console area.
 var loy float64     // loy : scalling factor for battlefield to console area.
@@ -56,7 +56,7 @@ var teams bool      // teams : true if the teams flag is set.
 	CONSTANTS
 */
 
-const VERSION = "v0.0.2a"
+const VERSION = "v0.0.2b"
 
 // Constants for cycles routines. Mainly movements.
 const (
@@ -123,3 +123,5 @@ const (
 	ESCKEY     = 99
 	BASICERROR = 98
 )
+
+const benchbot = "10 DIM P(1000)\n100 GOSUB 15020\n110 GOTO 100\n9000 LET LLX = LOCX\n9005 LET LLY = LOCY\n9010 LET ANTT = ATN2 DY - LLY, DX - LLX\n9015 RETURN\n9050 LET LX = LOCX\n9055 LET LY = LOCY\n9060 LET TX = DX - LX\n9065 LET TY = DY - LY\n9070 LET DTT = SQR (TX*TX) + (TY*TY)\n9075 RETURN\n9100 LET DX = (RND 700) + 100\n9105 LET DY = (RND 700) + 100\n9110 RETURN\n15020 FOR I=2 TO 1000\n15030 LET P[I]=1\n15040 NEXT I\n15050 LET P[1]=0\n15060 FOR Q=2 TO 32\n15070 IF P[Q]=0 THEN GOTO 15110\n15075 LET QQ = Q * Q\n15080 FOR I = QQ TO 1000 STEP Q\n15090 LET P[I]=0\n15100 NEXT I\n15110 NEXT Q\n15120 REM\n15130 REM PAUSE 1000\n15140 LET C=0\n15150 FOR I=1 TO 1000\n15160 IF P[I]=0 THEN GOTO 15240\n15170 IF C<8 THEN GOTO 15200\n15180 REM \n15190 LET C=0\n15200 LET C=C+1\n15210 REM\n15220 REM\n15229 REM\n15230 CANNON I % 360, 700\n15232 LET SY = SCAN I % 360, 10\n15240 NEXT I\n15242 GOSUB 9100\n15245 GOSUB 9000\n15246 DRIVE ANTT, 100\n15247 GOSUB 9050\n15250 IF DTT < 50 THEN DRIVE ANTT, 0\n15250 RETURN\n"
