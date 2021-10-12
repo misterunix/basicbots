@@ -20,8 +20,8 @@ var cycles int         // cycles : The number of cpu cycles
 var Robots []Robot     // Robots : Array of the robots
 var current int        // current : The current active robot
 
-var token []*tokenizer.Tokenizer // token : slice of tokienizers
-
+// basic interpreter
+var token []*tokenizer.Tokenizer  // token : slice of tokienizers
 var evaluator []*eval.Interpreter // evaluator : Slice of Interpreters.
 
 var maxCycles int // maxCycles : Maximum numer of cycles per match. Can change with cli flag.
@@ -36,8 +36,8 @@ var event = make(chan int)    // event : Channel for getting out of tcell with e
 var team1 = make(chan string) // team1 : Team 1 comm channel
 var team2 = make(chan string) // team2 : Team 2 comm channel
 
-var team1message string
-var team2message string
+//var team1message string
+//var team2message string
 
 var lox float64     // lox : scaling factor for battlefield to console area.
 var loy float64     // loy : scalling factor for battlefield to console area.
@@ -56,7 +56,7 @@ var teams bool      // teams : true if the teams flag is set.
 	CONSTANTS
 */
 
-const VERSION = "v0.0.2a"
+const VERSION = "v0.0.2b"
 
 // Constants for cycles routines. Mainly movements.
 const (
