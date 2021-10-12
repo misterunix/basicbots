@@ -14,7 +14,7 @@ In keeping with the look and feel of the late 70s and early 80s the battlefield 
 
 ## Building
 
-To build basicbots, simply call 
+To build basicbots, simply call `make` - this will build Linux and Windows binaries. The OSX port has not been prepared yet.
 
 ## basicbots is my first Open Source project. 
 
