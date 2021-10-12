@@ -7,7 +7,7 @@ I would like to thank all the people responsible for making this project the bes
 | [misterunix](https://github.com/misterunix) | [@misterunix](https://twitter.com/misterunix) | :crayon: :pencil: :scroll: :scorpion: :wrench: :bulb: :1st_place_medal: |
 | [skx](https://github.com/skx) | [@stolen_souls](https://twitter.com/stolen_souls) | :trophy: |
 | [gdamore](https://github.com/gdamore) | ?? | :trophy: |
-
+| [jottinger](https://github.com/jottinger) | [@josephbottinger](https://twitter.com/josephbottinger)| :pencil: :scorpion: |
 
 ### Emoji Key
 
