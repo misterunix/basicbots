@@ -42,7 +42,7 @@ func ResetRobots() error {
 	for i := 0; i < numberOfRobots; i++ {
 		Robots[i].Damage = 0
 		Robots[i].Status = ALIVE
-		Robots[i].Heading = 0.0 // float64(rand.Intn(359)) // Should be 0-359
+		Robots[i].Heading = 0.0
 		Robots[i].HeadingWanted = Robots[i].Heading
 		Robots[i].Speed = 0.0
 		Robots[i].SpeedWanted = Robots[i].Speed
@@ -68,7 +68,7 @@ func ResetRobots() error {
 			Robots[i].X = float64(rand.Intn(100)) + 100.0
 			Robots[i].Y = float64(rand.Intn(100)) + 800.0
 		}
-
+		// make sure the origins for movement is set
 		Robots[i].XOrigin = Robots[i].X
 		Robots[i].YOrigin = Robots[i].Y
 
@@ -86,17 +86,19 @@ func ResetRobots() error {
 func InitRobots() error {
 	var err error
 
+	// reset the structs for the robots.
 	err = ResetRobots()
 	if err != nil {
 		return err
 	}
 
-	// Clear the previous slice if any
+	// The next two are needed to reset the Interpreter.
+	// Clear the previous slice if any exist
 	if len(evaluator) != 0 {
 		evaluator = evaluator[:0]
 	}
 
-	// Clear the previous slice if any
+	// Clear the previous slice if any exsist
 	if len(token) != 0 {
 		token = token[:0]
 	}
@@ -112,22 +114,23 @@ func InitRobots() error {
 			robotDebug2 := "logs/" + robotFileNameNoExt + ".d2"
 		*/
 		var robotFileNameWithPath string
-		if bench {
+		if bench { // need to load saved robot from constansts
 			robotFileNameWithPath = "testbots/bench2.bas"
-		} else {
+		} else { // normal set the path to the cli arguments.
 			robotFileNameWithPath = flag.Args()[i]
 		}
 		if len(Robots[i].Program) == 0 {
-			if bench {
+			if bench { // set the program slice to the stored robot.
 				Robots[i].Program = []byte(benchbot)
-			} else {
+			} else { // load the program from the file set previous.
 				Robots[i].Program, err = ioutil.ReadFile(robotFileNameWithPath)
 			}
 			if err != nil {
 				fmt.Fprintf(os.Stderr, "Could not load '%s'\n", flag.Args()[i])
 				os.Exit(1)
 			}
-			//Robots[i].Name = filepath.Base(flag.Args()[i])
+
+			// parse the full filename and path to return only the filename. Needed for battlescreen and final output.
 			Robots[i].Name = filepath.Base(robotFileNameWithPath)
 
 		}
@@ -175,8 +178,6 @@ func InitRobots() error {
 // RunRobots : Main loop for executing the code for the robots, triggers movement.
 func RunRobots() error {
 
-	// var alive int
-
 	if battledisplay {
 		scr.Show()
 	}
@@ -189,43 +190,48 @@ func RunRobots() error {
 
 	for {
 
+		// if battlediplay flag set then update the display
 		if battledisplay {
 			if cycles%30 == 0 {
-				plotbattlefield()
-				scr.Show()
+				plotbattlefield() // put screan changes into the buffer
+				scr.Show()        // move the buffer to the screen
 			}
 		}
 
+		// handle esc key
 		select {
-		case etype = <-event:
-			// fmt.Println("received message", msg)
-		default:
+		case etype = <-event: // etype is sent from event loop in display.go
+
+		default: // kep the channel from blocking
 		}
 
+		// escape key code, break out of the game loop if set
 		if etype == 99 {
 			break
 		}
 
+		// run a step  for each robot
+		// current hold the current robot, only let the for loop change the value of current
 		for current = 0; current < numberOfRobots; current++ {
-			checkAlive(current)
+			checkAlive(current) // is the robot alive?
 			if Robots[current].Status == DEAD {
-				continue
+				continue // skip this robot
 			}
 
+			// is reload finished? subtract 1 if not
 			if Robots[current].Reload > 0 {
 				Robots[current].Reload--
 			}
 
+			// run 1 line of basic code for this robot
 			err := evaluator[current].RunStep()
 			if err != nil {
-				//evaluator[current].ProgramEnd = true
-				//fmt.Fprintf(os.Stderr, "Robot:%d DEAD evaluator[current].RunStep() err \n", current)
-				//alive--
-				etype = BASICERROR
+				etype = BASICERROR // needed to make sure the tcell display is closed before exiting the loop . function
 				em := fmt.Sprintf("Error running program:\n\t%s\n", err.Error())
 				return errors.New(em)
 			}
 
+			// if the current robots programs has ended, kill the robot.
 			if evaluator[current].ProgramEnd {
 				Robots[current].Damage = 100
 				Robots[current].Status = DEAD
@@ -234,16 +240,19 @@ func RunRobots() error {
 
 		}
 
+		// check if we should exit the main game loop
+		// primaryly from win,tie,lose is ready.
 		if endCondition() {
 			break
 		}
 
+		// increment cycles.
 		cycles++
 
-		// end of simulation ?
+		// end of simulation because we reached the maxcycles?
 		if cycles == maxCycles {
 			for nn := 0; nn < numberOfRobots; nn++ {
-				if Robots[nn].Status == ALIVE {
+				if Robots[nn].Status == ALIVE { // this may be wrong. need closer inspection.
 					Robots[nn].Tie++
 					Robots[nn].Points++
 				}
@@ -258,7 +267,6 @@ func RunRobots() error {
 		if cycles%MOVECLICKS == 0 {
 			moverobot()
 			movemissile()
-			//fmt.Fprintf(os.Stderr, "c: %d\n", cycles)
 		}
 
 		// Pause for needed time to slow down the battledisplay
@@ -267,63 +275,10 @@ func RunRobots() error {
 		}
 	}
 
-	//totalPoints = numberOfRobots
-
 	endGame()
 
-	//fmt.Println(teams, a)
-
-	//	fmt.Fprintf(os.Stderr, "out of cpu loop %d - alive=%d\n", cycles, alive)
-	//TeamsWinner()
-
-	//alive = countAlive()
-
-	/*
-		if alive == 0 {
-			for nn := 0; nn < numberOfRobots; nn++ {
-				Robots[nn].Tie++
-				// fmt.Fprintf(os.Stderr, "nn:%d %d\n", nn, Robots[nn].Status)
-			}
-		}
-	*/
-	/*
-		if alive != 0 {
-			if alive == 1 {
-				for nn := 0; nn < numberOfRobots; nn++ {
-					if Robots[nn].Status == ALIVE {
-						Robots[nn].Winner++
-					} else {
-						Robots[nn].Lose++
-					}
-				}
-			}
-
-			if alive > 1 {
-				for nn := 0; nn < numberOfRobots; nn++ {
-					if Robots[nn].Status == ALIVE {1
-						Robots[nn].Tie++
-					}
-					if Robots[nn].Status == DEAD {
-						Robots[nn].Lose++
-					}
-				}
-			}
-		}
-	*/
 	return nil
 }
-
-/*
-func countAlive() int {
-	a := 0
-	for nn := 0; nn < numberOfRobots; nn++ {
-		if Robots[nn].Status == ALIVE {
-			a++
-		}
-	}
-	return a
-}
-*/
 
 func robotStatusToint() int {
 	var a int
