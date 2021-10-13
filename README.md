@@ -1,15 +1,15 @@
 # **basicbots**
 
-## **What is baiscbots?**
-**basicbots** is a programming game where you program your robot to compete agaist other robots.
+## **What is basicbots?**
+**basicbots** is a programming game where you program your robot to compete against other robots.
 
 ## **What is the inspiration?**
 My first introduction to programming combat games was [Tom Poindexter's](https://github.com/tpoindex) original [crobots](http://tpoindex.github.io/crobots/) from 1985. Which is, IMHO, still a whole lot of fun to play. 
 
 ## **Graphics, or the lack of.**
-In keeping with the look and feel of the late 70s and early 80s the battlefield display is strictly ascii.
+In keeping with the look and feel of the late 70s and early 80s, the battlefield display is strictly ASCII.
 
-## **basicbot's programming language,**
+## **basicbots programming language,**
  **basicbots** uses a subset of *BASIC*. Why *BASIC*? Well, because why not? *BASIC* is not a completely dead language, but for those of us old enough this should take you back in time to the versions around the late 1970s and early 1980s. If not, that is okay as well. You can get a sample of what it was like to live in the 8-bit world when computers were simpler.
 
 ## Building
@@ -73,4 +73,4 @@ Team2                w:00114 t:00003 l:00104 p:00315
  
 - [Updates](docs/UPDATES.md)
 
-I am on twitter as @misterunix and @basicbots my email address is misterunix@gmail.com. Reachout with any questions.
+I am on Twitter as @misterunix and @basicbots my email address is misterunix@gmail.com. Reach out with any questions.
