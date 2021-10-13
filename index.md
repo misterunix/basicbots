@@ -4,10 +4,12 @@
 **basicbots** is a programming game where you write a program in *BASIC* and have it compete against other robots.
 
 ## UPDATE: 
+- Endgame fixed.
 - Teams is working!
   - demo and docs coming soon!
 
 ## Releases
+- [v0.0.2b](https://github.com/misterunix/basicbots/releases/tag/v0.0.2b)
 - [v0.0.2a](https://github.com/misterunix/basicbots/releases/tag/v0.0.2a)
 - [v0.0.1c](https://github.com/misterunix/basicbots/releases/tag/v0.0.1c-beta)
 - [v0.0.1b](https://github.com/misterunix/basicbots/releases/tag/v0.0.1b-alpha)
