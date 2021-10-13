@@ -51,7 +51,10 @@ var matchcount int // matchcount : Number of matches to play with current robots
 var etype int       // etype : Holds the event type from tcell or function when needing to exit the program.
 var exiterror error // exiterror : Holds any error code that is causing the program to end.
 var teams bool      // teams : true if the teams flag is set.
+//var timingTest bool // timingtest : True if tracking FPS
 
+//var startTime time.Time      // startTime : For timing the average FPS
+//var timeBucket time.Duration // timeBucket : time for the number of robots on the playing field.
 /*
 	CONSTANTS
 */
