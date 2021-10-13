@@ -1,6 +1,10 @@
 # UPDATES
 
 ---
+- 10-13-2021
+  - Added OSX darwin
+  - fixed end game detection
+  - documentation spelling
 - 10-05-2021
   - Teams is working. Not fully tested yet.
 - 09-24-2021
