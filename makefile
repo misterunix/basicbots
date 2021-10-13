@@ -15,6 +15,7 @@ build:
 	env GOOS=linux GOARCH=amd64 go build -o basicbots/binaries/basicbots64-linux
 	env CGO_ENABLED=1 GOOS=windows GOARCH=amd64 go build -o basicbots/binaries/basicbots64-windows.exe
 	env CGO_ENABLED=1 GOOS=darwin GOARCH=amd64 go build -o basicbots/binaries/basicbots64-darwin
-	tar cvfz latest/linux64-0.0.2a.tgz basicbots/docs/ basicbots/robots/ basicbots/binaries/basicbots64-linux
-	zip latest/windows64-0.0.2a.zip basicbots/robots/* basicbots/docs/* basicbots/binaries/basicbots64-windows.exe
+	tar cvfz latest/linux64-0.0.2b.tgz basicbots/docs/ basicbots/robots/ basicbots/binaries/basicbots64-linux
+	tar cvfz latest/darwin64-0.0.2b.tgz basicbots/docs/ basicbots/robots/ basicbots/binaries/basicbots64-darwin
+	zip latest/windows64-0.0.2b.zip basicbots/robots/* basicbots/docs/* basicbots/binaries/basicbots64-windows.exe
 	rm -rf basicbots
