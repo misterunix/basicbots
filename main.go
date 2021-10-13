@@ -25,7 +25,7 @@ func main() {
 	flag.BoolVar(&versionflag, "v", false, "Display version and credits.")
 	flag.BoolVar(&teams, "t", false, "Enable teams.")
 	flag.BoolVar(&bench, "bench", false, "Do benchmarking.")
-
+	//flag.BoolVar(&timingTest, "time", false, "Turn on timing tests.")
 	flag.Parse()
 
 	if !bench {
@@ -47,6 +47,13 @@ func main() {
 		fmt.Fprintln(os.Stderr, "To many robots. Max:", MAXROBOTS)
 		os.Exit(3)
 	}
+
+	/*
+		if timingTest {
+			battledisplay = true
+			matchcount = 1
+		}
+	*/
 
 	if bench {
 		numberOfRobots = 4

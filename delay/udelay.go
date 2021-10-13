@@ -1,4 +1,4 @@
-//go:build linux || darwin
+//go:build linux
 
 /* delay
 Unix code for timing delay. Only included when OS is linux.

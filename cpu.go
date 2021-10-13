@@ -38,6 +38,8 @@ func ResetRobots() error {
 		pp[s1] = swap2
 	}
 
+	// quick fix for starting bots off as dead if they are not used.
+
 	// Reset / Init all robots.
 	for i := 0; i < numberOfRobots; i++ {
 		Robots[i].Damage = 0
@@ -189,12 +191,25 @@ func RunRobots() error {
 	cycles = 0
 
 	for {
+		//if timingTest {
+		//			startTime = time.Now()
+		//}
 
 		// if battlediplay flag set then update the display
 		if battledisplay {
 			if cycles%30 == 0 {
+				/*
+					if timingTest {
+						timeBucket = time.Since(startTime)
+					}
+				*/
 				plotbattlefield() // put screan changes into the buffer
 				scr.Show()        // move the buffer to the screen
+				/*
+					if timingTest {
+						startTime = time.Now()
+					}
+				*/
 			}
 		}
 
@@ -278,22 +293,4 @@ func RunRobots() error {
 	endGame()
 
 	return nil
-}
-
-func robotStatusToint() int {
-	var a int
-
-	if Robots[0].Status == ALIVE {
-		a = a | 1
-	}
-	if Robots[1].Status == ALIVE {
-		a = a | 2
-	}
-	if Robots[2].Status == ALIVE {
-		a = a | 4
-	}
-	if Robots[3].Status == ALIVE {
-		a = a | 8
-	}
-	return a
 }
