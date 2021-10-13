@@ -68,7 +68,7 @@ func main() {
 		os.Exit(3)
 	}
 
-	// If the battledisplay flag is set, make sure the matchcount = 1. OVerriding -m
+	// If the battledisplay flag is set, make sure the matchcount = 1. Overriding -m
 	if battledisplay {
 		matchcount = 1
 		initDisplay() // Create and Initialize the tcell module.

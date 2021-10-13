@@ -158,13 +158,13 @@ Keywords
     0000000000010000 = 16
     0000000000100000 = 32
 
-## Whats next? Example code?
+## What's next? Example code?
 
 Some of the following code is tested on the original gobasic. It applies here as well. 
 
 
 ## Hello World
-Lets start with the universal first program. helloworld.bas
+Let's start with the universal first program. helloworld.bas
 ```
 10 PRINT "Hello World\n"
 20 END
@@ -175,17 +175,17 @@ Hello World
 ~/go/src/gobasic$ 
 ```
 
-If you followed allong congradulations, you just wrote your first basic program.
+If you followed along congratulations, you just wrote your first basic program.
 
 ## `GOTO`
 
-Now lets introduce a `GOTO`. Remember `GOTO` transfers execacution to another line in the program.
+Now let's introduce a `GOTO`. Remember `GOTO` transfers execution to another line in the program.
 
 ```
 10 PRINT "Hello World\n"
 20 GOTO 10
 ```
-Notice the lack of the `END` statement. Thats because this program never ends. After printing Hello World on line 10, the `GOTO` on line 20 jumps back to line 10 and it starts all over again.
+Notice the lack of the `END` statement. That's because this program never ends. After printing Hello World on line 10, the `GOTO` on line 20 jumps back to line 10 and it starts all over again.
 
 ```
 Hello World
@@ -202,7 +202,7 @@ That is a bit much. Just printing Hello World over and over, forever.
 
 ## `FOR` `TO` `NEXT` `STEP`
 
-Lets setup a `FOR` `NEXT` loop.
+Let's set up a `FOR` `NEXT` loop.
 
 ```
 10 FOR I = 1 TO 5 
@@ -221,12 +221,12 @@ Hello World
 ~/go/src/gobasic$ 
 ```
 
-The `FOR` on line 10 assignes the variable I the value of 1 and sets the limit to 5. This is the start of the loop. 
+The `FOR` on line 10 assigns the variable I the value of 1 and sets the limit to 5. This is the start of the loop. 
 The lines following the `FOR` will execute until the loop is finished.
-The `NEXT I` causes the execution to transfer back to line 10 where I will be incremented by 1 and start the loop again. Once I equals 5 the `NEXT` statement will transfer exececution to the next line.
-In this case will be the `END` and program will terminate.
+The `NEXT I` causes the execution to transfer back to line 10 where I will be incremented by 1 and start the loop again. Once I equals 5 the `NEXT` statement will transfer execution to the next line.
+In this case, will be the `END` and the program will terminate.
 
-Lets show that it is actuall incrementing. We will modified the `PRINT` state to include the variable I.
+Let's show that it is incrementing. We will modify the `PRINT` state to include variable I.
 
 ```
 10 FOR I = 1 TO 5
@@ -245,7 +245,7 @@ Hello World  5
 ~/go/src/gobasic$ 
 ```
 
-It is easy to see that the variable I is actuall incrementing by 1 on each pass of the loop. Next, we will check the `STEP` size. 
+It is easy to see that the variable I is incrementing by 1 on each pass of the loop. Next, we will check the `STEP` size. 
 
 ```
 10 FOR I = 1 TO 10 STEP 2
@@ -265,8 +265,8 @@ Hello World  9
 
 ```
 You can see that the loop stepped by 2 on each pass of the loop.
-Notice that the number 10 is never shown. Thats because I was larger than 10 so the execution went to the line following `NEXT`.
-You can all step backwards if needed. 
+Notice that the number 10 is never shown. That's because I was larger than 10 so the execution went to the line following `NEXT`.
+You can all step backward if needed. 
 
 ```
 10 FOR I = 5 TO 1 STEP -1
@@ -302,7 +302,7 @@ Simple assignment.
 ~/go/src/gobasic$ 
 ```
 
-Variable A not has the value on 1. With `LET` more complete variable assignment can be done.
+Variable A has the value of 1. With `LET` more complete variable assignments can be done.
 
 ```
 10 LET A = 1
@@ -313,7 +313,7 @@ Variable A not has the value on 1. With `LET` more complete variable assignment 
 30 END
 ```
 
-Hey, what was all that. Think about it before looking at the results below. Did it do what you thought it would?
+Hey, what was all that? Think about it before looking at the results below. Did it do what you thought it would?
 
 ```
 ~/go/src/gobasic$ ./gobasic variables.bas 
@@ -321,7 +321,7 @@ Hey, what was all that. Think about it before looking at the results below. Did 
 ~/go/src/gobasic$ 
 ```
 
-Next we will use a math function in the assignment.
+Next, we will use a math function in the assignment.
 
 ```
 5 PRINT "Pythagorean Theorem\n"
