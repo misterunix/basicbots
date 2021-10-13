@@ -230,8 +230,10 @@ func plotbattlefield() {
 		posy++
 
 		cycleString := fmt.Sprintf("Cycles %d", cycles)
-		drawText(scr, posx, battleSizeY-1, posx+len(cycleString)+1, battleSizeY-1, defStyle, cycleString)
+		drawText(scr, posx, battleSizeY-2, posx+len(cycleString)+1, battleSizeY-2, defStyle, cycleString)
 
+		//fps := fmt.Sprintf("%s", timeBucket)
+		//drawText(scr, posx, battleSizeY-1, posx+len(fps)+1, battleSizeY-1, defStyle, fps)
 	}
 
 }

@@ -481,12 +481,53 @@ func checkAlive(n int) {
 	if Robots[n].Damage >= 100 {
 		Robots[n].Status = DEAD
 	}
+
+}
+func robotStatusToint() int {
+	var a int
+	switch numberOfRobots {
+
+	case 4:
+		if Robots[0].Status == ALIVE {
+			a = a | 1
+		}
+		if Robots[1].Status == ALIVE {
+			a = a | 2
+		}
+		if Robots[2].Status == ALIVE {
+			a = a | 4
+		}
+		if Robots[3].Status == ALIVE {
+			a = a | 8
+		}
+	case 3:
+		if Robots[0].Status == ALIVE {
+			a = a | 1
+		}
+		if Robots[1].Status == ALIVE {
+			a = a | 2
+		}
+		if Robots[2].Status == ALIVE {
+			a = a | 4
+		}
+	case 2:
+		if Robots[0].Status == ALIVE {
+			a = a | 1
+		}
+		if Robots[1].Status == ALIVE {
+			a = a | 2
+		}
+	}
+
+	return a
 }
 
+// endCondition : Check if its end game
+// Last update, I totally screws this up.
 func endCondition() bool {
 
 	a := robotStatusToint()
-
+	//fmt.Println(a)
 	if teams {
 		if a == 0 || a == 1 || a == 2 || a == 3 || a == 4 || a == 8 || a == 12 {
 			return true
