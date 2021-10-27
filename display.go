@@ -93,7 +93,8 @@ func drawText(s tcell.Screen, x1, y1, x2, y2 int, style tcell.Style, text string
 	}
 }
 
-// evenloop : go routine for processing tcell events. Channel 'event' passes back to main program to terminate.
+// evenloop : go routine for processing tcell events. Channel 'event' passes
+// back to main program to terminate.
 func eventloop() {
 	for {
 		ev := scr.PollEvent()
@@ -108,7 +109,8 @@ func eventloop() {
 
 }
 
-// plotbattlefield : Erase and Draw the robots, missiles and blasts on the battlefield as well as the side status.
+// plotbattlefield : Erase and Draw the robots, missiles and blasts on the
+// battlefield as well as the side status.
 func plotbattlefield() {
 	posx := battleSizeX + 2
 	var posy int

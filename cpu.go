@@ -177,7 +177,8 @@ func InitRobots() error {
 	return nil
 }
 
-// RunRobots : Main loop for executing the code for the robots, triggers movement.
+// RunRobots : Main loop for executing the code for the robots, triggers
+// movement.
 func RunRobots() error {
 
 	if battledisplay {
@@ -225,8 +226,8 @@ func RunRobots() error {
 			break
 		}
 
-		// run a step  for each robot
-		// current hold the current robot, only let the for loop change the value of current
+		// run a step  for each robot current hold the current robot, only let
+		// the for loop change the value of current
 		for current = 0; current < numberOfRobots; current++ {
 			checkAlive(current) // is the robot alive?
 			if Robots[current].Status == DEAD {

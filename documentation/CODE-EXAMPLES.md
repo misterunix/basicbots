@@ -1,6 +1,6 @@
 # **basicbots** code library
 
-Curated list of subroutines to help people get started.
+A curated list of subroutines to help people get started.
 
 
 ## Get the angle to a target
