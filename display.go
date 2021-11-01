@@ -141,6 +141,8 @@ func plotbattlefield() {
 		Robots[r].XPlotOld = x
 		Robots[r].YPlotOld = y
 
+		// Missles
+
 		for m := 0; m < MAXMISSILES; m++ {
 			if Missiles[r][m].Status == FLYING {
 				mxf := Missiles[r][m].X * lox
@@ -237,5 +239,25 @@ func plotbattlefield() {
 		//fps := fmt.Sprintf("%s", timeBucket)
 		//drawText(scr, posx, battleSizeY-1, posx+len(fps)+1, battleSizeY-1, defStyle, fps)
 	}
+
+}
+
+func isBorder(x, y int) bool {
+
+	if x >= battleSizeX {
+		return false
+	}
+	if x < 2 {
+		return false
+	}
+
+	if y >= battleSizeY {
+		return false
+	}
+	if y < 2 {
+		return false
+	}
+
+	return true
 
 }
