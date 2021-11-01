@@ -149,12 +149,16 @@ func plotbattlefield() {
 				myf := Missiles[r][m].Y * loy
 				mx := int(mxf) + 1
 				my := int(myf) + 1
-				if Missiles[r][m].XPlotOld != 0 && Missiles[r][m].YPlotOld != 0 {
+				if Missiles[r][m].XPlotOld != 0 || Missiles[r][m].YPlotOld != 0 {
 					tgme := rune(' ')
-					scr.SetCell(Missiles[r][m].XPlotOld, Missiles[r][m].YPlotOld, defStyle, tgme)
+					if isBorder(Missiles[r][m].XPlotOld, Missiles[r][m].YPlotOld) {
+						scr.SetCell(Missiles[r][m].XPlotOld, Missiles[r][m].YPlotOld, defStyle, tgme)
+					}
 				}
 				tgm := rune('.')
-				scr.SetCell(mx, my, defStyle, tgm)
+				if isBorder(mx, my) {
+					scr.SetCell(mx, my, defStyle, tgm)
+				}
 				Missiles[r][m].XPlotOld = mx
 				Missiles[r][m].YPlotOld = my
 			}
@@ -163,12 +167,17 @@ func plotbattlefield() {
 				myf := Missiles[r][m].Y * loy
 				mx := int(mxf) + 1
 				my := int(myf) + 1
-				if Missiles[r][m].XPlotOld != 0 && Missiles[r][m].YPlotOld != 0 {
+				// Switching to function
+				//if Missiles[r][m].XPlotOld != 0 || Missiles[r][m].YPlotOld != 0 {
+				if isBorder(Missiles[r][m].XPlotOld, Missiles[r][m].YPlotOld) {
 					tgme := rune(' ')
 					scr.SetCell(Missiles[r][m].XPlotOld, Missiles[r][m].YPlotOld, defStyle, tgme)
 				}
+				//}
 				tgm := rune('*')
-				scr.SetCell(mx, my, defStyle, tgm)
+				if isBorder(mx, my) {
+					scr.SetCell(mx, my, defStyle, tgm)
+				}
 				Missiles[r][m].XPlotOld = mx
 				Missiles[r][m].YPlotOld = my
 			}
@@ -185,7 +194,9 @@ func plotbattlefield() {
 				for j := 0; j < 3; j++ {
 					for k := 0; k < 3; k++ {
 						tgm := rune('*')
-						scr.SetCell(mx-1+k, my+j, defStyle, tgm)
+						if isBorder(mx-1+k, my+j) {
+							scr.SetCell(mx-1+k, my+j, defStyle, tgm)
+						}
 					}
 				}
 				//				tgm := rune('*')
@@ -206,7 +217,9 @@ func plotbattlefield() {
 				for j := 0; j < 3; j++ {
 					for k := 0; k < 3; k++ {
 						tgm := rune(' ')
-						scr.SetCell(mx-1+k, my+j, defStyle, tgm)
+						if isBorder(mx-1+k, my+j) {
+							scr.SetCell(mx-1+k, my+j, defStyle, tgm)
+						}
 					}
 				}
 				//				tgm := rune('*')
@@ -247,14 +260,14 @@ func isBorder(x, y int) bool {
 	if x >= battleSizeX {
 		return false
 	}
-	if x < 2 {
+	if x < 1 {
 		return false
 	}
 
 	if y >= battleSizeY {
 		return false
 	}
-	if y < 2 {
+	if y < 1 {
 		return false
 	}
 
