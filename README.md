@@ -1,24 +1,26 @@
-# **basicbots**
+# **BasicBots**🤖
 
-## **What is basicbots?**
-**basicbots** is a programming game where you program your robot to compete against other robots.
+## **What is BasicBots?**
+**BasicBots** is a game that gives you experience of a robo-fight two bots competiting with each other.
 
-## **What is the inspiration?**
-My first introduction to programming combat games was [Tom Poindexter's](https://github.com/tpoindex) original [crobots](http://tpoindex.github.io/crobots/) from 1985. Which is, IMHO, still a whole lot of fun to play. 
+## **My Inspiration**
+My first exposure to programming combat games was [Tom Poindexter's](https://github.com/tpoindex) original [crobots](http://tpoindex.github.io/crobots/) from 1985, for me which is still gives an experience to play. 
 
-## **Graphics, or the lack of.**
-In keeping with the look and feel of the late 70s and early 80s, the battlefield display is strictly ASCII.
+## **User Interface**
+By not loosing the charm and feel of the game I have given it the original ASCII effect that creates an amazing view for the player.
 
-## **basicbots programming language,**
- **basicbots** uses a subset of *BASIC*. Why *BASIC*? Well, because why not? *BASIC* is not a completely dead language, but for those of us old enough this should take you back in time to the versions around the late 1970s and early 1980s. If not, that is okay as well. You can get a sample of what it was like to live in the 8-bit world when computers were simpler.
+## **Programming Language**
+ **BasicBots** uses a subset of *BASIC*. Why *BASIC*? Well, to give an experience to the players of what its like to play on the 8 bit view a time machine taking back to the old world charm of the gamers.
+It will once again give the wxperince of arcade gaming .
 
-## Building
+## **Build Instruction**
 
 To build basicbots, simply call `make` - this will build Linux and Windows binaries. The OSX port has not been prepared yet.
 
-## basicbots is my first Open Source project. 
+## **My First Open Source Contribution**
 
-I expect it will take time for me to learn the ins and outs of managing an Open Source project. I ask for your help, in all areas of the project. 
+I expect it will take time for me to learn the do's and dont's the key tips of managing an > Open Source project. 
+the project is open for all the contributor to engage and make an impact of there own.
 
 - Fixing spelling errors and typos.
 - Creating documentation.
@@ -58,8 +60,7 @@ Team1                w:00104 t:00003 l:00114 p:00287
 Team2                w:00114 t:00003 l:00104 p:00315
 ```
 
-## News
-
+## Updates
 - Nightly builds will be put on hold until I can find a way to automate it.
 - Teams is working.
   - Demo and docs coming soon.
@@ -69,8 +70,16 @@ Team2                w:00114 t:00003 l:00104 p:00315
 
 ## Guidlines
 - [Contributing](docs/CONTRIBUTING.md)
-
- 
 - [Updates](docs/UPDATES.md)
 
-I am on Twitter as @misterunix and @basicbots my email address is misterunix@gmail.com. Reach out with any questions.
+**connect with me on** 
+
+<div id="badges">
+  <span>Twitter: </span>
+  <a href="https://twitter.com/misterunix">
+    @misterunix
+  </a>
+  <span>and @basicbots</span>
+</div> 
+📧 email address: misterunix@gmail.com
+Reach out with any questions.
