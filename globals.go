@@ -29,7 +29,7 @@ var maxCycles int // maxCycles : Maximum numer of cycles per match. Can change w
 var Missiles [MAXROBOTS][MAXMISSILES]Missile // Missile : Array of the missiles that can be used.
 
 var defStyle tcell.Style // defStyle : white on blank for text. Used in tcell.
-//var boxStyle tcell.Style // boxStyle : Leagacy purple
+// var boxStyle tcell.Style // boxStyle : Leagacy purple
 var scr tcell.Screen // scr : tcell screen interface. Using global to keep from haveing go routines.
 
 var event = make(chan int)    // event : Channel for getting out of tcell with escape key.
@@ -59,7 +59,7 @@ var teams bool      // teams : true if the teams flag is set.
 	CONSTANTS
 */
 
-const VERSION = "v0.0.2b"
+const VERSION = "v0.0.2c"
 
 // Constants for cycles routines. Mainly movements.
 const (
