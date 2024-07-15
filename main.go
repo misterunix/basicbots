@@ -3,7 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
-	"math/rand"
+
 	"os"
 	"strings"
 	"time"
@@ -39,7 +39,7 @@ func main() {
 	cycledelay = int64(time.Microsecond * 100)
 
 	// Seed the random number generator. Doesn't need to be crypto strong.
-	rand.Seed(time.Now().UnixNano())
+	//rand.Seed(time.Now().UnixNano())
 
 	Robots = make([]Robot, MAXROBOTS)
 	numberOfRobots = len(flag.Args())

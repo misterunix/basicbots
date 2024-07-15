@@ -1,5 +1,8 @@
 # **BasicBots**🤖
 
+# July 15 2024 
+BasicBots development is continuing. Join me!
+
 ## **What is BasicBots?**
 **BasicBots** is a game that gives you the experience of a programming a robot tank to fight other programs in an arena.
 
@@ -13,7 +16,7 @@ I didn't want to lose the look, feel and charm of the original insperation so it
  **BasicBots** uses a subset of *BASIC*. Why *BASIC*? Because, honestly, that's what I wanted. To give the feel of programming on the old 8 bit machines of the late 70s and early 80s. Besides, its fun.
  
 ## **Build Instruction**
-To build basicbots, simply call `make` - this will build Linux and Windows binaries. The OSX port has not been prepared yet.
+~~To build basicbots, simply call `make` - this will build Linux and Windows binaries. The OSX port has not been prepared yet.~~
 
 ## **My First Open Source Contribution**
 
