@@ -1,26 +1,24 @@
 # **BasicBots**🤖
 
 ## **What is BasicBots?**
-**BasicBots** is a game that gives you experience of a robo-fight two bots competiting with each other.
+**BasicBots** is a game that gives you the experience of a programming a robot tank to fight other programs in an arena.
 
 ## **My Inspiration**
-My first exposure to programming combat games was [Tom Poindexter's](https://github.com/tpoindex) original [crobots](http://tpoindex.github.io/crobots/) from 1985, for me which is still gives an experience to play. 
+My first exposure to programming combat games was [Tom Poindexter's](https://github.com/tpoindex) original [crobots](http://tpoindex.github.io/crobots/) from 1985, for me it is still a pleasure to play. 
 
 ## **User Interface**
-By not loosing the charm and feel of the game I have given it the original ASCII effect that creates an amazing view for the player.
+I didn't want to lose the look, feel and charm of the original insperation so it has the same ASCII effect that creates an amazing view for the player.
 
 ## **Programming Language**
- **BasicBots** uses a subset of *BASIC*. Why *BASIC*? Well, to give an experience to the players of what its like to play on the 8 bit view a time machine taking back to the old world charm of the gamers.
-It will once again give the wxperince of arcade gaming .
-
+ **BasicBots** uses a subset of *BASIC*. Why *BASIC*? Because, honestly, that's what I wanted. To give the feel of programming on the old 8 bit machines of the late 70s and early 80s. Besides, its fun.
+ 
 ## **Build Instruction**
-
 To build basicbots, simply call `make` - this will build Linux and Windows binaries. The OSX port has not been prepared yet.
 
 ## **My First Open Source Contribution**
 
-I expect it will take time for me to learn the do's and dont's the key tips of managing an > Open Source project. 
-the project is open for all the contributor to engage and make an impact of there own.
+I expect it will take time for me to learn the do's and dont's of managing an Open Source project. 
+The project is open for all the contributors to engage and make an impact, improving the game.
 
 - Fixing spelling errors and typos.
 - Creating documentation.
