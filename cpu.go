@@ -7,7 +7,7 @@ import (
 	"errors"
 	"flag"
 	"fmt"
-	"io/ioutil"
+
 	"math/rand"
 	"os"
 	"path/filepath"
@@ -125,7 +125,7 @@ func InitRobots() error {
 			if bench { // set the program slice to the stored robot.
 				Robots[i].Program = []byte(benchbot)
 			} else { // load the program from the file set previous.
-				Robots[i].Program, err = ioutil.ReadFile(robotFileNameWithPath)
+				Robots[i].Program, err = os.ReadFile(robotFileNameWithPath)
 			}
 			if err != nil {
 				fmt.Fprintf(os.Stderr, "Could not load '%s'\n", flag.Args()[i])

@@ -1,5 +1,7 @@
 # ---> Go
 # Binaries for programs and plugins
+bin/*
+!bin/README.md
 *.exe
 *.dll
 *.so
