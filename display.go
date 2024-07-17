@@ -7,7 +7,7 @@ import (
 	"github.com/gdamore/tcell/v2"
 )
 
-// initDisplay : Initialize tcell
+// Initialize tcell
 func initDisplay() error {
 	var err error
 	defStyle = tcell.StyleDefault.Background(tcell.ColorReset).Foreground(tcell.ColorReset)
@@ -38,7 +38,7 @@ func initDisplay() error {
 	return nil
 }
 
-// drawBox : Draws a box bording x1,y1 & x2,y2. Uses style for forground and background colors. text puts a string in the upper left corner od the box.
+// Draws a box bording x1,y1 & x2,y2. Uses style for forground and background colors. text puts a string in the upper left corner od the box.
 func drawBox(s tcell.Screen, x1, y1, x2, y2 int, style tcell.Style, text string) {
 	if y2 < y1 {
 		y1, y2 = y2, y1
@@ -76,7 +76,7 @@ func drawBox(s tcell.Screen, x1, y1, x2, y2 int, style tcell.Style, text string)
 	drawText(s, x1+2, y1, x1+len(text)+2, y2, style, text)
 }
 
-// drawText : Puts text onthe screen at x1,y1 to x2,y2 using style for forground and background colors.
+// Puts text onthe screen at x1,y1 to x2,y2 using style for forground and background colors.
 func drawText(s tcell.Screen, x1, y1, x2, y2 int, style tcell.Style, text string) {
 	row := y1
 	col := x1
@@ -93,7 +93,7 @@ func drawText(s tcell.Screen, x1, y1, x2, y2 int, style tcell.Style, text string
 	}
 }
 
-// evenloop : go routine for processing tcell events. Channel 'event' passes
+// Go routine for processing tcell events. Channel 'event' passes
 // back to main program to terminate.
 func eventloop() {
 	for {
@@ -109,7 +109,7 @@ func eventloop() {
 
 }
 
-// plotbattlefield : Erase and Draw the robots, missiles and blasts on the
+// Erase and Draw the robots, missiles and blasts on the
 // battlefield as well as the side status.
 func plotbattlefield() {
 	posx := battleSizeX + 2

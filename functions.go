@@ -7,7 +7,7 @@ import (
 	"math"
 )
 
-// FunctionTeam : Return the team number and set it is on a team.
+// Return the team number and set it is on a team.
 func FunctionTeam(env builtin.Environment, args []object.Object) object.Object {
 	var t float64
 
@@ -26,7 +26,7 @@ func FunctionTeam(env builtin.Environment, args []object.Object) object.Object {
 	return &object.NumberObject{Value: t}
 }
 
-// FunctionLocX : Basic statement. LOCX returns the current Y location.
+// Basic statement. LOCX returns the current Y location.
 func FunctionLocX(env builtin.Environment, args []object.Object) object.Object {
 	X := Robots[current].X
 	//if debug {
@@ -35,7 +35,7 @@ func FunctionLocX(env builtin.Environment, args []object.Object) object.Object {
 	return &object.NumberObject{Value: X}
 }
 
-// FunctionLocY : Basic statement. LOCY returns the current Y location
+// Basic statement. LOCY returns the current Y location
 func FunctionLocY(env builtin.Environment, args []object.Object) object.Object {
 	y := Robots[current].Y
 	//if debug {
@@ -44,7 +44,7 @@ func FunctionLocY(env builtin.Environment, args []object.Object) object.Object {
 	return &object.NumberObject{Value: y}
 }
 
-// FunctionSpeed : Basic statement. SPEED returns the current speed of the robot
+// Basic statement. SPEED returns the current speed of the robot
 func FunctionSpeed(env builtin.Environment, args []object.Object) object.Object {
 	speed := Robots[current].Speed
 	//if debug {
@@ -53,7 +53,7 @@ func FunctionSpeed(env builtin.Environment, args []object.Object) object.Object 
 	return &object.NumberObject{Value: speed}
 }
 
-// FunctionDamage : Basic statement. DAMAGE returns the current damage of the robot
+// Basic statement. DAMAGE returns the current damage of the robot
 func FunctionDamage(env builtin.Environment, args []object.Object) object.Object {
 	damage := float64(Robots[current].Damage)
 	//if debug {
@@ -62,7 +62,7 @@ func FunctionDamage(env builtin.Environment, args []object.Object) object.Object
 	return &object.NumberObject{Value: damage}
 }
 
-// FunctionDrive : Basic statement. DRIVE direction,speed sets speed and direction
+// Basic statement. DRIVE direction,speed sets speed and direction
 func FunctionDrive(env builtin.Environment, args []object.Object) object.Object {
 	var s, d float64
 
@@ -98,7 +98,7 @@ func FunctionDrive(env builtin.Environment, args []object.Object) object.Object 
 	return &object.NumberObject{Value: 0.0}
 }
 
-// FunctionScan : Basic statement. SCAN direction,width. Scan the battlefield in direction with a width of +/- width
+// Basic statement. SCAN direction,width. Scan the battlefield in direction with a width of +/- width
 func FunctionScan(env builtin.Environment, args []object.Object) object.Object {
 	var angle, width float64
 
@@ -197,7 +197,7 @@ func FunctionScan(env builtin.Environment, args []object.Object) object.Object {
 
 }
 
-// FunctionCannon : Basic statement. CANNON direction, range. Fire the cannon at angle and distance. Do nothing if no missiles available.
+// Basic statement. CANNON direction, range. Fire the cannon at angle and distance. Do nothing if no missiles available.
 func FunctionCannon(env builtin.Environment, args []object.Object) object.Object {
 
 	var angle, rang float64

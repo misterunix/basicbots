@@ -9,7 +9,7 @@ import (
 	"time"
 )
 
-// main : Really?
+// Really, no need to document this. It is the main function.
 func main() {
 
 	var err error
@@ -136,7 +136,7 @@ func main() {
 
 }
 
-// version : Print to stdout a version message along with copyright and other required messages.
+// Print to stdout a version message along with copyright and other required messages.
 func version() {
 	fmt.Printf("basicbots %s\n\n", VERSION)
 	fmt.Printf("basicbots is created and copyrighted by William Jones\nand is licensed under GNU GPL v2\n\n")
