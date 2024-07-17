@@ -8,12 +8,13 @@ import (
 	"flag"
 	"fmt"
 
-	"math/rand"
+	"math/rand/v2"
 	"os"
 	"path/filepath"
 )
 
-// ResetRobots : Reset all robots to default values. Used to reset robots between matches.
+// Reset all robots to default values.
+// Reset robots between matches.
 func ResetRobots() error {
 
 	// Cheesy way to scamble a array
@@ -22,12 +23,13 @@ func ResetRobots() error {
 	for i := 0; i < 4; i++ {
 		pp[i] = i
 	}
+
 	// 25 rounds of swaps
 	for i := 0; i < 25; i++ {
 		var s1, s2 int
-		s1 = rand.Intn(4)
+		s1 = rand.IntN(4)
 		for {
-			s2 = rand.Intn(4)
+			s2 = rand.IntN(4)
 			if s2 != s1 {
 				break
 			}
@@ -56,20 +58,22 @@ func ResetRobots() error {
 		Robots[i].Cannon = 0
 
 		// Place the robots on the battle field.
+		// Each robot is placed in a corner of the battlefield.
 		switch pp[i] {
 		case 0: // Upper Left
-			Robots[i].X = float64(rand.Intn(100)) + 100.0
-			Robots[i].Y = float64(rand.Intn(100)) + 100.0
+			Robots[i].X = float64(rand.IntN(100)) + 100.0
+			Robots[i].Y = float64(rand.IntN(100)) + 100.0
 		case 1: // Lower Right
-			Robots[i].X = float64(rand.Intn(100)) + 800.0
-			Robots[i].Y = float64(rand.Intn(100)) + 800.0
+			Robots[i].X = float64(rand.IntN(100)) + 800.0
+			Robots[i].Y = float64(rand.IntN(100)) + 800.0
 		case 2: // Upper Right
-			Robots[i].X = float64(rand.Intn(100)) + 800.0
-			Robots[i].Y = float64(rand.Intn(100)) + 100.0
+			Robots[i].X = float64(rand.IntN(100)) + 800.0
+			Robots[i].Y = float64(rand.IntN(100)) + 100.0
 		case 3: // Lower Left
-			Robots[i].X = float64(rand.Intn(100)) + 100.0
-			Robots[i].Y = float64(rand.Intn(100)) + 800.0
+			Robots[i].X = float64(rand.IntN(100)) + 100.0
+			Robots[i].Y = float64(rand.IntN(100)) + 800.0
 		}
+
 		// make sure the origins for movement is set
 		Robots[i].XOrigin = Robots[i].X
 		Robots[i].YOrigin = Robots[i].Y
@@ -81,10 +85,12 @@ func ResetRobots() error {
 		}
 
 	}
+
 	return nil
 }
 
-// InitRobots : Initialize the robots. Used to load the program, reset eval and token.
+// Initialize the robots.
+// Used to load the program, reset eval and token.
 func InitRobots() error {
 	var err error
 
@@ -158,7 +164,7 @@ func InitRobots() error {
 			}
 		}
 
-		// Add the customer funcitons of basicbots to the eval
+		// Add the custom funcitons of basicbots to the eval
 		ee.RegisterBuiltin("LOCX", 0, FunctionLocX)
 		ee.RegisterBuiltin("LOCY", 0, FunctionLocY)
 		ee.RegisterBuiltin("SPEED", 0, FunctionSpeed)
@@ -177,8 +183,7 @@ func InitRobots() error {
 	return nil
 }
 
-// RunRobots : Main loop for executing the code for the robots, triggers
-// movement.
+// Main loop for executing the code of the robots, triggers & movement.
 func RunRobots() error {
 
 	if battledisplay {
