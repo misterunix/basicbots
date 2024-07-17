@@ -2,7 +2,7 @@
 
 Math 
 ```
-ABS ABS implements ABS
+ABS ABS returns the absolute value of a number, which is the number without its sign
 ACS ACS (arccosine)
 ASN ASN (arcsine)
 ATN ATN (arctan)
