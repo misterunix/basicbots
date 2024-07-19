@@ -13,6 +13,8 @@ linux64.tgz
 windows64.zip
 basicbots
 latest
+tournament/tournament
+
 
 # Test binary, built with `go test -c`
 *.test
