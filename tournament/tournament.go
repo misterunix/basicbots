@@ -4,24 +4,28 @@ import (
 	"log"
 	"os"
 	"strings"
+
+	"github.com/misterunix/sniffle/hashing"
 )
 
-type Challenge struct {
-	RobotsName []string `json:"robotname"` // List of robots
-	Wins       []int    `json:"wins"`      // List of wins
-	Ties       []int    `json:"ties"`      // List of ties
-	Losses     []int    `json:"losses"`    // List of losses
-}
+var robotsHash = make(map[string]string) // robot filename and hash
 
-type Robot struct {
-	Filename string    `json:"filename"` // Filename of the robot
-	Count    int       `json:"count"`    // Number of times this robot has competed
-	Points   int       `json:"points"`   // Points scored by this robot
-	Win      int       `json:"win"`      // Number of wins
-	Tie      int       `json:"tie"`      // Number of ties
-	Loss     int       `json:"loss"`     // Number of losses
-	Battles  Challenge `json:"battles"`  // List of battles this robot has competed agaist other robots
-}
+// type Challenge struct {
+// 	RobotsName []string `json:"robotname"` // List of robots
+// 	Wins       []int    `json:"wins"`      // List of wins
+// 	Ties       []int    `json:"ties"`      // List of ties
+// 	Losses     []int    `json:"losses"`    // List of losses
+// }
+
+// type Robot struct {
+// 	Filename string    `json:"filename"` // Filename of the robot
+// 	Count    int       `json:"count"`    // Number of times this robot has competed
+// 	Points   int       `json:"points"`   // Points scored by this robot
+// 	Win      int       `json:"win"`      // Number of wins
+// 	Tie      int       `json:"tie"`      // Number of ties
+// 	Loss     int       `json:"loss"`     // Number of losses
+// 	Battles  Challenge `json:"battles"`  // List of battles this robot has competed agaist other robots
+// }
 
 func main() {
 
@@ -37,12 +41,14 @@ func main() {
 			continue
 		}
 		fn := f.Name()
-		fn = strings.ToLower(fn)
+		fnl := strings.ToLower(fn)
 
-		if strings.HasSuffix(fn, ".bas") {
-			yt := Robot{}
-
-			robots = append(robots, yt)
+		if strings.HasSuffix(fnl, ".bas") {
+			fileHash, err := hashing.fileHash(hashing.SHA256, fn)
+			if err != nil {
+				log.Fatal(err)
+			}
+			robotsHash[fn] = fileHash
 		}
 	}
 
