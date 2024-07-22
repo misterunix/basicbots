@@ -114,24 +114,24 @@ func main() {
 	for i := 0; i < numberOfRobots; i++ {
 		space := strings.Repeat(" ", 20-len(Robots[i].Name))
 		//points := (Robots[i].Winner * 3) + Robots[i].Tie
-		fmt.Printf("%s%s w:%05d t:%05d l:%05d p:%05d\n", Robots[i].Name, space, Robots[i].Winner, Robots[i].Tie, Robots[i].Lose, Robots[i].Points)
+		fmt.Printf("%s%s w:%05d t:%05d l:%05d p:%5.2f\n", Robots[i].Name, space, Robots[i].Winner, Robots[i].Tie, Robots[i].Lose, Robots[i].Points)
 	}
 	if teams {
 		t := "Team1"
 		space := strings.Repeat(" ", 20-len(t))
-		fmt.Printf("%s%s w:%05d t:%05d l:%05d p:%05d\n", t, space,
-			Robots[0].Winner|Robots[1].Winner,
-			Robots[0].Tie|Robots[1].Tie,
-			Robots[0].Lose|Robots[1].Lose,
-			Robots[0].Points|Robots[1].Points)
+		fmt.Printf("%s%s w:%05d t:%05d l:%05d p:%5.2f\n", t, space,
+			Robots[0].Winner, //|Robots[1].Winner,
+			Robots[0].Tie,    //|Robots[1].Tie,
+			Robots[0].Lose,   //|Robots[1].Lose,
+			Robots[0].Points) //|Robots[1].Points)
 
 		t = "Team2"
 		space = strings.Repeat(" ", 20-len(t))
-		fmt.Printf("%s%s w:%05d t:%05d l:%05d p:%05d\n", t, space,
-			Robots[2].Winner|Robots[3].Winner,
-			Robots[2].Tie|Robots[3].Tie,
-			Robots[2].Lose|Robots[3].Lose,
-			Robots[2].Points|Robots[3].Points)
+		fmt.Printf("%s%s w:%05d t:%05d l:%05d p:%5.2f\n", t, space,
+			Robots[2].Winner, //|Robots[3].Winner,
+			Robots[2].Tie,    //|Robots[3].Tie,
+			Robots[2].Lose,   //|Robots[3].Lose,
+			Robots[2].Points) //|Robots[3].Points)
 	}
 
 }

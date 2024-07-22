@@ -29,10 +29,10 @@ type Robot struct {
 
 	Status int // Status : Status of the robot. Dead or Alive.
 
-	Winner int // Winner : Number of wins
-	Lose   int // Lose : Number off times lost
-	Tie    int // Tie : Number of times tied
-	Points int // Points : Number of points this run.
+	Winner int     // Winner : Number of wins
+	Lose   int     // Lose : Number off times lost
+	Tie    int     // Tie : Number of times tied
+	Points float64 // Points : Number of points this run.
 
 	Program []byte // Program : Byte slice holding the program's text file.
 }

@@ -1,0 +1,4 @@
+github.com/misterunix/sniffle v1.0.1 h1:K21x5uIZhnwX45V3L1HxW3VdndtV8Gu6Iqtlq2bqKac=
+github.com/misterunix/sniffle v1.0.1/go.mod h1:pBT3y2C1eRO62i7d55lncKWsJv1eycoSAn2hwYWoj6Q=
+github.com/puresoul/jdb v0.0.0-20210519202649-25eab94986af h1:Vrzc+LfwNdEtqpyJ6EJwoJ9X5OKVyOWtmZOOq+Nmvgs=
+github.com/puresoul/jdb v0.0.0-20210519202649-25eab94986af/go.mod h1:lkfPjQPyiKdLW9Fk2njigRvegLfatTb1M/SyiUUEiyg=

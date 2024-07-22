@@ -1,12 +1,30 @@
 package main
 
 import (
+	"bytes"
+	"encoding/json"
+	"fmt"
 	"log"
 	"os"
+	"os/exec"
+	"strconv"
 	"strings"
 
 	"github.com/misterunix/sniffle/hashing"
+	"github.com/puresoul/jdb"
 )
+
+type therobots struct {
+	FilenameHash string
+	Filename     string
+	Code         string
+	CodeHash     string
+	Count        int
+	Points       float64
+	Win          int
+	Tie          int
+	Loss         int
+}
 
 var robotsHash = make(map[string]string) // robot filename and hash
 
@@ -29,7 +47,12 @@ var robotsHash = make(map[string]string) // robot filename and hash
 
 func main() {
 
-	robots := make([]Robot, 0)
+	//robots := make(map[int]string)
+
+	robotStorage := make([]therobots, 0)
+
+	db := jdb.Open("robots.db")
+	defer db.Close()
 
 	file, err := os.ReadDir("../robots/")
 	if err != nil {
@@ -43,79 +66,183 @@ func main() {
 		fn := f.Name()
 		fnl := strings.ToLower(fn)
 
-		if strings.HasSuffix(fnl, ".bas") {
-			fileHash, err := hashing.fileHash(hashing.SHA256, fn)
+		if !strings.HasSuffix(fnl, ".bas") {
+			continue
+		}
+
+		fnh := hashing.StringHash(hashing.SHA256, fn)
+		fmt.Println("Want", fn)
+		tmp := db.ReadStr(fnh)
+		if len(tmp) == 0 {
+			// need to add it
+			tr := therobots{}
+			tr.Filename = fn
+			tr.FilenameHash = fnh
+
+			rc, err := os.ReadFile("../robots/" + fn)
 			if err != nil {
 				log.Fatal(err)
 			}
-			robotsHash[fn] = fileHash
+
+			tr.Code = string(rc)
+			tr.CodeHash = hashing.StringHash(hashing.SHA256, tr.Code)
+			tr.Count = 0
+			tr.Points = 0
+			tr.Win = 0
+			tr.Tie = 0
+			tr.Loss = 0
+			robotStorage = append(robotStorage, tr)
+			trj, err := json.Marshal(tr)
+			if err != nil {
+				fmt.Println("Error on Marshal")
+				log.Fatal(err)
+			}
+
+			fmt.Println("adding", fn)
+			db.Map[fnh] = string(trj)
+			continue
+		}
+
+		tr := therobots{}
+		//fmt.Println(len(tmp), tmp)
+
+		err := json.Unmarshal([]byte(tmp), &tr)
+		if err != nil {
+			fmt.Println("Error on Unmarshal")
+			log.Fatal(err)
+		}
+		robotStorage = append(robotStorage, tr)
+
+		// fmt.Println(tr.Filename)
+		// fmt.Println(tr.FilenameHash)
+		// fmt.Println(tr.CodeHash)
+		// fmt.Println()
+		// fmt.Println()
+	}
+	nbots := len(robotStorage)
+
+	// Tournament 2x2
+	for i := 0; i < nbots-1; i++ {
+		for j := i + 1; j < nbots; j++ {
+			buf := new(bytes.Buffer)
+			fmt.Printf("Tournament: %s vs %s\n", robotStorage[i].Filename, robotStorage[j].Filename)
+			matches := "111"
+			cmd := exec.Command("../bin/basicbots-linux_amd64", "-m", matches, "../robots/"+robotStorage[i].Filename, "../robots/"+robotStorage[j].Filename)
+			cmd.Stdout = buf
+			err := cmd.Run()
+			if err != nil {
+				fmt.Println("Error on Run")
+				log.Fatal(err)
+			}
+			lines := strings.Split(buf.String(), "\n")
+			for _, line := range lines {
+				parts1 := strings.Split(line, "\t")
+				parts2 := strings.Split(parts1[1], " ")
+				parts3 := strings.Split(parts2[0], ":")
+				whoami := hashing.StringHash(hashing.SHA256, parts1[0])
+				tt := db.ReadStr(whoami)
+				ttu := therobots{}
+				err := json.Unmarshal([]byte(tt), &ttu)
+				if err != nil {
+					fmt.Println("Error on Unmarshal")
+					log.Fatal(err)
+				}
+				ttu.Count++
+				w, _ := strconv.Atoi(parts3[1])
+				t, _ := strconv.Atoi(parts3[3])
+				l, _ := strconv.Atoi(parts3[5])
+				p, _ := strconv.ParseFloat(parts3[7], 64)
+				ttu.Win += w
+				ttu.Tie += t
+				ttu.Loss += l
+				ttu.Points += p
+
+			}
+
+			fmt.Println(buf.String())
 		}
 	}
 
-	/*
-		nbots := len(robots)
-		if nbots <= 1 {
-			fmt.Println("Not enough robots to run a tournament")
-			return
-		}
-
-		// Tournament 2x2
-		for i := 0; i < nbots-1; i++ {
-			for j := i + 1; j < nbots; j++ {
-				fmt.Printf("Tournament: %s vs %s\n", robots[i].Filename, robots[j].Filename)
-				robots[i].Count++
-				robots[j].Count++
-			}
-		}
-		for _, r := range robots {
-			fmt.Printf("%s: %d\n", r.Filename, r.Count)
-		}
-		for ii := range robots {
-			robots[ii].Count = 0
-		}
-
-		// Tournament 3x3
-		if nbots > 2 {
-			for i := 0; i < nbots-2; i++ {
-				for j := i + 1; j < nbots-1; j++ {
-					for k := j + 1; k < nbots; k++ {
-						fmt.Printf("Tournament: %s vs %s vs %s\n", robots[i].Filename, robots[j].Filename, robots[k].Filename)
-						robots[i].Count++
-						robots[j].Count++
-						robots[k].Count++
-					}
-				}
-			}
-			for _, r := range robots {
-				fmt.Printf("%s: %d\n", r.Filename, r.Count)
-			}
-		}
-		for ii := range robots {
-			robots[ii].Count = 0
-		}
-
-		// Tournament 4x4
-		if nbots > 3 {
-			for i := 0; i < nbots-3; i++ {
-				for j := i + 1; j < nbots-2; j++ {
-					for k := j + 1; k < nbots-1; k++ {
-						for l := k + 1; l < nbots; l++ {
-							fmt.Printf("Tournament: %s vs %s vs %s vs %s\n", robots[i].Filename, robots[j].Filename, robots[k].Filename, robots[l].Filename)
-							robots[i].Count++
-							robots[j].Count++
-							robots[k].Count++
-							robots[l].Count++
-						}
-					}
-				}
-			}
-			for _, r := range robots {
-				fmt.Printf("%s: %d\n", r.Filename, r.Count)
-			}
-		}
-		for ii := range robots {
-			robots[ii].Count = 0
-		}
-	*/
-
 }
+
+// err = db.Close()
+// if err != nil {
+// 	log.Fatal(err)
+// }
+
+// if strings.HasSuffix(fnl, ".bas") {
+// 	fileHash, err := hashing.FileHash(hashing.SHA256, fn)
+// 	if err != nil {
+// 		log.Fatal(err)
+// 	}
+// 	robotsHash[fileHash] = fn
+// 	robots[index] = fileHash
+// }
+
+// nbots := len(robots)
+// if nbots <= 1 {
+// 	fmt.Println("Not enough robots to run a tournament")
+// 	return
+// }
+
+// // Tournament 2x2
+// for i := 0; i < nbots-1; i++ {
+// 	for j := i + 1; j < nbots; j++ {
+// 		ri0 := robots[i]
+// 		ri1 := robots[j]
+// 		r0 := robotsHash[ri0]
+// 		r1 := robotsHash[ri1]
+// 		fmt.Printf("Tournament: %s vs %s\n", r0, r1)
+// 		//robots[i].Count++
+// 		//robots[j].Count++
+// 	}
+// }
+// for _, r := range robots {
+// 	fmt.Printf("%s: %d\n", r.Filename, r.Count)
+// }
+// for ii := range robots {
+// 	robots[ii].Count = 0
+// }
+
+// // Tournament 3x3
+// if nbots > 2 {
+// 	for i := 0; i < nbots-2; i++ {
+// 		for j := i + 1; j < nbots-1; j++ {
+// 			for k := j + 1; k < nbots; k++ {
+// 				fmt.Printf("Tournament: %s vs %s vs %s\n", robots[i].Filename, robots[j].Filename, robots[k].Filename)
+// 				robots[i].Count++
+// 				robots[j].Count++
+// 				robots[k].Count++
+// 			}
+// 		}
+// 	}
+// 	for _, r := range robots {
+// 		fmt.Printf("%s: %d\n", r.Filename, r.Count)
+// 	}
+// }
+// for ii := range robots {
+// 	robots[ii].Count = 0
+// }
+
+// // Tournament 4x4
+// if nbots > 3 {
+// 	for i := 0; i < nbots-3; i++ {
+// 		for j := i + 1; j < nbots-2; j++ {
+// 			for k := j + 1; k < nbots-1; k++ {
+// 				for l := k + 1; l < nbots; l++ {
+// 					fmt.Printf("Tournament: %s vs %s vs %s vs %s\n", robots[i].Filename, robots[j].Filename, robots[k].Filename, robots[l].Filename)
+// 					robots[i].Count++
+// 					robots[j].Count++
+// 					robots[k].Count++
+// 					robots[l].Count++
+// 				}
+// 			}
+// 		}
+// 	}
+// 	for _, r := range robots {
+// 		fmt.Printf("%s: %d\n", r.Filename, r.Count)
+// 	}
+// }
+// for ii := range robots {
+// 	robots[ii].Count = 0
+// }
