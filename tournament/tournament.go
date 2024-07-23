@@ -10,8 +10,10 @@ import (
 	"strconv"
 	"strings"
 
+	"database/sql"
+
 	"github.com/misterunix/sniffle/hashing"
-	"github.com/puresoul/jdb"
+	_ "modernc.org/sqlite"
 )
 
 type therobots struct {
@@ -45,14 +47,24 @@ var robotsHash = make(map[string]string) // robot filename and hash
 // 	Battles  Challenge `json:"battles"`  // List of battles this robot has competed agaist other robots
 // }
 
+var botsTableCreate string
+var botsTabeleDelete string
+var botsSelect string
+
 func main() {
+
+	botsTabeleDelete = "DROP TABLE IF EXISTS robots;"
+	botsTableCreate = "CREATE TABLE IF NOT EXISTS robots (ID INTEGER PRIMARY KEY, filename TEXT, fnhash TEXT, code TEXT, codehash TEXT, count INTEGER, points REAL, win INTEGER, tie INTEGER, loss INTEGER);"
+	botsSelect = "SELECT ID,filename,fnhash,code,codehash,count,points,win,tie,loss FROM robots WHERE ID="
 
 	//robots := make(map[int]string)
 
-	robotStorage := make([]therobots, 0)
+	db, err := sql.Open("sqlite", "robots.db")
+	if err != nil {
+		log.Fatal(err)
+	}
 
-	db := jdb.Open("robots.db")
-	defer db.Close()
+	robotStorage := make([]therobots, 0)
 
 	file, err := os.ReadDir("../robots/")
 	if err != nil {
@@ -63,23 +75,24 @@ func main() {
 		if f.IsDir() {
 			continue
 		}
-		fn := f.Name()
-		fnl := strings.ToLower(fn)
+		robotFilename := f.Name()
+		x := strings.ToLower(robotFilename)
 
-		if !strings.HasSuffix(fnl, ".bas") {
+		if !strings.HasSuffix(x, ".bas") {
 			continue
 		}
 
-		fnh := hashing.StringHash(hashing.SHA256, fn)
-		fmt.Println("Want", fn)
-		tmp := db.ReadStr(fnh)
+		robotFilenameHash := hashing.StringHash(hashing.SHA256, robotFilename)
+		fmt.Println("Want", robotFilename)
+
+		tmp := db.ReadStr(robotFilenameHash)
 		if len(tmp) == 0 {
 			// need to add it
 			tr := therobots{}
-			tr.Filename = fn
-			tr.FilenameHash = fnh
+			tr.Filename = robotFilename
+			tr.FilenameHash = robotFilenameHash
 
-			rc, err := os.ReadFile("../robots/" + fn)
+			rc, err := os.ReadFile("../robots/" + robotFilename)
 			if err != nil {
 				log.Fatal(err)
 			}
