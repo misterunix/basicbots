@@ -17,18 +17,18 @@ import (
 )
 
 type therobots struct {
-	FilenameHash string
-	Filename     string
-	Code         string
-	CodeHash     string
-	Count        int
-	Points       float64
-	Win          int
-	Tie          int
-	Loss         int
+	ID           int     // ID
+	OwnerID      int     // Owner ID
+	Filename     string  // Filename of the robot
+	FilenameHash string  // Filename hash
+	Code         string  // Code of the robot
+	CodeHash     string  // Code hash
+	Count        int     // Number of times this robot has competed
+	Points       float64 // Points scored by this robot
+	Win          int     // Number of wins
+	Tie          int     // Number of ties
+	Loss         int     // Number of losses
 }
-
-var robotsHash = make(map[string]string) // robot filename and hash
 
 // type Challenge struct {
 // 	RobotsName []string `json:"robotname"` // List of robots
