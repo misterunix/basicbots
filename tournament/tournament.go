@@ -47,15 +47,7 @@ type therobots struct {
 // 	Battles  Challenge `json:"battles"`  // List of battles this robot has competed agaist other robots
 // }
 
-var botsTableCreate string
-var botsTabeleDelete string
-var botsSelect string
-
 func main() {
-
-	botsTabeleDelete = "DROP TABLE IF EXISTS robots;"
-	botsTableCreate = "CREATE TABLE IF NOT EXISTS robots (ID INTEGER PRIMARY KEY, filename TEXT, fnhash TEXT, code TEXT, codehash TEXT, count INTEGER, points REAL, win INTEGER, tie INTEGER, loss INTEGER);"
-	botsSelect = "SELECT ID,filename,fnhash,code,codehash,count,points,win,tie,loss FROM robots WHERE ID="
 
 	//robots := make(map[int]string)
 
@@ -63,8 +55,6 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	robotStorage := make([]therobots, 0)
 
 	file, err := os.ReadDir("../robots/")
 	if err != nil {
