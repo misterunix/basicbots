@@ -10,13 +10,11 @@ import (
 	"strconv"
 	"strings"
 
-	"database/sql"
-
 	"github.com/misterunix/sniffle/hashing"
-	_ "modernc.org/sqlite"
+	sqlhelp "github.com/misterunix/sqlite-helper"
 )
 
-type therobots struct {
+type TheRobots struct {
 	ID           int     // ID
 	OwnerID      int     // Owner ID
 	Filename     string  // Filename of the robot
@@ -51,10 +49,17 @@ func main() {
 
 	//robots := make(map[int]string)
 
-	db, err := sql.Open("sqlite", "robots.db")
+	db := sqlhelp.New()
+	db.Path = "."
+	db.Filename = "robots.db"
+
+	err := db.Open()
 	if err != nil {
-		log.Fatal(err)
+		fmt.Fprintln(os.Stderr, err)
+		os.Exit(1)
 	}
+
+	db.CreateTable("robots", TheRobots{})
 
 	file, err := os.ReadDir("../robots/")
 	if err != nil {
