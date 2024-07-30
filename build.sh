@@ -20,3 +20,4 @@ GOOS=darwin GOARCH=amd64 go build -o bin/basicbots-darwin_amd64
 echo "compiling darwin arm64"
 GOOS=darwin GOARCH=arm64 go build -o bin/basicbots-darwin_arm64
 
+cp bin/* ~/basicbots/bin/
