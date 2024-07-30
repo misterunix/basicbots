@@ -25,6 +25,7 @@ func main() {
 	flag.BoolVar(&versionflag, "v", false, "Display version and credits.")
 	flag.BoolVar(&teams, "t", false, "Enable teams.")
 	flag.BoolVar(&bench, "bench", false, "Do benchmarking.")
+	flag.BoolVar(&tournamentMode, "tt", false, "Output for tournament.")
 	//flag.BoolVar(&timingTest, "time", false, "Turn on timing tests.")
 	flag.Parse()
 
@@ -114,7 +115,11 @@ func main() {
 	for i := 0; i < numberOfRobots; i++ {
 		space := strings.Repeat(" ", 20-len(Robots[i].Name))
 		//points := (Robots[i].Winner * 3) + Robots[i].Tie
-		fmt.Printf("%s%s w:%05d t:%05d l:%05d p:%5.2f\n", Robots[i].Name, space, Robots[i].Winner, Robots[i].Tie, Robots[i].Lose, Robots[i].Points)
+		if tournamentMode {
+			fmt.Printf("%s %d %d %d %5.2f\n", Robots[i].Name, Robots[i].Winner, Robots[i].Tie, Robots[i].Lose, Robots[i].Points)
+		} else {
+			fmt.Printf("%s%s w:%05d t:%05d l:%05d p:%5.2f\n", Robots[i].Name, space, Robots[i].Winner, Robots[i].Tie, Robots[i].Lose, Robots[i].Points)
+		}
 	}
 	if teams {
 		t := "Team1"

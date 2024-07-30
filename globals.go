@@ -46,11 +46,13 @@ var battleSizeY int // battleSizeY : Size of the battlescreen on the console in 
 
 var cycledelay int64 // cycledelay : Delay in nanoseconds. Used in the battlescreen mode to slow down the play.
 
-var matchcount int // matchcount : Number of matches to play with current robots. Can not be used with 'battledisplay'.
+var matchcount int      // matchcount : Number of matches to play with current robots. Can not be used with 'battledisplay'.
+var tournamentMode bool // Chages the output to make parsing easier
 
 var etype int       // etype : Holds the event type from tcell or function when needing to exit the program.
 var exiterror error // exiterror : Holds any error code that is causing the program to end.
 var teams bool      // teams : true if the teams flag is set.
+
 //var timingTest bool // timingtest : True if tracking FPS
 
 //var startTime time.Time      // startTime : For timing the average FPS
