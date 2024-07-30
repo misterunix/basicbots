@@ -31,10 +31,7 @@ func CheckTables() bool {
 	table := ROBOTTABLE
 	rr := db.Db.QueryRow("SELECT name FROM sqlite_master WHERE type='table' AND name='" + table + "';")
 	err := rr.Scan(&table)
-	if err != nil {
-		return false
-	}
-	return true
+	return err == nil
 }
 
 // Create a new DB. Remove the old one if it exists.
