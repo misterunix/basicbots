@@ -1,34 +1,36 @@
 package main
 
 import (
-	"database/sql"
 	"fmt"
 	"log"
 	"os"
 	"reflect"
 	"strings"
+
+	_ "modernc.org/sqlite"
 )
 
 const ROBOTTABLE = "robots"
 
-// Open the database. If it doesn't exist, create it. Return an error if there is a problem.
-func OpenDB() error {
-	var err error
-	fn := "robots.db"
-	database, err = sql.Open("sqlite", fn)
-	if err != nil {
-		return err
-	}
-	database.SetMaxOpenConns(1)
-	return nil
-}
+// // Open the database. If it doesn't exist, create it. Return an error if there is a problem.
+// func OpenDB() error {
+// 	var err error
+// 	fn := "robots.db"
+// 	database, err = sql.Open("sqlite", fn)
+// 	if err != nil {
+// 		return err
+// 	}
+// 	database.SetMaxOpenConns(1)
+// 	return nil
+// }
 
 // Check if tables exsist
 func CheckTables() bool {
-	var table string
-	var err error
-	table = ROBOTTABLE
-	err = database.QueryRow("SELECT name FROM sqlite_master WHERE type='table' AND name=?", table).Scan(&table)
+	//var table string
+	//var err error
+	table := ROBOTTABLE
+	rr := db.Db.QueryRow("SELECT name FROM sqlite_master WHERE type='table' AND name='" + table + "';")
+	err := rr.Scan(&table)
 	if err != nil {
 		return false
 	}
@@ -77,7 +79,7 @@ func CreateDB() error {
 
 	s += "COMMIT;\n"
 	fmt.Println(s)
-	statement, err := database.Prepare(s)
+	statement, err := db.Db.Prepare(s)
 	if err != nil {
 		log.Println(err, s)
 		return err
@@ -99,7 +101,7 @@ func CreateDB() error {
 // Drop a table if it exists.
 func DropTable(table string) {
 	statement := fmt.Sprintf("DROP TABLE IF EXISTS %s;", table)
-	database.Exec(statement)
+	db.Db.Exec(statement)
 }
 
 // Create table based on struct.

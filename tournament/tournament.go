@@ -2,19 +2,19 @@ package main
 
 import (
 	"bytes"
-	"encoding/json"
+
 	"fmt"
 	"log"
 	"os"
 	"os/exec"
-	"strconv"
+
 	"strings"
 
 	"github.com/misterunix/sniffle/hashing"
 	sqlhelp "github.com/misterunix/sqlite-helper"
 )
 
-type TheRobots struct {
+type therobots struct {
 	ID           int     // ID
 	OwnerID      int     // Owner ID
 	Filename     string  // Filename of the robot
@@ -45,11 +45,13 @@ type TheRobots struct {
 // 	Battles  Challenge `json:"battles"`  // List of battles this robot has competed agaist other robots
 // }
 
+var db *sqlhelp.DbConfig
+
 func main() {
 
 	//robots := make(map[int]string)
 
-	db := sqlhelp.New()
+	db = sqlhelp.New()
 	db.Path = "."
 	db.Filename = "robots.db"
 
@@ -90,7 +92,7 @@ func main() {
 
 		tempID := -1
 		sqlstring := "SELECT ID FROM robots WHERE filenamehash = '" + robotFilenameHash + "';"
-		err := db.QueryRow(sqlstring).Scan(&tempID)
+		err := db.Db.QueryRow(sqlstring).Scan(&tempID)
 		if err != nil {
 			log.Fatal(err)
 		}
@@ -167,18 +169,21 @@ func main() {
 	// robots table should be complete
 	nbots := 0
 	sqlstring := "select count(*) as e from robots;"
-	err = db.QueryRow(sqlstring).Scan(&nbots)
+	err = db.Db.QueryRow(sqlstring).Scan(&nbots)
+	if err != nil {
+		log.Fatal(err)
+	}
 
-	robotStorage := make([]string, 0)
+	robotStorage := make([]therobots, 0)
 
-	sqlstring = "select Filename from robots;"
-	rows, err := db.Query(sqlstring)
+	sqlstring = "select ID,Filename from robots;"
+	rows, err := db.Db.Query(sqlstring)
 	if err != nil {
 		log.Fatal(err)
 	}
 	for rows.Next() {
-		var fn string
-		err = rows.Scan(&fn)
+		var fn therobots
+		err = rows.Scan(&fn.ID, &fn.Filename)
 		if err != nil {
 			log.Fatal(err)
 		}
@@ -192,9 +197,9 @@ func main() {
 	for i := 0; i < nbots-1; i++ {
 		for j := i + 1; j < nbots; j++ {
 			buf := new(bytes.Buffer)
-			fmt.Printf("Tournament: %s vs %s\n", robotStorage[i], robotStorage[j])
+			fmt.Printf("Tournament: %s vs %s\n", robotStorage[i].Filename, robotStorage[j].Filename)
 			matches := "17"
-			cmd := exec.Command("../bin/basicbots-linux_amd64", "-tt", "-m", matches, "../robots/"+robotStorage[i].Filename, "../robots/"+robotStorage[j].Filename)
+			cmd := exec.Command("../bin/basicbots-linux_amd64", "-tt", "-m", matches, "../robots/"+robotStorage[i].Filename+"../robots/"+robotStorage[j].Filename)
 			cmd.Stdout = buf
 			err := cmd.Run()
 			if err != nil {
@@ -213,26 +218,32 @@ func main() {
 				l := parts1[3]
 				p := parts1[4]
 
-				parts2 := strings.Split(parts1[1], " ")
-				parts3 := strings.Split(parts2[0], ":")
-				whoami := hashing.StringHash(hashing.SHA256, parts1[0])
-
-				tt := db.ReadStr(whoami)
-				ttu := therobots{}
-				err := json.Unmarshal([]byte(tt), &ttu)
+				sqlstring = "UPDATE SET	win = win + " + w + ", tie = tie + " + t + ", loss = loss + " + l + ", points = points + " + p + " WHERE filename = '" + filename + "';"
+				_, err := db.Db.Exec(sqlstring)
 				if err != nil {
-					fmt.Println("Error on Unmarshal")
 					log.Fatal(err)
 				}
-				ttu.Count++
-				w, _ := strconv.Atoi(parts3[1])
-				t, _ := strconv.Atoi(parts3[3])
-				l, _ := strconv.Atoi(parts3[5])
-				p, _ := strconv.ParseFloat(parts3[7], 64)
-				ttu.Win += w
-				ttu.Tie += t
-				ttu.Loss += l
-				ttu.Points += p
+
+				//parts2 := strings.Split(parts1[1], " ")
+				//parts3 := strings.Split(parts2[0], ":")
+				//whoami := hashing.StringHash(hashing.SHA256, parts1[0])
+
+				//tt := db.Db.ReadStr(whoami)
+				// ttu := therobots{}
+				// err := json.Unmarshal([]byte(tt), &ttu)
+				// if err != nil {
+				// 	fmt.Println("Error on Unmarshal")
+				// 	log.Fatal(err)
+				// }
+				// ttu.Count++
+				// w, _ := strconv.Atoi(parts3[1])
+				// t, _ := strconv.Atoi(parts3[3])
+				// l, _ := strconv.Atoi(parts3[5])
+				// p, _ := strconv.ParseFloat(parts3[7], 64)
+				// ttu.Win += w
+				// ttu.Tie += t
+				// ttu.Loss += l
+				// ttu.Points += p
 
 			}
 
