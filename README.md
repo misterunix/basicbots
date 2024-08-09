@@ -14,9 +14,11 @@ I didn't want to lose the look, feel and charm of the original insperation so it
 
 ## **Programming Language**
  **BasicBots** uses a subset of *BASIC*. Why *BASIC*? Because, honestly, that's what I wanted. To give the feel of programming on the old 8 bit machines of the late 70s and early 80s. Besides, its fun.
- 
+
+## [FAQ](FAQ.md)
+
 ## **Build Instruction**
-~~To build basicbots, simply call `make` - this will build Linux and Windows binaries. The OSX port has not been prepared yet.~~
+Things are changing. Check back. 
 
 ## **My First Open Source Contribution**
 
