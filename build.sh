@@ -20,4 +20,6 @@ GOOS=darwin GOARCH=amd64 go build -o bin/basicbots-darwin_amd64
 echo "compiling darwin arm64"
 GOOS=darwin GOARCH=arm64 go build -o bin/basicbots-darwin_arm64
 
-cp bin/* ~/basicbots/bin/
+# this is where I have my basicbots binaries
+# you can change this to your own path and machine type
+cp bin/basicbots-linux_amd64 ~/basicbots/bin/
