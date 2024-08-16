@@ -61,7 +61,7 @@ var teams bool      // teams : true if the teams flag is set.
 	CONSTANTS
 */
 
-const VERSION = "v0.1.rc1" // VERSION : Version of the program.
+const VERSION = "v1.0.0" // VERSION : Version of the program.
 
 // Constants for cycles routines. Mainly movements.
 const (
