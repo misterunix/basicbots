@@ -22,4 +22,4 @@ GOOS=darwin GOARCH=arm64 go build -o bin/basicbots-darwin_arm64
 
 # this is where I have my basicbots binaries
 # you can change this to your own path and machine type
-cp bin/basicbots-linux_amd64 ~/basicbots/bin/
+# cp bin/basicbots-linux_amd64 ~/basicbots/bin/
